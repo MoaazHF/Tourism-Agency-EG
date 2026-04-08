@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
-  ChevronRight, Clock, Users, Globe, Star, Plus, Minus,
+  ChevronRight, ChevronLeft, Clock, Users, Globe, Star, Plus, Minus,
   CheckCircle, Check, XCircle, X, Calendar
 } from 'lucide-react';
 import { useTrip } from '../hooks/useTrip';
@@ -49,9 +49,33 @@ const TripDetails = () => {
   // ── Data from Supabase ──────────────────────────────────────────
   const { trip, loading, error } = useTrip(tripId || 'felucca');
   const [openDay, setOpenDay] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(null);
 
   const toggleDay = (day) => setOpenDay(openDay === day ? null : day);
+
+  const images = trip?.images || [];
+
+  // ── Keyboard Navigation ──────────────────────────────────────────
+  const nextImage = useCallback(() => {
+    if (activeImageIndex === null) return;
+    setActiveImageIndex((prev) => (prev + 1) % images.length);
+  }, [activeImageIndex, images.length]);
+
+  const prevImage = useCallback(() => {
+    if (activeImageIndex === null) return;
+    setActiveImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  }, [activeImageIndex, images.length]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (activeImageIndex === null) return;
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'Escape') setActiveImageIndex(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeImageIndex, nextImage, prevImage]);
 
   // ── Loading ─────────────────────────────────────────────────────
   if (loading) return <TripDetailsSkeleton />;
@@ -96,7 +120,6 @@ const TripDetails = () => {
   }
 
   // ── Normalise snake_case DB → display fields ────────────────────
-  const images        = trip.images          || [];
   const duration      = trip.duration        || 'Contact us';
   const groupSize     = trip.group_size      || trip.groupSize  || 'Customizable';
   const language      = trip.language        || 'Français, Anglais';
@@ -134,52 +157,73 @@ const TripDetails = () => {
         <section className="editorial-grid mb-12">
           {images.length > 0 ? (
             <>
-              <div className="md:row-span-2 overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setSelectedImage(images[0])}>
+              <div className="md:row-span-2 overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(0)}>
                 <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 1" src={images[0]} />
               </div>
-              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setSelectedImage(images[1] || images[0])}>
+              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(1)}>
                 <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 2" src={images[1] || images[0]} />
               </div>
-              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setSelectedImage(images[2] || images[0])}>
+              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(2)}>
                 <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 3" src={images[2] || images[0]} />
               </div>
-              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setSelectedImage(images[3] || images[0])}>
+              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(3)}>
                 <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 4" src={images[3] || images[0]} />
               </div>
-              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group relative cursor-zoom-in" onClick={() => setSelectedImage(images[4] || images[0])}>
+              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group relative cursor-zoom-in" onClick={() => setActiveImageIndex(4)}>
                 <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 5" src={images[4] || images[0]} />
                 {images.length > 5 && (
-                  <div className="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] flex items-center justify-center pointer-events-none">
+                  <div className="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] flex items-center justify-center pointer-events-none transition-colors group-hover:bg-secondary/20">
                     <span className="text-white font-bold text-lg">+{images.length - 4} Photos</span>
                   </div>
                 )}
               </div>
             </>
           ) : (
-             <div className="col-span-full h-64 flex items-center justify-center bg-surface-container rounded-xl">
-               <p className="text-outline italic">No images available for this trip</p>
+             <div className="col-span-full h-64 flex items-center justify-center bg-surface-container rounded-xl text-outline italic">
+               No images available for this trip
              </div>
           )}
         </section>
 
         {/* Image Lightbox Modal */}
-        {selectedImage && (
+        {activeImageIndex !== null && (
           <div 
-            className="fixed inset-0 z-100 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-12 animate-in fade-in duration-300"
-            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-100 bg-black/95 backdrop-blur-md flex items-center justify-center animate-in fade-in duration-300"
+            onClick={() => setActiveImageIndex(null)}
           >
+            {/* Header / Info */}
+            <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-20 pointer-events-none">
+              <span className="text-white/60 font-bold text-sm tracking-widest uppercase">
+                {activeImageIndex + 1} / {images.length}
+              </span>
+              <button 
+                className="text-white/50 hover:text-white transition-all transform hover:rotate-90 p-2 pointer-events-auto"
+                onClick={(e) => { e.stopPropagation(); setActiveImageIndex(null); }}
+              >
+                <X size={32} strokeWidth={1.5} />
+              </button>
+            </div>
+
+            {/* Navigation Buttons */}
             <button 
-              className="absolute top-6 right-6 text-white/50 hover:text-white transition-all transform hover:rotate-90 p-2 z-10"
-              onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all z-20 backdrop-blur-md group"
+              onClick={(e) => { e.stopPropagation(); prevImage(); }}
             >
-              <X size={40} strokeWidth={1.5} />
+              <ChevronLeft size={32} className="group-hover:-translate-x-1 transition-transform" />
+            </button>
+            <button 
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all z-20 backdrop-blur-md group"
+              onClick={(e) => { e.stopPropagation(); nextImage(); }}
+            >
+              <ChevronRight size={32} className="group-hover:translate-x-1 transition-transform" />
             </button>
             
-            <div className="relative w-full h-full flex items-center justify-center cursor-default" onClick={(e) => e.stopPropagation()}>
+            <div className="relative w-full h-full flex items-center justify-center p-4 md:p-12 cursor-default" onClick={(e) => e.stopPropagation()}>
               <img 
-                src={selectedImage} 
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-500" 
-                alt="Zoomed view" 
+                key={activeImageIndex}
+                src={images[activeImageIndex]} 
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 fade-in duration-500" 
+                alt={`Trip gallery view ${activeImageIndex + 1}`} 
               />
             </div>
           </div>
