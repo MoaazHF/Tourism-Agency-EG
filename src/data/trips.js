@@ -1,3 +1,58 @@
+export const categoriesData = {
+  "cruises": {
+    id: "cruises",
+    heroTag: "Évasion Millénaire",
+    title: "Circuits en Egypte avec une croisière",
+    subtitle: "Croisières sur le Nil en Égypte : L'art de voyager au fil de l'histoire.",
+    heroImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuDBLSowCMEM_A3cXCml_TGIHNqUl0kQQgN7s_5G0Wsclrnm_s40b_xLHygOLeaCfdPKD7VetCEfF3k2fWKLQxnoE0vxtxmitpkitPjLaj9XzuDK8UazHt_NTorNmFhmHvr3HaJcaRyUmHiPFSZxjGnJDF-DjaRWbPn_Kd8IOOBXEdegdPGlWg2J-b1OYBADrZSwTPZR7fmWviv1MEg-taKo9FDjZfbfRrFOSRHHtN-FmjRPmp-oH0VLFWt7cqIoE57Z1fsmPjktldJJ",
+    introTitle: "Explorez le Nil sous toutes ses formes",
+    introText: [
+      "Naviguer sur le Nil est une expérience sensorielle autant qu'historique. Nous avons sélectionné quatre façons uniques de découvrir les trésors de la Haute-Égypte, adaptées à chaque rythme et désir de sérénité.",
+      "De l'intimité d'une traditionnelle au confort moderne d'un bateau de croisière, en passant par l'élégance intemporelle du dahabiya ou l'immensité sauvage du Lac Nasser, chaque voyage est une promesse d'émerveillement."
+    ],
+    tripKeys: ["felucca", "dahabeya", "the-luxor", "the-sandal"]
+  },
+  "excursions": {
+    id: "excursions",
+    heroTag: "Aventure & Mystère",
+    title: "Désert & Excursions",
+    subtitle: "Découvrez l'Égypte au-delà du Nil, de l'immensité du désert aux oasis verdoyantes.",
+    heroImage: "https://images.unsplash.com/photo-1549646879-11ba18e775eb?q=80&w=2070&auto=format&fit=crop",
+    introTitle: "L'Égypte des sables et des mystères",
+    introText: [
+      "Partez à la conquête des dunes dorées et découvrez une facette insoupçonnée de l'Égypte.",
+      "Des oasis lointaines aux formations rocheuses surréalistes du Désert Blanc, laissez-vous transporter par la magie des espaces infinis."
+    ],
+    tripKeys: ["white-desert", "siwa-oasis", "black-desert"]
+  },
+  "tours": {
+    id: "tours",
+    heroTag: "Découverte & Savoir",
+    title: "Tours & Packages",
+    subtitle: "Des itinéraires soigneusement conçus pour ne rien manquer des merveilles de l'Égypte antique.",
+    heroImage: "https://images.unsplash.com/photo-1539768942893-daf53e448371?q=80&w=2071&auto=format&fit=crop",
+    introTitle: "Le summum du voyage organisé",
+    introText: [
+      "Laissez-nous prendre soin de chaque détail. Nos packages incluent le meilleur de l'Égypte avec des guides experts.",
+      "Embarquez pour des voyages mémorables, des pyramides du Caire aux récifs coralliens de la mer Rouge."
+    ],
+    tripKeys: ["classic-egypt", "pharaohs-coral", "deep-south"]
+  },
+  "safari": {
+    id: "safari",
+    heroTag: "Évasion Nature",
+    title: "Safari Explorations",
+    subtitle: "Vivez l'aventure en 4x4 et rencontrez l'âme véritable du désert.",
+    heroImage: "https://images.unsplash.com/photo-1502485542750-f8f533cc285b?q=80&w=2070&auto=format&fit=crop",
+    introTitle: "Pistes sauvages et nuits étoilées",
+    introText: [
+      "L'aventure avec un grand A. Des paysages hors du commun et des rencontres inoubliables avec les tribus bédouines.",
+      "Explorez les endroits les plus reculés de l'Égypte en toute sécurité avec nos guides expérimentés."
+    ],
+    tripKeys: ["giza-pyramids", "valley-of-kings", "abu-simbel"] // Using existing trips as placeholders
+  }
+};
+
 export const tripsData = {
   "felucca": {
     id: "felucca",
