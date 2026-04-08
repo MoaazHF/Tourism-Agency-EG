@@ -2,9 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   ChevronRight, ChevronLeft, Clock, Users, Globe, Star, Plus, Minus,
-  CheckCircle, Check, XCircle, X, Calendar
+  CheckCircle, Check, XCircle, X, Calendar, Send
 } from 'lucide-react';
 import { useTrip } from '../hooks/useTrip';
+import { supabase } from '../lib/supabaseClient';
 
 // ── Skeleton loader matching the bento gallery layout ────────────
 function TripDetailsSkeleton() {
@@ -50,6 +51,19 @@ const TripDetails = () => {
   const { trip, loading, error } = useTrip(tripId || 'felucca');
   const [openDay, setOpenDay] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(null);
+
+  // ── Booking Form State ───────────────────────────────────────────
+  const [bookingForm, setBookingForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    date: '',
+    adults: 2,
+    children: 0,
+    message: ''
+  });
+  const [bookingStatus, setBookingStatus] = useState('idle'); // idle, submitting, success, error
+  const [bookingError, setBookingError] = useState(null);
 
   const toggleDay = (day) => setOpenDay(openDay === day ? null : day);
 
@@ -130,6 +144,48 @@ const TripDetails = () => {
   const itinerary     = trip.itinerary        || [];
   const includes      = trip.includes         || [];
   const excludes      = trip.excludes         || [];
+
+  // ── Price Calculation ───────────────────────────────────────────
+  const perPerson = price || 0;
+  const adultsTotal = bookingForm.adults * perPerson;
+  const childrenTotal = bookingForm.children * (perPerson * 0.7); // 30% discount for children
+  const extras = 85; // Fixed fees
+  const totalDisplayPrice = perPerson ? (adultsTotal + childrenTotal + extras).toFixed(0) : null;
+
+  const handleBooking = async (e) => {
+    e.preventDefault();
+    if (!bookingForm.name || !bookingForm.email) {
+      setBookingError('Veuillez remplir les champs obligatoires.');
+      return;
+    }
+
+    setBookingStatus('submitting');
+    setBookingError(null);
+
+    try {
+      const { error } = await supabase
+        .from('bookings')
+        .insert([{
+          trip_id: trip.id,
+          customer_name: bookingForm.name,
+          customer_email: bookingForm.email,
+          customer_phone: bookingForm.phone,
+          travel_date: bookingForm.date,
+          adults: bookingForm.adults,
+          children: bookingForm.children,
+          message: bookingForm.message,
+          total_price: totalDisplayPrice ? parseFloat(totalDisplayPrice) : null,
+          status: 'pending'
+        }]);
+
+      if (error) throw error;
+      setBookingStatus('success');
+    } catch (err) {
+      console.error('Booking Error:', err);
+      setBookingError(err.message || "Une erreur s'est produite lors de la réservation.");
+      setBookingStatus('error');
+    }
+  };
 
   return (
     <main className="pt-24 pb-20">
@@ -427,77 +483,180 @@ const TripDetails = () => {
 
           {/* Right Column: Booking Form */}
           <aside className="lg:w-1/3">
-            <div className="sticky top-28 bg-white rounded-2xl p-8 shadow-2xl shadow-secondary/10 border border-outline-variant/10">
-              <div className="flex justify-between items-baseline mb-8">
-                <div>
-                  <span className="text-outline text-xs uppercase tracking-widest font-bold">À partir de</span>
-                  <div className="text-4xl font-black text-secondary">
-                    {price != null ? `${price} €` : 'Sur devis'}
-                    <span className="text-sm font-normal text-outline ml-1">/ pers</span>
+            <div className="sticky top-28 bg-white rounded-2xl p-8 shadow-2xl shadow-secondary/10 border border-outline-variant/10 overflow-hidden">
+              {bookingStatus === 'success' ? (
+                <div className="py-12 text-center animate-in fade-in zoom-in duration-500">
+                  <div className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle size={40} />
                   </div>
+                  <h3 className="font-headline text-2xl font-bold text-secondary mb-3">Merci beaucoup !</h3>
+                  <p className="text-on-surface-variant text-sm mb-8">
+                    Votre demande pour <span className="font-bold text-secondary">"{trip.title}"</span> a été transmise à notre équipe. Nous vous contacterons par email ({bookingForm.email}) très prochainement.
+                  </p>
+                  <button 
+                    onClick={() => {
+                        setBookingStatus('idle');
+                        setBookingForm({ ...bookingForm, name: '', email: '', phone: '', message: '' });
+                    }}
+                    className="text-primary font-bold text-sm underline hover:text-primary-container transition-colors"
+                  >
+                    Envoyer une autre demande
+                  </button>
                 </div>
-                <div className="bg-primary-container/20 text-primary flex items-center px-3 py-1 rounded-full text-xs font-bold">-15% Early Bird</div>
-              </div>
-
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Sélectionnez vos dates</label>
-                  <div className="relative">
-                    <input className="w-full bg-surface-container-low border-0 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-secondary placeholder:text-outline/50 font-medium" placeholder="Choisir une période" type="text" readOnly value="12 Oct 2024 - 22 Oct 2024" />
-                    <Calendar size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-outline" />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Adultes</label>
-                    <div className="flex items-center justify-between bg-surface-container-low rounded-xl px-4 py-3">
-                      <button className="text-primary font-black text-lg w-6 h-6 flex items-center justify-center leading-none" type="button">-</button>
-                      <span className="font-bold text-secondary">2</span>
-                      <button className="text-primary font-black text-lg w-6 h-6 flex items-center justify-center leading-none" type="button">+</button>
+              ) : (
+                <>
+                  <div className="flex justify-between items-baseline mb-8">
+                    <div>
+                      <span className="text-outline text-xs uppercase tracking-widest font-bold">À partir de</span>
+                      <div className="text-4xl font-black text-secondary">
+                        {price != null ? `${price} €` : 'Sur devis'}
+                        <span className="text-sm font-normal text-outline ml-1">/ pers</span>
+                      </div>
                     </div>
+                    {price && <div className="bg-primary-container/20 text-primary flex items-center px-3 py-1 rounded-full text-xs font-bold">-15% Early Bird</div>}
                   </div>
-                  <div>
-                    <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Enfants</label>
-                    <div className="flex items-center justify-between bg-surface-container-low rounded-xl px-4 py-3">
-                      <button className="text-primary font-black text-lg w-6 h-6 flex items-center justify-center leading-none" type="button">-</button>
-                      <span className="font-bold text-secondary">0</span>
-                      <button className="text-primary font-black text-lg w-6 h-6 flex items-center justify-center leading-none" type="button">+</button>
+
+                  <form className="space-y-5" onSubmit={handleBooking}>
+                    {bookingError && (
+                      <div className="p-3 bg-error/10 text-error text-xs font-bold rounded-lg border border-error/20">
+                        {bookingError}
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="col-span-2">
+                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Nom complet *</label>
+                        <input 
+                          required
+                          className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
+                          placeholder="Votre nom" 
+                          type="text" 
+                          value={bookingForm.name}
+                          onChange={(e) => setBookingForm({...bookingForm, name: e.target.value})}
+                        />
+                      </div>
+                      <div className="col-span-2">
+                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Email *</label>
+                        <input 
+                          required
+                          className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
+                          placeholder="votre@email.com" 
+                          type="email" 
+                          value={bookingForm.email}
+                          onChange={(e) => setBookingForm({...bookingForm, email: e.target.value})}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </div>
 
-                <div className="bg-surface-container-lowest border border-dashed border-outline-variant p-4 rounded-xl space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-outline">Prix par personne</span>
-                    <span className="text-secondary font-bold">{price != null ? `${price} €` : '—'}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-outline">Suppléments (Visa + Taxes)</span>
-                    <span className="text-secondary font-bold">85 €</span>
-                  </div>
-                  <div className="pt-4 mt-2 border-t border-outline-variant flex justify-between items-center">
-                    <span className="font-bold text-secondary">Total</span>
-                    <span className="text-2xl font-black text-primary">
-                      {price != null ? `${(price * 2 + 85)} €` : 'Sur devis'}
-                    </span>
-                  </div>
-                </div>
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Dates souhaitées</label>
+                      <div className="relative">
+                        <input 
+                          className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
+                          placeholder="Choisir une période" 
+                          type="text" 
+                          value={bookingForm.date}
+                          onChange={(e) => setBookingForm({...bookingForm, date: e.target.value})}
+                        />
+                        <Calendar size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-outline/50 pointer-events-none" />
+                      </div>
+                    </div>
 
-                <button className="w-full bg-gradient-to-br from-primary to-primary-container text-white py-5 rounded-xl font-headline font-extrabold uppercase tracking-[0.2em] shadow-xl shadow-primary/30 hover:scale-[1.02] transition-transform" type="button">
-                  Réserver l'Aventure
-                </button>
-                <p className="text-center text-[10px] text-outline uppercase tracking-tighter">Aucun paiement requis pour le moment</p>
-              </form>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Adultes</label>
+                        <div className="flex items-center justify-between bg-surface-container-low border border-outline-variant/30 rounded-xl px-3 py-2">
+                          <button 
+                            type="button"
+                            onClick={() => setBookingForm(p => ({...p, adults: Math.max(1, p.adults - 1)}))}
+                            className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+                          >
+                            <Minus size={16} />
+                          </button>
+                          <span className="font-bold text-secondary">{bookingForm.adults}</span>
+                          <button 
+                            type="button"
+                            onClick={() => setBookingForm(p => ({...p, adults: p.adults + 1}))}
+                            className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+                          >
+                            <Plus size={16} />
+                          </button>
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Enfants</label>
+                        <div className="flex items-center justify-between bg-surface-container-low border border-outline-variant/30 rounded-xl px-3 py-2">
+                          <button 
+                            type="button"
+                            onClick={() => setBookingForm(p => ({...p, children: Math.max(0, p.children - 1)}))}
+                            className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+                          >
+                            <Minus size={16} />
+                          </button>
+                          <span className="font-bold text-secondary">{bookingForm.children}</span>
+                          <button 
+                            type="button"
+                            onClick={() => setBookingForm(p => ({...p, children: p.children + 1}))}
+                            className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+                          >
+                            <Plus size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
 
+                    <div className="bg-surface-container-lowest border border-dashed border-outline-variant p-4 rounded-xl space-y-2">
+                      <div className="flex justify-between text-xs">
+                        <span className="text-outline">Prix base ({bookingForm.adults + bookingForm.children} pers)</span>
+                        <span className="text-secondary font-bold">{price != null ? `${(adultsTotal + childrenTotal).toFixed(0)} €` : '—'}</span>
+                      </div>
+                      <div className="flex justify-between text-xs text-primary italic">
+                        <span className="opacity-70">Réduction enfants</span>
+                        <span>{bookingForm.children > 0 ? `-${(bookingForm.children * perPerson * 0.3).toFixed(0)} €` : '0 €'}</span>
+                      </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-outline">Frais de dossier & Visa</span>
+                        <span className="text-secondary font-bold">{extras} €</span>
+                      </div>
+                      <div className="pt-4 mt-2 border-t border-outline-variant flex justify-between items-center text-secondary">
+                        <span className="font-bold uppercase tracking-widest text-xs">Estimation Total</span>
+                        <span className="text-2xl font-black text-primary">
+                          {totalDisplayPrice ? `${totalDisplayPrice} €` : 'Sur devis'}
+                        </span>
+                      </div>
+                    </div>
+
+                    <button 
+                      type="submit"
+                      disabled={bookingStatus === 'submitting'}
+                      className="w-full bg-linear-to-br from-primary to-primary-container text-white py-5 rounded-xl font-headline font-extrabold uppercase tracking-widest shadow-xl shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-3"
+                    >
+                      {bookingStatus === 'submitting' ? (
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                          <>
+                            <Send size={18} />
+                            <span>Réserver Maintenant</span>
+                          </>
+                      )}
+                    </button>
+                    <p className="text-center text-[10px] text-outline uppercase tracking-tight flex items-center justify-center gap-2">
+                      <CheckCircle size={10} className="text-primary" />
+                      Confirmation rapide sous 24h
+                    </p>
+                  </form>
+                </>
+              )}
+
+              {/* Expert Help */}
               <div className="mt-8 pt-8 border-t border-outline-variant/30 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden shrink-0">
-                  <img className="w-full h-full object-cover" alt="expert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPAFcHIIndeT06PfTl20olsZYUaR18R47Xzsa6_98g6JL_11VOue0BcB0i0m77Z9h0moEfcNJyycJxM77I-p6zxuZGhf5SIsfnYOye7KiqX0CfaFVU_kovJCFidHV4zcSaDhH-0mbHUFYeIIz2sg8z7oz33daKHQHx1JSzZojGAagNzccM-TrTFBnuYEHwcYiTB_AZaW7AA7CRdotTGIIi_ttPPHMZo6dsvx7DK0MoF_cfofsJqVxSpM_2pEXWcxy0O4-aDcDd-hSZ" />
+                <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-primary/10">
+                  <img className="w-full h-full object-cover" alt="expert" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1588&auto=format&fit=crop" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-secondary">Besoin d'aide ?</p>
-                  <p className="text-xs text-outline">Karim, votre expert Croisière</p>
-                  <a className="text-xs text-primary font-bold underline" href="#contact">Parler à un conseiller</a>
+                  <p className="text-xs font-bold text-secondary leading-none mb-1">Besoin d'aide ?</p>
+                  <p className="text-xs text-outline mb-1">Sara, votre experte voyage</p>
+                  <a className="text-[10px] text-primary font-bold uppercase tracking-widest hover:underline" href="#contact">Parler à un conseiller</a>
                 </div>
               </div>
             </div>
