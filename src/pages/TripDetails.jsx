@@ -49,6 +49,7 @@ const TripDetails = () => {
   // ── Data from Supabase ──────────────────────────────────────────
   const { trip, loading, error } = useTrip(tripId || 'felucca');
   const [openDay, setOpenDay] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const toggleDay = (day) => setOpenDay(openDay === day ? null : day);
 
@@ -131,25 +132,58 @@ const TripDetails = () => {
 
         {/* Gallery Grid */}
         <section className="editorial-grid mb-12">
-          <div className="md:row-span-2 overflow-hidden rounded-xl bg-surface-container shadow-sm group">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 1" src={images[0] || 'https://images.unsplash.com/photo-1542475454-945b4c107eaa?q=80&w=2070&auto=format&fit=crop'} />
-          </div>
-          <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 2" src={images[1] || images[0]} />
-          </div>
-          <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 3" src={images[2] || images[0]} />
-          </div>
-          <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 4" src={images[3] || images[0]} />
-          </div>
-          <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group relative">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 5" src={images[4] || images[0]} />
-            <div className="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] flex items-center justify-center cursor-pointer">
-              <span className="text-white font-bold text-lg">+{Math.max(0, images.length - 4)} Photos</span>
+          {images.length > 0 ? (
+            <>
+              <div className="md:row-span-2 overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setSelectedImage(images[0])}>
+                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 1" src={images[0]} />
+              </div>
+              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setSelectedImage(images[1] || images[0])}>
+                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 2" src={images[1] || images[0]} />
+              </div>
+              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setSelectedImage(images[2] || images[0])}>
+                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 3" src={images[2] || images[0]} />
+              </div>
+              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setSelectedImage(images[3] || images[0])}>
+                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 4" src={images[3] || images[0]} />
+              </div>
+              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group relative cursor-zoom-in" onClick={() => setSelectedImage(images[4] || images[0])}>
+                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 5" src={images[4] || images[0]} />
+                {images.length > 5 && (
+                  <div className="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] flex items-center justify-center pointer-events-none">
+                    <span className="text-white font-bold text-lg">+{images.length - 4} Photos</span>
+                  </div>
+                )}
+              </div>
+            </>
+          ) : (
+             <div className="col-span-full h-64 flex items-center justify-center bg-surface-container rounded-xl">
+               <p className="text-outline italic">No images available for this trip</p>
+             </div>
+          )}
+        </section>
+
+        {/* Image Lightbox Modal */}
+        {selectedImage && (
+          <div 
+            className="fixed inset-0 z-100 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-12 animate-in fade-in duration-300"
+            onClick={() => setSelectedImage(null)}
+          >
+            <button 
+              className="absolute top-6 right-6 text-white/50 hover:text-white transition-all transform hover:rotate-90 p-2 z-10"
+              onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
+            >
+              <X size={40} strokeWidth={1.5} />
+            </button>
+            
+            <div className="relative w-full h-full flex items-center justify-center cursor-default" onClick={(e) => e.stopPropagation()}>
+              <img 
+                src={selectedImage} 
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-500" 
+                alt="Zoomed view" 
+              />
             </div>
           </div>
-        </section>
+        )}
 
         {/* Info Bar */}
         <section className="bg-surface-container-low rounded-xl px-8 py-6 mb-16 flex flex-wrap gap-8 items-center justify-between">
