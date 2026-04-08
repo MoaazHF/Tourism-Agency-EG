@@ -18,9 +18,13 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
           
+          <Route path="cruises" element={<EmptyPage title="Cruises Overview" />} />
           <Route path="cruises/:tripId" element={<TripDetails />} />
+          <Route path="safari" element={<EmptyPage title="Safari Overview" />} />
           <Route path="safari/:tripId" element={<TripDetails />} />
+          <Route path="tours" element={<EmptyPage title="Tours Overview" />} />
           <Route path="tours/:tripId" element={<TripDetails />} />
+          <Route path="excursions" element={<EmptyPage title="Excursions Overview" />} />
           <Route path="excursions/:tripId" element={<TripDetails />} />
 
           <Route path="about" element={<EmptyPage title="Who Are We?" />} />

@@ -47,10 +47,10 @@ const Navbar = () => {
           </NavLink>
 
           {/* Cruises Dropdown */}
-          <div className="relative group">
-            <button className={`flex items-center gap-1 uppercase tracking-tight text-sm font-bold border-b-2 pb-1 border-transparent text-secondary hover:text-primary transition-colors`}>
+          <div className="relative group flex items-center">
+            <Link to="/cruises" className={`flex items-center gap-1 uppercase tracking-tight text-sm font-bold border-b-2 pb-1 border-transparent text-secondary hover:text-primary transition-colors`}>
               Cruises in Egypt <ChevronDown size={14} />
-            </button>
+            </Link>
             <div className="absolute top-full left-0 mt-2 w-56 bg-surface-container-lowest shadow-lg rounded-md overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
               <div className="flex flex-col">
                 <Link to="/cruises/felucca" className="px-4 py-3 hover:bg-surface-container-low text-sm font-body text-on-surface">Felucca Cruises</Link>
@@ -62,10 +62,10 @@ const Navbar = () => {
           </div>
 
           {/* Excursions Dropdown */}
-          <div className="relative group">
-            <button className={`flex items-center gap-1 uppercase tracking-tight text-sm font-bold border-b-2 pb-1 border-transparent text-secondary hover:text-primary transition-colors`}>
+          <div className="relative group flex items-center">
+            <Link to="/excursions" className={`flex items-center gap-1 uppercase tracking-tight text-sm font-bold border-b-2 pb-1 border-transparent text-secondary hover:text-primary transition-colors`}>
               Desert & Excursions <ChevronDown size={14} />
-            </button>
+            </Link>
             <div className="absolute top-full left-0 mt-2 w-64 bg-surface-container-lowest shadow-lg rounded-md overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
               <div className="flex flex-col">
                 <Link to="/excursions/cairo" className="px-4 py-3 hover:bg-surface-container-low text-sm font-body text-on-surface">Starting from Cairo</Link>
@@ -115,12 +115,12 @@ const Navbar = () => {
           </NavLink>
 
           <div className="border-t border-surface-container-high pt-2">
-            <button 
-              className="flex items-center justify-between w-full text-left py-2 text-secondary uppercase font-bold text-sm"
-              onClick={() => setActiveDropdown(activeDropdown === 'cruises' ? null : 'cruises')}
-            >
-              Cruises in Egypt <ChevronDown size={14} className={`transition-transform border-gray-100 ${activeDropdown === 'cruises' ? 'rotate-180' : ''}`} />
-            </button>
+            <div className="flex items-center justify-between w-full text-left py-2 text-secondary uppercase font-bold text-sm">
+              <Link to="/cruises" className="hover:text-primary" onClick={closeMenu}>Cruises in Egypt</Link>
+              <button onClick={() => setActiveDropdown(activeDropdown === 'cruises' ? null : 'cruises')} className="p-1 cursor-pointer">
+                <ChevronDown size={18} className={`transition-transform border-gray-100 ${activeDropdown === 'cruises' ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
             <div className={`overflow-hidden transition-all duration-300 ${activeDropdown === 'cruises' ? 'max-h-60 mt-2' : 'max-h-0'}`}>
               <div className="flex flex-col pl-4 gap-3 text-sm font-body">
                 <Link to="/cruises/felucca" className="text-on-surface hover:text-primary" onClick={closeMenu}>Felucca Cruises</Link>
@@ -132,12 +132,12 @@ const Navbar = () => {
           </div>
 
           <div className="border-t border-surface-container-high pt-2">
-            <button 
-              className="flex items-center justify-between w-full text-left py-2 text-secondary uppercase font-bold text-sm"
-              onClick={() => setActiveDropdown(activeDropdown === 'excursions' ? null : 'excursions')}
-            >
-              Desert & Excursions <ChevronDown size={14} className={`transition-transform border-gray-100 ${activeDropdown === 'excursions' ? 'rotate-180' : ''}`} />
-            </button>
+            <div className="flex items-center justify-between w-full text-left py-2 text-secondary uppercase font-bold text-sm">
+              <Link to="/excursions" className="hover:text-primary" onClick={closeMenu}>Desert & Excursions</Link>
+              <button onClick={() => setActiveDropdown(activeDropdown === 'excursions' ? null : 'excursions')} className="p-1 cursor-pointer">
+                <ChevronDown size={18} className={`transition-transform border-gray-100 ${activeDropdown === 'excursions' ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
             <div className={`overflow-hidden transition-all duration-300 ${activeDropdown === 'excursions' ? 'max-h-60 mt-2' : 'max-h-0'}`}>
               <div className="flex flex-col pl-4 gap-3 text-sm font-body">
                 <Link to="/excursions/cairo" className="text-on-surface hover:text-primary" onClick={closeMenu}>Starting from Cairo</Link>
