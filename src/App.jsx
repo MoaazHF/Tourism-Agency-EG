@@ -18,21 +18,10 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
           
-          <Route path="cruises">
-            <Route path="felucca" element={<TripDetails title="Felucca Cruises" />} />
-            <Route path="dahabeya" element={<TripDetails title="Dahabeya Cruises" />} />
-            <Route path="ship-tours" element={<TripDetails title="Cruise Ship Tours" />} />
-            <Route path="lake-nasser" element={<TripDetails title="Cruise on Lake Nasser" />} />
-          </Route>
-
-          <Route path="excursions">
-            <Route path="cairo" element={<TripDetails title="Starting from Cairo" />} />
-            <Route path="luxor" element={<TripDetails title="Luxor & Its Region" />} />
-            <Route path="aswan" element={<TripDetails title="Aswan & Its Region" />} />
-            <Route path="gouna-hurghada-safaga" element={<TripDetails title="From El Gouna / Hurghada / Safaga" />} />
-            <Route path="marsa-alam" element={<TripDetails title="Starting from Marsa Alam" />} />
-            <Route path="sinai" element={<TripDetails title="Starting from Southern Sinai" />} />
-          </Route>
+          <Route path="cruises/:tripId" element={<TripDetails />} />
+          <Route path="safari/:tripId" element={<TripDetails />} />
+          <Route path="tours/:tripId" element={<TripDetails />} />
+          <Route path="excursions/:tripId" element={<TripDetails />} />
 
           <Route path="about" element={<EmptyPage title="Who Are We?" />} />
           <Route path="contact" element={<EmptyPage title="Contact" />} />

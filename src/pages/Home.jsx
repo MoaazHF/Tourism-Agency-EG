@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Map, CarFront, Clock, ShieldCheck, Ship, Calendar } from 'lucide-react';
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-white font-headline tracking-tight mb-6 max-w-4xl leading-tight">
             Discover the Soul of <span className="text-transparent bg-clip-text btn-primary-gradient">Egypt</span>
           </h1>
-          <p className="text-lg md:text-xl text-[#f2f4ed] max-w-2xl font-body opacity-90 mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-surface-container-low max-w-2xl font-body opacity-90 mb-10 leading-relaxed">
             The excellence of tailor-made travel in Egypt. Discover authentic and luxurious experiences created for discerning travelers.
           </p>
           <button className="btn-primary-gradient text-white px-8 py-4 rounded-xl font-headline font-bold uppercase tracking-wider shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
@@ -78,7 +79,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Cruise 1 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/cruises/dahabeya" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?q=80&w=2070&auto=format&fit=crop" alt="Dahabeya" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
@@ -95,10 +96,10 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><Ship className="w-4 h-4 text-[#c79a3c]" /> 8 Cabins</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Cruise 2 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/cruises/the-luxor" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1600521605615-585a06584c31?q=80&w=2070&auto=format&fit=crop" alt="The Luxor" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
@@ -115,10 +116,10 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><Ship className="w-4 h-4 text-[#c79a3c]" /> 22 Cabins</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Cruise 3 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/cruises/the-sandal" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1580834341580-8c1ee9dfeb8c?q=80&w=2070&auto=format&fit=crop" alt="The Sandal" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
@@ -132,7 +133,7 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><Ship className="w-4 h-4 text-[#c79a3c]" /> 4 Cabins</span>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
           
           <div className="mt-12 text-center md:hidden">
@@ -180,7 +181,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Safari 1 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/safari/white-desert" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1549646879-11ba18e775eb?q=80&w=1974&auto=format&fit=crop" alt="The White Desert" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
@@ -197,10 +198,10 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><CarFront className="w-4 h-4 text-[#c79a3c]" /> 4x4 Private</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Safari 2 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/safari/siwa-oasis" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1502485542750-f8f533cc285b?q=80&w=2070&auto=format&fit=crop" alt="Siwa Oasis" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
@@ -214,10 +215,10 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><CarFront className="w-4 h-4 text-[#c79a3c]" /> 4x4 Private</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Safari 3 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/safari/black-desert" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1627914441270-e4708fb56447?q=80&w=2070&auto=format&fit=crop" alt="Black Desert & Bahariya" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
@@ -231,7 +232,7 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><CarFront className="w-4 h-4 text-[#c79a3c]" /> 4x4 Private</span>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
           
           <div className="mt-12 text-center md:hidden">
@@ -257,7 +258,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Tour 1 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/tours/classic-egypt" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1539768942893-daf53e448371?q=80&w=2071&auto=format&fit=crop" alt="Classic Egypt" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
@@ -274,10 +275,10 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><Map className="w-4 h-4 text-[#c79a3c]" /> 4 Cities</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Tour 2 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/tours/pharaohs-coral" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1589839461973-45ab8bb4167e?q=80&w=2070&auto=format&fit=crop" alt="Egypt & The Red Sea" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
@@ -291,10 +292,10 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><Map className="w-4 h-4 text-[#c79a3c]" /> 3 Cities</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Tour 3 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/tours/deep-south" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1600021319082-f538e12128aa?q=80&w=2070&auto=format&fit=crop" alt="Deep South Explorer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
@@ -308,7 +309,7 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><Map className="w-4 h-4 text-[#c79a3c]" /> 2 Cities</span>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
           
           <div className="mt-12 text-center md:hidden">
@@ -334,7 +335,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Excursion 1 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/excursions/giza-pyramids" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1542475454-945b4c107eaa?q=80&w=2070&auto=format&fit=crop" alt="Giza Pyramids" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
@@ -348,10 +349,10 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#c79a3c]" /> Private Guide</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Excursion 2 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/excursions/valley-of-kings" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1621255855078-d101d2ceeeff?q=80&w=2070&auto=format&fit=crop" alt="Valley of the Kings" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
@@ -365,10 +366,10 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#c79a3c]" /> Private Guide</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Excursion 3 */}
-            <div className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+            <Link to="/excursions/abu-simbel" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
               <div className="relative h-72 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1628172102146-24ba0baedce0?q=80&w=2070&auto=format&fit=crop" alt="Abu Simbel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
@@ -382,7 +383,7 @@ const Home = () => {
                   <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#c79a3c]" /> Private Guide</span>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
           
           <div className="mt-12 text-center md:hidden">
@@ -402,7 +403,7 @@ const Home = () => {
           
           <div className="relative z-10">
             <h3 className="text-3xl font-bold text-on-surface font-headline mb-4">Subscribe to our Newsletter</h3>
-            <p className="text-[#4e4637] font-body mb-10 max-w-xl mx-auto">
+            <p className="text-on-surface-variant font-body mb-10 max-w-xl mx-auto">
               Stay informed about our exclusive offers, new itineraries, and travel inspiration for Egypt.
             </p>
             <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">

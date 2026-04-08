@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { 
   ChevronRight, Clock, Users, Globe, Star, Plus, Minus, 
   CheckCircle, Check, XCircle, X, Calendar 
 } from 'lucide-react';
+import { getTripById } from '../data/trips';
 
 const TripDetails = ({ title }) => {
+  const { tripId } = useParams();
+  const trip = getTripById(tripId || 'felucca');
   const [openDay, setOpenDay] = useState(4);
 
   const toggleDay = (day) => {
@@ -21,33 +24,33 @@ const TripDetails = ({ title }) => {
           <ChevronRight size={14} />
           <span className="hover:text-primary transition-colors cursor-pointer">Tours</span>
           <ChevronRight size={14} />
-          <span className="text-secondary">{title || 'Croisière en Felouque'}</span>
+          <span className="text-secondary">{title || trip.title}</span>
         </nav>
 
         {/* Title Section */}
         <header className="mb-12">
-          <span className="font-['Caveat'] text-2xl text-primary mb-2 block">Expérience Signature</span>
+          <span className="font-['Caveat'] text-2xl text-primary mb-2 block">{trip.categoryLabel || 'Expérience Signature'}</span>
           <h1 className="hero-title font-headline text-4xl md:text-6xl font-extrabold text-secondary max-w-4xl tracking-tight leading-[1.1]">
-            {title || 'Au départ du Caire visites et croisière d’Assouan à Louxor en felouque'}
+            {title || trip.title}
           </h1>
         </header>
 
         {/* Gallery Grid */}
         <section className="editorial-grid mb-12">
           <div className="md:row-span-2 overflow-hidden rounded-xl bg-surface-container shadow-sm group">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="felucca" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Ts9_GbJSd5Jrk9HlA-ChzKIqNKKNra9H2-IX7L2_ommiGQjGHUmJLYFVgC2ZOjQiCh4H8QTi7LuQ6DPW5AisNHN8CqUgj53SybLLrCUeIw_m5SFiuZlhM5rAvDHwuJgoQOi3oJ1k4as-diLNdAu0y0BVIPyTa381i71IjW6oB6oFboN2l1sJVGjlK4eDItKuHMwO1HooBU9x_qEo5ghhmBeduNzgS46DiyHIUHaV-0rAkKr85xqoDKi_gZo19PeoKjQONzKMNvgi"/>
+            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 1" src={trip.images[0] || "https://images.unsplash.com/photo-1542475454-945b4c107eaa?q=80&w=2070&auto=format&fit=crop"}/>
           </div>
           <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="temple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWlSUnfNrfBuV6gl0v1oUYBgNcRL3cLHfbV_eInws9lAQTmYdrVzwsIJSk2oIHKDKA_Aigobj46ALITVfpTyYc0cgIkscL4Fyk6wWoxUTPoRK3xDR1AxjicLiycClpgO7_1WbyB6XWOphYti2XtlpT-v9bgVdl-Kcjh9NhJqUfXj4bQ8gEAhHJf008oPe-95L063KX77sYtqHU4GTlCPTgeVMF25CIXENJP0qWJV_InN6GNSnWQ03DvmUsqkdnuxQiHYZsZJairSJ0"/>
+            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 2" src={trip.images[1] || trip.images[0]}/>
           </div>
           <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="pyramids" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtp6dKFE_dLV_6Iel1h4AFUQsxgwlljXJ5B2QYh89cUFwerlTX-_Kqqf5pL3jczlakWWVbttqnsnln-3oMDllzkpYcEJYBE_a28VBWyCBRLcO9A-6ITOFr26t8JnEarf_C32G1NIUTPf5WoaBLeFyF3wNpYfQs1lOtaoIkdDHVRJYt4Nn6pCmAu_PQHXzKH6TEFCgGI9kQW65kAJ0rUlvb_Vv6ffjIRdfPjYWTcgnU_JZM-ZB5ASyTFFdPwbTLzNNMTHfDfiZaXsCr"/>
+            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 3" src={trip.images[2] || trip.images[0]}/>
           </div>
           <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcMgIFj2GmZE5NIIyGR9X52VqYwS-DFQPybb6Y10ZUJLLTPByZ9Vjw0bwyWigy9ebm0F2rdZt7xYfyGrCHLp88Q1VBtTDfAZ2iixWxj0iPR74Z8E_dEfIml4fRRu_xpybv4sRMHgBH7takWaSGIDrIJXJf5y70LrmQxIt18jWOGfSUl8gONZu31ooQJyxdb6qE4qVqQiWi1HFyGajE6I-io04zpTEFlOysqvqw7QpXIk-ML3Y2Y9wnWoh4aFOraw-0p-Hw7IumtS-U"/>
+            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 4" src={trip.images[3] || trip.images[0]}/>
           </div>
           <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group relative">
-            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="market" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW0BzdOwc4pPtpoGr6pdw0UALcYlxtv3wUK3aiI4QzdxXzkz4_8XGBckUZIg1gqvKlAcSE1GEy1tP2MtShMscBsUI0-OfBHhw-GsJKpWB5QNjEg_3L2qNRBJGSejrg7reTt-UhL9U2fvP0Yc_anBpB01Zl3MZD9Mbjty2E_R4wdfdRhhlV1QK1XCLrMX0UQ1sAocSpY4VESvzmkdpNwZTWfsBUDEdk9sCwoBEzjtCTUjvgJc5QeESG4fyaxFptL7ynPknDTiXr4f4B"/>
+            <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 5" src={trip.images[4] || trip.images[0]}/>
             <div className="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] flex items-center justify-center cursor-pointer">
               <span className="text-white font-bold text-lg">+12 Photos</span>
             </div>
@@ -60,28 +63,28 @@ const TripDetails = ({ title }) => {
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Clock size={20} /></div>
             <div>
               <p className="text-[10px] uppercase tracking-widest text-outline font-bold">Durée</p>
-              <p className="font-bold text-secondary">10 Jours / 9 Nuits</p>
+              <p className="font-bold text-secondary">{trip.duration}</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Users size={20} /></div>
             <div>
               <p className="text-[10px] uppercase tracking-widest text-outline font-bold">Taille du groupe</p>
-              <p className="font-bold text-secondary">Max 12 Personnes</p>
+              <p className="font-bold text-secondary">{trip.groupSize}</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Globe size={20} /></div>
             <div>
               <p className="text-[10px] uppercase tracking-widest text-outline font-bold">Langue</p>
-              <p className="font-bold text-secondary">Français, Anglais</p>
+              <p className="font-bold text-secondary">{trip.language}</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Star size={20} /></div>
             <div>
               <p className="text-[10px] uppercase tracking-widest text-outline font-bold">Évaluation</p>
-              <p className="font-bold text-secondary">4.9/5 (128 avis)</p>
+              <p className="font-bold text-secondary">{trip.rating}</p>
             </div>
           </div>
         </section>
