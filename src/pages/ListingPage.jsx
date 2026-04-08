@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { categoriesData, tripsData } from '../data/trips';
-import { ArrowRight, Edit3, Compass, Headset, Leaf, Check, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Edit3, Compass, Headset, Leaf, Check, CheckCircle2, Star } from 'lucide-react';
 
 export default function ListingPage({ defaultCategory }) {
   const { '*': path } = useParams();
@@ -107,16 +107,20 @@ export default function ListingPage({ defaultCategory }) {
                   <p className="text-tertiary mb-6 line-clamp-3">
                     {trip.shortDescription}
                   </p>
-                  <div className="text-tertiary text-sm mb-6 flex items-center gap-2">
+                  <div className="text-tertiary text-sm mb-4 flex items-center gap-2">
                     <span className="font-semibold text-secondary">{trip.categoryLabel}</span>
                     <span>•</span>
                     <span>{trip.groupSize}</span>
                   </div>
+                  <div className="flex items-center gap-1 mb-6 text-on-surface">
+                    <Star className="w-4 h-4 fill-secondary text-secondary" />
+                    <span className="text-sm font-bold">{trip.rating}</span>
+                  </div>
                   
-                  <div className="flex items-center justify-between mt-8 border-t border-surface-container-high pt-6">
+                  <div className="flex items-center justify-between mt-6 border-t border-surface-container-high pt-6">
                     <div>
-                      <p className="text-xs text-secondary-fixed-dim uppercase tracking-wider mb-1">À partir de</p>
-                      <p className="font-bold text-lg text-primary">{trip.price} €</p>
+                      <p className="text-xs text-secondary-fixed-dim uppercase tracking-wider mb-1">Starts from</p>
+                      <p className="font-bold text-xl text-primary">{trip.price} €</p>
                     </div>
                     <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-4 transition-all">
                       Voir Le Voyage <ArrowRight className="w-4 h-4" />
