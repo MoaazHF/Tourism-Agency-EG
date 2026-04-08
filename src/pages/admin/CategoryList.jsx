@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { supabase } from '../../lib/supabaseClient'
 import { useCategories } from '../../hooks/useCategories'
 import { ArrowLeft, Save, ChevronDown, ChevronUp } from 'lucide-react'
 
 export default function CategoryList() {
+  const { t } = useTranslation()
   const { categories, loading } = useCategories()
   const [edits, setEdits] = useState({})       // { slug: { ...overrides } }
   const [saving, setSaving] = useState(null)
@@ -25,16 +27,16 @@ export default function CategoryList() {
   const handleSave = async (cat) => {
     const changes = edits[cat.slug]
     if (!changes || Object.keys(changes).length === 0) {
-      showToast('No changes to save.')
+      showToast(t('admin.categories.toast_no_changes'))
       return
     }
     setSaving(cat.slug)
     const { error } = await supabase.from('categories').update(changes).eq('slug', cat.slug)
     setSaving(null)
     if (error) {
-      showToast(`Error: ${error.message}`, 'error')
+      showToast(t('common.error', { message: error.message }), 'error')
     } else {
-      showToast(`"${cat.title}" saved!`)
+      showToast(t('admin.categories.toast_saved', { title: cat.title }))
       setEdits((prev) => { const n = { ...prev }; delete n[cat.slug]; return n })
     }
   }
@@ -58,7 +60,7 @@ export default function CategoryList() {
         <Link to="/admin/dashboard" className="p-2 rounded-lg hover:bg-surface-container text-outline hover:text-primary transition-colors">
           <ArrowLeft className="w-5 h-5" />
         </Link>
-        <h1 className="font-headline font-bold text-on-surface text-lg">Manage Categories</h1>
+        <h1 className="font-headline font-bold text-on-surface text-lg">{t('admin.categories.title_manage')}</h1>
       </header>
 
       <main className="max-w-4xl mx-auto px-6 py-10 space-y-6">
@@ -79,7 +81,9 @@ export default function CategoryList() {
               </div>
               <div className="flex items-center gap-3">
                 {edits[cat.slug] && Object.keys(edits[cat.slug]).length > 0 && (
-                  <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full font-bold">unsaved</span>
+                  <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full font-bold">
+                    {t('admin.categories.status_unsaved')}
+                  </span>
                 )}
                 {expanded[cat.slug]
                   ? <ChevronUp className="w-5 h-5 text-outline" />
@@ -93,7 +97,7 @@ export default function CategoryList() {
               <div className="px-6 pb-6 space-y-5 border-t border-outline-variant/10 pt-5">
                 <div className="grid md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Title</label>
+                    <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">{t('admin.categories.fields.title')}</label>
                     <input
                       value={getField(cat, 'title')}
                       onChange={(e) => setEdit(cat.slug, 'title', e.target.value)}
@@ -101,7 +105,7 @@ export default function CategoryList() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Hero Tag</label>
+                    <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">{t('admin.categories.fields.hero_tag')}</label>
                     <input
                       value={getField(cat, 'hero_tag')}
                       onChange={(e) => setEdit(cat.slug, 'hero_tag', e.target.value)}
@@ -111,7 +115,7 @@ export default function CategoryList() {
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Subtitle</label>
+                  <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">{t('admin.categories.fields.subtitle')}</label>
                   <input
                     value={getField(cat, 'subtitle')}
                     onChange={(e) => setEdit(cat.slug, 'subtitle', e.target.value)}
@@ -120,7 +124,7 @@ export default function CategoryList() {
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Hero Image URL</label>
+                  <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">{t('admin.categories.fields.hero_image')}</label>
                   <input
                     value={getField(cat, 'hero_image')}
                     onChange={(e) => setEdit(cat.slug, 'hero_image', e.target.value)}
@@ -130,7 +134,7 @@ export default function CategoryList() {
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Intro Title</label>
+                  <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">{t('admin.categories.fields.intro_title')}</label>
                   <input
                     value={getField(cat, 'intro_title')}
                     onChange={(e) => setEdit(cat.slug, 'intro_title', e.target.value)}
@@ -140,7 +144,7 @@ export default function CategoryList() {
 
                 <div>
                   <label className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">
-                    Intro Text (one paragraph per line — HTML links supported)
+                    {t('admin.categories.fields.intro_text')}
                   </label>
                   <textarea
                     value={(getField(cat, 'intro_text') || []).join('\n\n')}
@@ -156,7 +160,7 @@ export default function CategoryList() {
                   className="flex items-center gap-2 px-6 py-3 bg-linear-to-br from-primary to-primary-container text-on-primary font-bold text-sm rounded-xl shadow-md hover:scale-[1.02] transition-transform disabled:opacity-60"
                 >
                   <Save className="w-4 h-4" />
-                  {saving === cat.slug ? 'Saving…' : 'Save Changes'}
+                  {saving === cat.slug ? t('admin.categories.saving') : t('admin.categories.save_button')}
                 </button>
               </div>
             )}

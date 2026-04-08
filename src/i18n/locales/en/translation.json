@@ -1,0 +1,411 @@
+{
+  "nav": {
+    "welcome": "Welcome",
+    "cruises": "Cruises in Egypt",
+    "excursions": "Desert & Excursions",
+    "about": "Who Are We?",
+    "contact": "Contact",
+    "book_now": "Book Now",
+    "dropdowns": {
+      "felucca": "Felucca Cruises",
+      "dahabeya": "Dahabeya Cruises",
+      "ship_tours": "Cruise Ship Tours",
+      "lake_nasser": "Cruise on Lake Nasser",
+      "starting_cairo": "Starting from Cairo",
+      "luxor_region": "Luxor & Its Region",
+      "aswan_region": "Aswan & Its Region",
+      "red_sea": "From El Gouna / Hurghada / Safaga",
+      "marsa_alam": "Starting from Marsa Alam",
+      "sinai": "Starting from Southern Sinai"
+    }
+  },
+  "home": {
+    "categories": {
+      "cruises": "Cruises",
+      "excursions": "Excursions",
+      "safaris": "Safaris",
+      "tours": "Tours"
+    },
+    "hero": {
+      "badge": "Tailor-Made Travel",
+      "title": "Discover the Soul of Egypt",
+      "subtitle": "The excellence of tailor-made travel in Egypt. Discover authentic and luxurious experiences created for discerning travelers.",
+      "cta": "Craft Your Itinerary"
+    },
+    "trust": {
+      "badge": "The Difference",
+      "title": "Why Book With Us?",
+      "expertise": {
+        "title": "Local Expertise",
+        "text": "Our guides are passionate Egyptologists who reveal the best-kept secrets of the pharaohs."
+      },
+      "vehicles": {
+        "title": "Private Vehicles",
+        "text": "Travel in absolute comfort aboard our recent, air-conditioned, and fully privatized vehicles."
+      },
+      "assistance": {
+        "title": "24/7 Assistance",
+        "text": "Dedicated support from your arrival to your departure for total peace of mind."
+      }
+    },
+    "sections": {
+      "cruises_badge": "On The Nile",
+      "cruises_title": "Signature Cruises",
+      "safari_badge": "Off the beaten path",
+      "safari_title": "Desert Safari",
+      "tours_badge": "Curated Itineraries",
+      "tours_title": "Tours & Packages",
+      "excursions_badge": "Day Trips",
+      "excursions_title": "Excursions",
+      "view_all": "View All"
+    },
+    "stats": {
+      "expertise": "Years of Expertise",
+      "travelers": "Happy Travelers",
+      "tailor_made": "Tailor-Made"
+    },
+    "newsletter": {
+      "title": "Subscribe to our Newsletter",
+      "subtitle": "Stay informed about our exclusive offers, new itineraries, and travel inspiration for Egypt.",
+      "placeholder": "Your email address",
+      "button": "Subscribe"
+    }
+  },
+  "footer": {
+    "description": "The excellence of tailor-made travel in Egypt. Discover authentic and luxurious experiences created for discerning travelers.",
+    "links_title": "Quick Links",
+    "about": "About Us",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "faq": "FAQ",
+    "destinations_title": "Destinations",
+    "cairo_giza": "Cairo & Giza",
+    "luxor_aswan": "Luxor & Aswan",
+    "red_sea": "Red Sea",
+    "oasis_deserts": "Oasis & Deserts",
+    "contact_title": "Contact & Support",
+    "copyright": "© 2024 Route d'Égypte. The Sands of Distinction."
+  },
+  "listing": {
+    "error": {
+      "title": "Something went wrong",
+      "retry": "Try Again"
+    },
+    "not_found": "Category not found",
+    "intro": {
+      "see_more": "See More",
+      "see_less": "See Less"
+    },
+    "no_trips": "No trips found in this category yet.",
+    "trip_card": {
+      "starts_from": "Starts from",
+      "on_quote": "On quote",
+      "view_trip": "View Trip"
+    },
+    "value_prop": {
+      "title": "Why travel with Route d'Égypte?",
+      "subtitle": "Expertise forged in the heart of the Nile for trips that reflect you.",
+      "custom": {
+        "title": "100% Tailor-made",
+        "item1": "Flexible itineraries",
+        "item2": "Personalized pace",
+        "item3": "Choice of hotels"
+      },
+      "expertise": {
+        "title": "Local Expertise",
+        "item1": "French-speaking guides",
+        "item2": "Privileged access",
+        "item3": "Ancestral know-how"
+      },
+      "assistance": {
+        "title": "24/7 Assistance",
+        "item1": "Dedicated concierge",
+        "item2": "Immediate reactivity",
+        "item3": "Peace of mind"
+      },
+      "sustainable": {
+        "title": "Sustainable Engagement",
+        "item1": "Support for locals",
+        "item2": "Site preservation",
+        "item3": "Responsible tourism"
+      }
+    },
+    "cta": {
+      "title": "Ready to plan your dream trip?",
+      "benefit1": "Free quote in 24h",
+      "benefit2": "Flexible modification",
+      "benefit3": "Secure payment",
+      "benefit4": "Traveler Guarantee",
+      "button": "Plan Now",
+      "quote": "\"The Nile cannot be told, it must be lived.\"",
+      "expert_name": "Ahmed M.",
+      "expert_title": "Cruise Expert"
+    }
+  },
+  "admin": {
+    "dashboard_title": "Admin Dashboard",
+    "dashboard_subtitle": "Route d'Égypte",
+    "logout": "Logout",
+    "nav_categories": "Categories",
+    "sidebar_home": "Back to Home",
+    "stats": {
+      "total_trips": "Total Trips",
+      "total_bookings": "Bookings",
+      "pending": "Pending",
+      "total_categories": "Categories",
+      "adults_abbr": "A",
+      "children_abbr": "E",
+      "currency": "€"
+    },
+    "tabs": {
+      "manage_trips": "Manage Trips",
+      "view_bookings": "Booking Requests"
+    },
+    "trips": {
+      "title": "All Trips",
+      "add_new": "Add New Trip",
+      "no_trips": "No trips yet",
+      "no_trips_hint": "Add your first trip or run the seed script.",
+      "table": {
+        "title": "Title",
+        "category": "Category",
+        "duration": "Duration",
+        "price": "Price (€)",
+        "actions": "Actions",
+        "featured": "Featured",
+        "actions_edit": "Edit trip",
+        "actions_delete": "Delete trip"
+      },
+      "table_actions": {
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "confirm_delete": "Delete \"{{title}}\"?\n\nThis cannot be undone.",
+      "deleted_msg": "\"{{title}}\" deleted."
+    },
+    "categories": {
+      "title_manage": "Manage Categories",
+      "toast_no_changes": "No changes to save.",
+      "toast_saved": "\"{{title}}\" saved!",
+      "status_unsaved": "unsaved",
+      "save_button": "Save Changes",
+      "saving": "Saving...",
+      "fields": {
+        "title": "Title",
+        "hero_tag": "Hero Tag",
+        "subtitle": "Subtitle",
+        "hero_image": "Hero Image URL",
+        "intro_title": "Intro Title",
+        "intro_text": "Intro Text (one paragraph per line — HTML links supported)"
+      }
+    },
+    "trip_form": {
+      "add_new": "Add New Trip",
+      "edit": "Edit: {{id}}",
+      "toasts": {
+        "uploaded": "Uploaded {{count}} images!",
+        "upload_error": "Upload error: {{message}}",
+        "updated": "Trip updated!",
+        "created": "Trip created!",
+        "min_images": "A trip must have at least 5 images.",
+        "max_images": "A trip cannot have more than 10 images.",
+        "uploading": "Uploading..."
+      },
+      "sections": {
+        "basic": "Basic Information",
+        "logistics": "Logistics",
+        "pricing": "Pricing",
+        "tags": "Tags",
+        "images": "Images",
+        "itinerary": "Itinerary",
+        "includes": "Price Includes",
+        "excludes": "Price Does Not Include"
+      },
+      "fields": {
+        "id": "Trip ID (slug)",
+        "id_hint": "e.g. nile-cruise — auto-generated if blank",
+        "title": "Title *",
+        "category": "Category",
+        "category_select": "— Select category —",
+        "short_description": "Short Description",
+        "category_label": "Category Label",
+        "category_label_hint": "e.g. Signature Experience",
+        "featured": "Featured on Home Page",
+        "duration": "Duration",
+        "group_size": "Group Size",
+        "language": "Language",
+        "departing": "Departing Details",
+        "price_person": "Price Per Person (€)",
+        "price_two": "Price Per Two (€)",
+        "rating": "Star Rating (1–5)",
+        "tags": "Tags",
+        "tags_hint": "e.g. Premium, Bestseller (press Enter to add)",
+        "image_urls": "Or paste image URLs (one per line)",
+        "image_limit": "Images: {{count}} / 10",
+        "image_min_hint": "(Min 5 required)",
+        "image_upload": "Upload New Images",
+        "image_uploading": "Uploading...",
+        "image_limit_reached": "Limit reached (10)",
+        "image_supports": "Supports multiple files • Bucket: trip-images",
+        "itinerary_day": "Day #",
+        "itinerary_title": "Day Title",
+        "itinerary_desc": "Description"
+      },
+      "placeholders": {
+        "id": "my-trip-slug",
+        "title": "Trip title",
+        "short_description": "Brief teaser text shown on listing cards",
+        "category_label": "Category label",
+        "duration": "10 Days / 9 Nights",
+        "group_size": "Max 12 People",
+        "language": "French, English",
+        "departing": "Departs from Cairo every Saturday",
+        "price": "2450",
+        "rating": "4.9",
+        "tags": "Add a tag...",
+        "image_urls": "https://example.com/image1.jpg",
+        "itinerary_title": "Arrival in Cairo",
+        "itinerary_desc": "Detailed description of this day's activities...",
+        "list_item": "Item description"
+      },
+      "buttons": {
+        "add_day": "Add Day",
+        "itinerary_empty": "No itinerary days yet. Click \"Add Day\" to begin.",
+        "list_add": "Add",
+        "list_empty": "None yet",
+        "submit_create": "Create Trip",
+        "submit_update": "Update Trip",
+        "saving": "Saving...",
+        "cancel": "Cancel"
+      }
+    },
+    "login": {
+      "portal": "Admin Portal",
+      "subtitle": "Sign in to manage your trips and categories",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "signing_in": "Signing in...",
+      "forgot": "Forgot password? Reset it in the Supabase Dashboard → Authentication.",
+      "error_failed": "Login failed. Check your credentials."
+    },
+    "bookings": {
+      "title": "Booking Requests",
+      "refresh": "Refresh",
+      "no_bookings": "No requests",
+      "no_bookings_hint": "Requests sent via the site will appear here.",
+      "trip_unknown": "Trip unknown",
+      "table": {
+        "client": "Client",
+        "trip": "Trip",
+        "details": "Details",
+        "status": "Status",
+        "actions": "Actions",
+        "people": "Guests"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "cancelled": "Cancelled"
+      },
+      "status_updated": "Status updated to {{status}}",
+      "confirm_delete": "Delete this request?",
+      "deleted_msg": "Request deleted"
+    }
+  },
+  "trip_details": {
+    "error": {
+      "title": "Something went wrong",
+      "retry": "Try Again"
+    },
+    "not_found": {
+      "title": "Trip not found",
+      "subtitle": "This trip doesn't exist or may have been removed.",
+      "back_home": "Back to Home"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "tours": "Tours"
+    },
+    "gallery": {
+      "more_photos": "+{{count}} Photos",
+      "no_images": "No images available for this trip"
+    },
+    "info": {
+      "duration": "Duration",
+      "group_size": "Group Size",
+      "language": "Language",
+      "rating": "Rating"
+    },
+    "sections": {
+      "about": "About this trip",
+      "itinerary": "Detailed Itinerary",
+      "itinerary_full_req": "Full itinerary available on request",
+      "includes": "Price Includes",
+      "excludes": "Price Does Not Include"
+    },
+    "itinerary_static": {
+      "day1_title": "Arrival in Cairo",
+      "day1_desc": "Airport pickup and transfer to your luxury hotel.",
+      "day2_title": "Pyramids of Giza & Saqqara",
+      "day2_desc": "Full day dedicated to the origins of civilization.",
+      "day4_title": "Aswan: Start of the Cruise",
+      "day4_mobile": "Aswan",
+      "day4_subtitle": "The magical moment",
+      "day4_brief": "Boarding and navigation",
+      "day4_content": "Morning flight to Aswan. Visit Philae Temple, the pearl of Egypt. In the afternoon, board your private felucca.",
+      "day4_feat1": "Lunch and dinner on board prepared by your Nubian cook.",
+      "day4_feat2": "Starry night on deck (comfortable mattresses provided)."
+    },
+    "expert": {
+      "help_title": "Need help?",
+      "expert_name": "Sara",
+      "expert_title": "Your travel expert",
+      "contact_link": "Speak to an advisor"
+    }
+  },
+  "booking_form": {
+    "title": "Book This Trip",
+    "labels": {
+      "name": "Full Name *",
+      "name_placeholder": "Your name",
+      "email": "Email Address *",
+      "email_placeholder": "your@email.com",
+      "phone": "Phone Number",
+      "date": "Preferred Dates",
+      "date_placeholder": "Choose a period",
+      "adults": "Adults",
+      "children": "Children"
+    },
+    "summary": {
+      "starts_from": "Starts from",
+      "per_person": "per person",
+      "per_pers_short": "/ pers",
+      "on_quote": "On Quote",
+      "early_bird": "-15% Early Bird",
+      "price_base": "Base Price ({{count}} pers)",
+      "child_discount": "Child Discount",
+      "fees": "Booking fees & Visa",
+      "total_estimate": "Total Estimate"
+    },
+    "submit": "Book Now",
+    "loading": "Submitting...",
+    "success": {
+      "title": "Thank You Very Much!",
+      "message": "Your request for \"{{title}}\" has been transmitted to our team. We will contact you at {{email}} very soon.",
+      "button": "Send another request"
+    },
+    "error": "An error occurred while booking. Please try again.",
+    "validation": {
+      "required": "Please fill in the required fields.",
+      "invalid_email": "Please enter a valid email address.",
+      "invalid_phone": "Please enter a valid phone number."
+    },
+    "confirmation_hint": "Fast confirmation within 24h"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error: {{message}}",
+    "private": "Private"
+  }
+}

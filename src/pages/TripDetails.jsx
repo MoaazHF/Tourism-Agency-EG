@@ -1,9 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import {
-  ChevronRight, ChevronLeft, Clock, Users, Globe, Star, Plus, Minus,
-  CheckCircle, Check, XCircle, X, Calendar, Send
-} from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useTrip } from '../hooks/useTrip';
 import { supabase } from '../lib/supabaseClient';
 
@@ -45,6 +40,7 @@ function TripDetailsSkeleton() {
 }
 
 const TripDetails = () => {
+  const { t } = useTranslation();
   const { tripId } = useParams();
 
   // ── Data from Supabase ──────────────────────────────────────────
@@ -95,38 +91,35 @@ const TripDetails = () => {
   if (loading) return <TripDetailsSkeleton />;
 
   // ── Error ───────────────────────────────────────────────────────
-  if (error) {
     return (
       <main className="pt-24 pb-20">
         <div className="max-w-7xl mx-auto px-6 md:px-12 min-h-[40vh] flex flex-col items-center justify-center gap-4">
-          <p className="text-2xl font-bold text-error">Something went wrong</p>
+          <p className="text-2xl font-bold text-error">{t('trip_details.error.title')}</p>
           <p className="text-on-surface-variant text-sm max-w-md text-center">{error}</p>
           <button
             onClick={() => window.location.reload()}
             className="px-6 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm"
           >
-            Try Again
+            {t('trip_details.error.retry')}
           </button>
         </div>
       </main>
     );
-  }
 
-  // ── Not found ───────────────────────────────────────────────────
   if (!trip) {
     return (
       <main className="pt-24 pb-20">
         <div className="max-w-7xl mx-auto px-6 md:px-12 min-h-[40vh] flex flex-col items-center justify-center gap-4 text-center">
           <p className="text-6xl font-black text-primary/20">404</p>
-          <h1 className="text-2xl font-bold text-on-surface">Trip not found</h1>
+          <h1 className="text-2xl font-bold text-on-surface">{t('trip_details.not_found.title')}</h1>
           <p className="text-on-surface-variant text-sm max-w-sm">
-            This trip doesn't exist or may have been removed.
+            {t('trip_details.not_found.subtitle')}
           </p>
           <Link
             to="/"
             className="mt-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm"
           >
-            Back to Home
+            {t('trip_details.not_found.back_home')}
           </Link>
         </div>
       </main>
@@ -155,7 +148,7 @@ const TripDetails = () => {
   const handleBooking = async (e) => {
     e.preventDefault();
     if (!bookingForm.name || !bookingForm.email) {
-      setBookingError('Veuillez remplir les champs obligatoires.');
+      setBookingError(t('booking_form.validation.required'));
       return;
     }
 
@@ -182,7 +175,7 @@ const TripDetails = () => {
       setBookingStatus('success');
     } catch (err) {
       console.error('Booking Error:', err);
-      setBookingError(err.message || "Une erreur s'est produite lors de la réservation.");
+      setBookingError(t('booking_form.error'));
       setBookingStatus('error');
     }
   };
@@ -192,10 +185,10 @@ const TripDetails = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Breadcrumbs */}
         <nav className="flex flex-wrap items-center space-x-2 text-xs font-medium uppercase tracking-widest text-outline mb-8">
-          <Link to="/" className="hover:text-primary transition-colors">Accueil</Link>
+          <Link to="/" className="hover:text-primary transition-colors">{t('trip_details.breadcrumb.home')}</Link>
           <ChevronRight size={14} />
           <Link to={`/${trip.category_slug || 'cruises'}`} className="hover:text-primary transition-colors capitalize">
-            {trip.category_slug || 'Tours'}
+            {trip.category_slug || t('trip_details.breadcrumb.tours')}
           </Link>
           <ChevronRight size={14} />
           <span className="text-secondary">{trip.title}</span>
@@ -229,14 +222,14 @@ const TripDetails = () => {
                 <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 5" src={images[4] || images[0]} />
                 {images.length > 5 && (
                   <div className="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] flex items-center justify-center pointer-events-none transition-colors group-hover:bg-secondary/20">
-                    <span className="text-white font-bold text-lg">+{images.length - 4} Photos</span>
+                    <span className="text-white font-bold text-lg">{t('trip_details.gallery.more_photos', { count: images.length - 4 })}</span>
                   </div>
                 )}
               </div>
             </>
           ) : (
              <div className="col-span-full h-64 flex items-center justify-center bg-surface-container rounded-xl text-outline italic">
-               No images available for this trip
+               {t('trip_details.gallery.no_images')}
              </div>
           )}
         </section>
@@ -290,28 +283,28 @@ const TripDetails = () => {
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Clock size={20} /></div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">Durée</p>
+              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.duration')}</p>
               <p className="font-bold text-secondary">{duration}</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Users size={20} /></div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">Taille du groupe</p>
+              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.group_size')}</p>
               <p className="font-bold text-secondary">{groupSize}</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Globe size={20} /></div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">Langue</p>
+              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.language')}</p>
               <p className="font-bold text-secondary">{language}</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Star size={20} /></div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">Évaluation</p>
+              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.rating')}</p>
               <p className="font-bold text-secondary">{ratingLabel}</p>
             </div>
           </div>
@@ -322,7 +315,7 @@ const TripDetails = () => {
           {/* Left Column: Details */}
           <div className="lg:w-2/3 space-y-16">
             <article>
-              <h2 className="font-headline text-3xl font-bold text-secondary mb-6">À propos de ce voyage</h2>
+              <h2 className="font-headline text-3xl font-bold text-secondary mb-6">{t('trip_details.sections.about')}</h2>
               <div className="space-y-4 text-on-surface-variant leading-relaxed text-lg font-light">
                 {shortDesc ? (
                   <p>{shortDesc}</p>
@@ -337,7 +330,7 @@ const TripDetails = () => {
 
             {/* Itinerary Accordion — rendered from DB data or static fallback */}
             <section>
-              <h2 className="font-headline text-3xl font-bold text-secondary mb-8">Itinéraire détaillé</h2>
+              <h2 className="font-headline text-3xl font-bold text-secondary mb-8">{t('trip_details.sections.itinerary')}</h2>
               <div className="space-y-4">
                 {itinerary.length > 0 ? (
                   itinerary.map((item, i) => {
@@ -374,15 +367,14 @@ const TripDetails = () => {
                     );
                   })
                 ) : (
-                  /* Static fallback shown until itinerary is populated via admin */
                   <>
                     <div className="bg-surface-container-lowest rounded-xl overflow-hidden group border border-outline-variant/10">
                       <div className="px-6 py-5 flex items-center justify-between cursor-pointer" onClick={() => toggleDay(1)}>
                         <div className="flex items-center space-x-6">
                           <span className="font-headline font-black text-primary/30 text-4xl">01</span>
                           <div>
-                            <h3 className="font-bold text-secondary">Arrivée au Caire</h3>
-                            <p className="text-sm text-outline">Accueil à l'aéroport et transfert à votre hôtel de luxe.</p>
+                            <h3 className="font-bold text-secondary">{t('trip_details.itinerary_static.day1_title')}</h3>
+                            <p className="text-sm text-outline">{t('trip_details.itinerary_static.day1_desc')}</p>
                           </div>
                         </div>
                         {openDay === 1 ? <Minus size={20} className="text-primary" /> : <Plus size={20} className="text-outline" />}
@@ -394,8 +386,8 @@ const TripDetails = () => {
                         <div className="flex items-center space-x-6">
                           <span className="font-headline font-black text-primary/30 text-4xl">02</span>
                           <div>
-                            <h3 className="font-bold text-secondary">Les Pyramides de Gizeh &amp; Saqqarah</h3>
-                            <p className="text-sm text-outline">Journée entière dédiée aux origines de la civilisation.</p>
+                            <h3 className="font-bold text-secondary">{t('trip_details.itinerary_static.day2_title')}</h3>
+                            <p className="text-sm text-outline">{t('trip_details.itinerary_static.day2_desc')}</p>
                           </div>
                         </div>
                         {openDay === 2 ? <Minus size={20} className="text-primary" /> : <Plus size={20} className="text-outline" />}
@@ -407,10 +399,10 @@ const TripDetails = () => {
                         <div className="flex items-center space-x-6">
                           <span className={`font-headline font-black text-4xl ${openDay === 4 ? 'text-primary' : 'text-primary/30'}`}>04</span>
                           <div>
-                            <h3 className="font-bold text-lg hidden md:block text-secondary">Assouan : Début de la Croisière</h3>
-                            <h3 className="font-bold text-lg md:hidden text-secondary">Assouan</h3>
+                            <h3 className="font-bold text-lg hidden md:block text-secondary">{t('trip_details.itinerary_static.day4_title')}</h3>
+                            <h3 className="font-bold text-lg md:hidden text-secondary">{t('trip_details.itinerary_static.day4_mobile')}</h3>
                             <p className={`text-sm font-medium ${openDay === 4 ? 'text-primary italic' : 'text-outline'}`}>
-                              {openDay === 4 ? 'Le moment magique' : 'Embarquement et navigation'}
+                              {openDay === 4 ? t('trip_details.itinerary_static.day4_subtitle') : t('trip_details.itinerary_static.day4_brief')}
                             </p>
                           </div>
                         </div>
@@ -418,10 +410,10 @@ const TripDetails = () => {
                       </div>
                       {openDay === 4 && (
                         <div className="px-10 py-6 text-on-surface-variant text-base leading-relaxed border-t border-outline-variant/10">
-                          <p className="mb-4">Vol matinal pour Assouan. Visite du temple de Philae, la perle de l'Égypte, posée sur son île. En milieu d'après-midi, embarquement sur votre felouque privée. Première navigation au gré du vent entre les îles de granit.</p>
+                          <p className="mb-4">{t('trip_details.itinerary_static.day4_content')}</p>
                           <ul className="space-y-2 text-sm">
-                            <li className="flex items-center space-x-2"><div className="w-5 grid place-items-center"><Star size={16} className="text-primary" /></div> <span>Déjeuner et dîner à bord préparés par votre cuisinier nubien.</span></li>
-                            <li className="flex items-center space-x-2"><div className="w-5 grid place-items-center"><Users size={16} className="text-primary" /></div> <span>Nuit étoilée sur le pont (matelas confortables fournis).</span></li>
+                            <li className="flex items-center space-x-2"><div className="w-5 grid place-items-center"><Star size={16} className="text-primary" /></div> <span>{t('trip_details.itinerary_static.day4_feat1')}</span></li>
+                            <li className="flex items-center space-x-2"><div className="w-5 grid place-items-center"><Users size={16} className="text-primary" /></div> <span>{t('trip_details.itinerary_static.day4_feat2')}</span></li>
                           </ul>
                         </div>
                       )}
@@ -429,7 +421,7 @@ const TripDetails = () => {
 
                     <div className="bg-surface-container-low/50 rounded-xl px-6 py-4 text-center mt-4 border border-outline-variant/10">
                       <p className="text-primary font-bold text-sm uppercase tracking-widest">
-                        Itinéraire complet disponible sur demande
+                        {t('trip_details.sections.itinerary_full_req')}
                       </p>
                     </div>
                   </>
@@ -437,11 +429,10 @@ const TripDetails = () => {
               </div>
             </section>
 
-            {/* Inclusions / Exclusions */}
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-surface-container-low/40 rounded-2xl p-8 border border-outline-variant/10">
                 <h3 className="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
-                  <CheckCircle size={24} className="text-primary" />Le prix comprend
+                  <CheckCircle size={24} className="text-primary" />{t('trip_details.sections.includes')}
                 </h3>
                 <ul className="space-y-4">
                   {includes.length > 0 ? includes.map((item, i) => (
@@ -461,7 +452,7 @@ const TripDetails = () => {
               </div>
               <div className="bg-surface-container-low/40 rounded-2xl p-8 border border-outline-variant/10">
                 <h3 className="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
-                  <XCircle size={24} className="text-error" />Le prix ne comprend pas
+                  <XCircle size={24} className="text-error" />{t('trip_details.sections.excludes')}
                 </h3>
                 <ul className="space-y-4">
                   {excludes.length > 0 ? excludes.map((item, i) => (
@@ -489,9 +480,9 @@ const TripDetails = () => {
                   <div className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle size={40} />
                   </div>
-                  <h3 className="font-headline text-2xl font-bold text-secondary mb-3">Merci beaucoup !</h3>
+                  <h3 className="font-headline text-2xl font-bold text-secondary mb-3">{t('booking_form.success.title')}</h3>
                   <p className="text-on-surface-variant text-sm mb-8">
-                    Votre demande pour <span className="font-bold text-secondary">"{trip.title}"</span> a été transmise à notre équipe. Nous vous contacterons par email ({bookingForm.email}) très prochainement.
+                    {t('booking_form.success.message', { title: trip.title, email: bookingForm.email })}
                   </p>
                   <button 
                     onClick={() => {
@@ -500,20 +491,20 @@ const TripDetails = () => {
                     }}
                     className="text-primary font-bold text-sm underline hover:text-primary-container transition-colors"
                   >
-                    Envoyer une autre demande
+                    {t('booking_form.success.button')}
                   </button>
                 </div>
               ) : (
                 <>
                   <div className="flex justify-between items-baseline mb-8">
                     <div>
-                      <span className="text-outline text-xs uppercase tracking-widest font-bold">À partir de</span>
+                      <span className="text-outline text-xs uppercase tracking-widest font-bold">{t('booking_form.summary.starts_from')}</span>
                       <div className="text-4xl font-black text-secondary">
-                        {price != null ? `${price} €` : 'Sur devis'}
-                        <span className="text-sm font-normal text-outline ml-1">/ pers</span>
+                        {price != null ? `${price} €` : t('booking_form.summary.on_quote')}
+                        <span className="text-sm font-normal text-outline ml-1">{t('booking_form.summary.per_pers_short')}</span>
                       </div>
                     </div>
-                    {price && <div className="bg-primary-container/20 text-primary flex items-center px-3 py-1 rounded-full text-xs font-bold">-15% Early Bird</div>}
+                    {price && <div className="bg-primary-container/20 text-primary flex items-center px-3 py-1 rounded-full text-xs font-bold">{t('booking_form.summary.early_bird')}</div>}
                   </div>
 
                   <form className="space-y-5" onSubmit={handleBooking}>
@@ -525,22 +516,22 @@ const TripDetails = () => {
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="col-span-2">
-                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Nom complet *</label>
+                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.name')}</label>
                         <input 
                           required
                           className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
-                          placeholder="Votre nom" 
+                          placeholder={t('booking_form.labels.name_placeholder')}
                           type="text" 
                           value={bookingForm.name}
                           onChange={(e) => setBookingForm({...bookingForm, name: e.target.value})}
                         />
                       </div>
                       <div className="col-span-2">
-                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Email *</label>
+                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.email')}</label>
                         <input 
                           required
                           className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
-                          placeholder="votre@email.com" 
+                          placeholder={t('booking_form.labels.email_placeholder')}
                           type="email" 
                           value={bookingForm.email}
                           onChange={(e) => setBookingForm({...bookingForm, email: e.target.value})}
@@ -549,11 +540,11 @@ const TripDetails = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Dates souhaitées</label>
+                      <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.date')}</label>
                       <div className="relative">
                         <input 
                           className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
-                          placeholder="Choisir une période" 
+                          placeholder={t('booking_form.labels.date_placeholder')}
                           type="text" 
                           value={bookingForm.date}
                           onChange={(e) => setBookingForm({...bookingForm, date: e.target.value})}
@@ -564,7 +555,7 @@ const TripDetails = () => {
 
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Adultes</label>
+                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.adults')}</label>
                         <div className="flex items-center justify-between bg-surface-container-low border border-outline-variant/30 rounded-xl px-3 py-2">
                           <button 
                             type="button"
@@ -584,7 +575,7 @@ const TripDetails = () => {
                         </div>
                       </div>
                       <div>
-                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">Enfants</label>
+                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.children')}</label>
                         <div className="flex items-center justify-between bg-surface-container-low border border-outline-variant/30 rounded-xl px-3 py-2">
                           <button 
                             type="button"
@@ -607,21 +598,21 @@ const TripDetails = () => {
 
                     <div className="bg-surface-container-lowest border border-dashed border-outline-variant p-4 rounded-xl space-y-2">
                       <div className="flex justify-between text-xs">
-                        <span className="text-outline">Prix base ({bookingForm.adults + bookingForm.children} pers)</span>
+                        <span className="text-outline">{t('booking_form.summary.price_base', { count: bookingForm.adults + bookingForm.children })}</span>
                         <span className="text-secondary font-bold">{price != null ? `${(adultsTotal + childrenTotal).toFixed(0)} €` : '—'}</span>
                       </div>
                       <div className="flex justify-between text-xs text-primary italic">
-                        <span className="opacity-70">Réduction enfants</span>
+                        <span className="opacity-70">{t('booking_form.summary.child_discount')}</span>
                         <span>{bookingForm.children > 0 ? `-${(bookingForm.children * perPerson * 0.3).toFixed(0)} €` : '0 €'}</span>
                       </div>
                       <div className="flex justify-between text-xs">
-                        <span className="text-outline">Frais de dossier & Visa</span>
+                        <span className="text-outline">{t('booking_form.summary.fees')}</span>
                         <span className="text-secondary font-bold">{extras} €</span>
                       </div>
                       <div className="pt-4 mt-2 border-t border-outline-variant flex justify-between items-center text-secondary">
-                        <span className="font-bold uppercase tracking-widest text-xs">Estimation Total</span>
+                        <span className="font-bold uppercase tracking-widest text-xs">{t('booking_form.summary.total_estimate')}</span>
                         <span className="text-2xl font-black text-primary">
-                          {totalDisplayPrice ? `${totalDisplayPrice} €` : 'Sur devis'}
+                          {totalDisplayPrice ? `${totalDisplayPrice} €` : t('booking_form.summary.on_quote')}
                         </span>
                       </div>
                     </div>
@@ -636,13 +627,13 @@ const TripDetails = () => {
                       ) : (
                           <>
                             <Send size={18} />
-                            <span>Réserver Maintenant</span>
+                            <span>{t('booking_form.submit')}</span>
                           </>
                       )}
                     </button>
                     <p className="text-center text-[10px] text-outline uppercase tracking-tight flex items-center justify-center gap-2">
                       <CheckCircle size={10} className="text-primary" />
-                      Confirmation rapide sous 24h
+                      {t('booking_form.confirmation_hint')}
                     </p>
                   </form>
                 </>
@@ -654,9 +645,9 @@ const TripDetails = () => {
                   <img className="w-full h-full object-cover" alt="expert" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1588&auto=format&fit=crop" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-secondary leading-none mb-1">Besoin d'aide ?</p>
-                  <p className="text-xs text-outline mb-1">Sara, votre experte voyage</p>
-                  <a className="text-[10px] text-primary font-bold uppercase tracking-widest hover:underline" href="#contact">Parler à un conseiller</a>
+                  <p className="text-xs font-bold text-secondary leading-none mb-1">{t('trip_details.expert.help_title')}</p>
+                  <p className="text-xs text-outline mb-1">{t('trip_details.expert.expert_name')}, {t('trip_details.expert.expert_title')}</p>
+                  <a className="text-[10px] text-primary font-bold uppercase tracking-widest hover:underline" href="#contact">{t('trip_details.expert.contact_link')}</a>
                 </div>
               </div>
             </div>

@@ -1,0 +1,411 @@
+{
+  "nav": {
+    "welcome": "Bienvenue",
+    "cruises": "Croisières en Égypte",
+    "excursions": "Désert & Excursions",
+    "about": "Qui Sommes-Nous ?",
+    "contact": "Contact",
+    "book_now": "Réserver",
+    "dropdowns": {
+      "felucca": "Croisières en Felouque",
+      "dahabeya": "Croisières en Dahabeya",
+      "ship_tours": "Tours en Bateau de Croisière",
+      "lake_nasser": "Croisière sur le Lac Nasser",
+      "starting_cairo": "Au départ du Caire",
+      "luxor_region": "Louxor & sa Région",
+      "aswan_region": "Assouan & sa Région",
+      "red_sea": "Depuis El Gouna / Hurghada / Safaga",
+      "marsa_alam": "Au départ de Marsa Alam",
+      "sinai": "Au départ du Sud-Sinaï"
+    }
+  },
+  "home": {
+    "categories": {
+      "cruises": "Croisières",
+      "excursions": "Excursions",
+      "safaris": "Safaris",
+      "tours": "Voyages"
+    },
+    "hero": {
+      "badge": "Voyage Sur Mesure",
+      "title": "Découvrez l'Âme de l'Égypte",
+      "subtitle": "L'excellence du voyage sur mesure en Égypte. Découvrez des expériences authentiques et luxueuses créées pour les voyageurs exigeants.",
+      "cta": "Créez votre Itinéraire"
+    },
+    "trust": {
+      "badge": "La Différence",
+      "title": "Pourquoi Réserver Avec Nous ?",
+      "expertise": {
+        "title": "Expertise Locale",
+        "text": "Nos guides sont des égyptologues passionnés qui révèlent les secrets les mieux gardés des pharaons."
+      },
+      "vehicles": {
+        "title": "Véhicules Privés",
+        "text": "Voyagez en toute sérénité à bord de nos véhicules récents, climatisés et entièrement privatisés."
+      },
+      "assistance": {
+        "title": "Assistance 24/7",
+        "text": "Un accompagnement dédié de votre arrivée à votre départ pour une tranquillité d'esprit totale."
+      }
+    },
+    "sections": {
+      "cruises_badge": "Sur le Nil",
+      "cruises_title": "Croisières Signature",
+      "safari_badge": "Hors des sentiers battus",
+      "safari_title": "Safari dans le Désert",
+      "tours_badge": "Itinéraires de Curateurs",
+      "tours_title": "Tours & Forfaits",
+      "excursions_badge": "Excursions d'une Journée",
+      "excursions_title": "Excursions",
+      "view_all": "Tout Voir"
+    },
+    "stats": {
+      "expertise": "Années d'Expertise",
+      "travelers": "Voyageurs Heureux",
+      "tailor_made": "Sur Mesure"
+    },
+    "newsletter": {
+      "title": "Inscrivez-vous à notre Newsletter",
+      "subtitle": "Restez informé de nos offres exclusives, de nos nouveaux itinéraires et de l'inspiration pour l'Égypte.",
+      "placeholder": "Votre adresse email",
+      "button": "S'abonner"
+    }
+  },
+  "footer": {
+    "description": "L'excellence du voyage sur mesure en Égypte. Découvrez des expériences authentiques et luxueuses créées pour les voyageurs exigeants.",
+    "links_title": "Liens Rapides",
+    "about": "À Propos",
+    "terms": "Conditions de Service",
+    "privacy": "Politique de Confidentialité",
+    "faq": "FAQ",
+    "destinations_title": "Destinations",
+    "cairo_giza": "Le Caire & Gizeh",
+    "luxor_aswan": "Louxor & Assouan",
+    "red_sea": "Mer Rouge",
+    "oasis_deserts": "Oasis & Déserts",
+    "contact_title": "Contact & Support",
+    "copyright": "© 2024 Route d'Égypte. Les Sables de Distinction."
+  },
+  "listing": {
+    "error": {
+      "title": "Une erreur est survenue",
+      "retry": "Réessayer"
+    },
+    "not_found": "Catégorie non trouvée",
+    "intro": {
+      "see_more": "Voir Plus",
+      "see_less": "Voir Moins"
+    },
+    "no_trips": "Aucun voyage trouvé dans cette catégorie pour le moment.",
+    "trip_card": {
+      "starts_from": "À partir de",
+      "on_quote": "Sur devis",
+      "view_trip": "Voir Le Voyage"
+    },
+    "value_prop": {
+      "title": "Pourquoi voyager avec Route d'Égypte ?",
+      "subtitle": "Une expertise forgée au cœur du Nil pour des voyages qui vous ressemblent.",
+      "custom": {
+        "title": "100% Sur-mesure",
+        "item1": "Itinéraires flexibles",
+        "item2": "Rythme personnalisé",
+        "item3": "Choix de l'hôtellerie"
+      },
+      "expertise": {
+        "title": "Expertise locale",
+        "item1": "Guides francophones",
+        "item2": "Accès privilégiés",
+        "item3": "Savoir-faire ancestral"
+      },
+      "assistance": {
+        "title": "Assistance 24/7",
+        "item1": "Conciergerie dédiée",
+        "item2": "Réactivité immédiate",
+        "item3": "Tranquillité d'esprit"
+      },
+      "sustainable": {
+        "title": "Engagement durable",
+        "item1": "Soutien aux locaux",
+        "item2": "Préservation des sites",
+        "item3": "Tourisme responsable"
+      }
+    },
+    "cta": {
+      "title": "Prêt à planifier votre voyage de rêve ?",
+      "benefit1": "Devis gratuit en 24h",
+      "benefit2": "Modification flexible",
+      "benefit3": "Paiement sécurisé",
+      "benefit4": "Garantie Voyageur",
+      "button": "Planifier maintenant",
+      "quote": "\"Le Nil ne se raconte pas, il se vit.\"",
+      "expert_name": "Ahmed M.",
+      "expert_title": "Expert Croisières"
+    }
+  },
+  "admin": {
+    "dashboard_title": "Tableau de Bord Admin",
+    "dashboard_subtitle": "Route d'Égypte",
+    "logout": "Déconnexion",
+    "nav_categories": "Catégories",
+    "sidebar_home": "Retour à l'Accueil",
+    "stats": {
+      "total_trips": "Total Voyages",
+      "total_bookings": "Demandes",
+      "pending": "En attente",
+      "total_categories": "Catégories",
+      "adults_abbr": "A",
+      "children_abbr": "E",
+      "currency": "€"
+    },
+    "tabs": {
+      "manage_trips": "Gérer les Voyages",
+      "view_bookings": "Demandes de Réservation"
+    },
+    "trips": {
+      "title": "Tous les Voyages",
+      "add_new": "Ajouter un Voyage",
+      "no_trips": "Aucun voyage",
+      "no_trips_hint": "Ajoutez votre premier voyage ou lancez le script de base.",
+      "table": {
+        "title": "Titre",
+        "category": "Catégorie",
+        "duration": "Durée",
+        "price": "Prix (€)",
+        "actions": "Actions",
+        "featured": "Mis en avant",
+        "actions_edit": "Modifier",
+        "actions_delete": "Supprimer"
+      },
+      "table_actions": {
+        "edit": "Modifier",
+        "delete": "Supprimer"
+      },
+      "confirm_delete": "Supprimer \"{{title}}\" ?\n\nCette action est irréversible.",
+      "deleted_msg": "\"{{title}}\" supprimé."
+    },
+    "categories": {
+      "title_manage": "Gérer les Catégories",
+      "toast_no_changes": "Aucune modification à enregistrer.",
+      "toast_saved": "\"{{title}}\" enregistré !",
+      "status_unsaved": "non enregistré",
+      "save_button": "Enregistrer les modifications",
+      "saving": "Enregistrement...",
+      "fields": {
+        "title": "Titre",
+        "hero_tag": "Badge Hero",
+        "subtitle": "Sous-titre",
+        "hero_image": "URL Image Hero",
+        "intro_title": "Titre d'Introduction",
+        "intro_text": "Texte d'Introduction (un paragraphe par ligne — liens HTML supportés)"
+      }
+    },
+    "trip_form": {
+      "add_new": "Ajouter un nouveau voyage",
+      "edit": "Modifier : {{id}}",
+      "toasts": {
+        "uploaded": "{{count}} images téléchargées !",
+        "upload_error": "Erreur de téléchargement : {{message}}",
+        "updated": "Voyage mis à jour !",
+        "created": "Voyage créé !",
+        "min_images": "Un voyage doit avoir au moins 5 images.",
+        "max_images": "Un voyage ne peut pas avoir plus de 10 images.",
+        "uploading": "Téléchargement..."
+      },
+      "sections": {
+        "basic": "Informations de Base",
+        "logistics": "Logistique",
+        "pricing": "Tarification",
+        "tags": "Tags",
+        "images": "Images",
+        "itinerary": "Itinéraire",
+        "includes": "Le Prix Comprend",
+        "excludes": "Le Prix Ne Comprend Pas"
+      },
+      "fields": {
+        "id": "ID du Voyage (slug)",
+        "id_hint": "ex: croisiere-nil — auto-généré si vide",
+        "title": "Titre *",
+        "category": "Catégorie",
+        "category_select": "— Sélectionner une catégorie —",
+        "short_description": "Description Courte",
+        "category_label": "Label de Catégorie",
+        "category_label_hint": "ex: Expérience Signature",
+        "featured": "En vedette sur la page d'accueil",
+        "duration": "Durée",
+        "group_size": "Taille du Groupe",
+        "language": "Langue",
+        "departing": "Détails du Départ",
+        "price_person": "Prix par Personne (€)",
+        "price_two": "Prix pour Deux (€)",
+        "rating": "Note (1–5)",
+        "tags": "Tags",
+        "tags_hint": "ex: Premium, Bestseller (Entrée pour ajouter)",
+        "image_urls": "Ou coller les URLs des images (une par ligne)",
+        "image_limit": "Images: {{count}} / 10",
+        "image_min_hint": "(Min 5 requises)",
+        "image_upload": "Télécharger des images",
+        "image_uploading": "Téléchargement...",
+        "image_limit_reached": "Limite atteinte (10)",
+        "image_supports": "Plusieurs fichiers • Bucket: trip-images",
+        "itinerary_day": "Jour #",
+        "itinerary_title": "Titre du Jour",
+        "itinerary_desc": "Description"
+      },
+      "placeholders": {
+        "id": "mon-voyage-slug",
+        "title": "Titre du voyage",
+        "short_description": "Bref texte d'accroche pour les cartes de liste",
+        "category_label": "Label de catégorie",
+        "duration": "10 Jours / 9 Nuits",
+        "group_size": "Max 12 Personnes",
+        "language": "Français, Anglais",
+        "departing": "Départ du Caire chaque samedi",
+        "price": "2450",
+        "rating": "4.9",
+        "tags": "Ajouter un tag...",
+        "image_urls": "https://example.com/image1.jpg",
+        "itinerary_title": "Arrivée au Caire",
+        "itinerary_desc": "Description détaillée des activités du jour...",
+        "list_item": "Description de l'élément"
+      },
+      "buttons": {
+        "add_day": "Ajouter un Jour",
+        "itinerary_empty": "Pas encore d'itinéraire. Cliquez sur \"Ajouter un Jour\" pour commencer.",
+        "list_add": "Ajouter",
+        "list_empty": "Aucun pour le moment",
+        "submit_create": "Créer le Voyage",
+        "submit_update": "Mettre à jour le Voyage",
+        "saving": "Enregistrement...",
+        "cancel": "Annuler"
+      }
+    },
+    "login": {
+      "portal": "Portail Admin",
+      "subtitle": "Connectez-vous pour gérer vos voyages et catégories",
+      "email": "Email",
+      "password": "Mot de passe",
+      "submit": "Se Connecter",
+      "signing_in": "Connexion...",
+      "forgot": "Mot de passe oublié ? Réinitialisez-le dans le tableau de bord Supabase → Authentification.",
+      "error_failed": "Échec de la connexion. Vérifiez vos identifiants."
+    },
+    "bookings": {
+      "title": "Demandes de Réservation",
+      "refresh": "Actualiser",
+      "no_bookings": "Aucune demande",
+      "no_bookings_hint": "Les demandes envoyées via le site apparaîtront ici.",
+      "trip_unknown": "Voyage inconnu",
+      "table": {
+        "client": "Client",
+        "trip": "Voyage",
+        "details": "Détails",
+        "status": "Statut",
+        "actions": "Actions",
+        "people": "Passagers"
+      },
+      "statuses": {
+        "pending": "En attente",
+        "confirmed": "Confirmé",
+        "cancelled": "Annulé"
+      },
+      "status_updated": "Statut mis à jour : {{status}}",
+      "confirm_delete": "Supprimer cette demande ?",
+      "deleted_msg": "Demande supprimée"
+    }
+  },
+  "trip_details": {
+    "error": {
+      "title": "Une erreur est survenue",
+      "retry": "Réessayer"
+    },
+    "not_found": {
+      "title": "Voyage non trouvé",
+      "subtitle": "Ce voyage n'existe pas ou a été supprimé.",
+      "back_home": "Retour à l'accueil"
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "tours": "Tours"
+    },
+    "gallery": {
+      "more_photos": "+{{count}} Photos",
+      "no_images": "Aucune image disponible pour ce voyage"
+    },
+    "info": {
+      "duration": "Durée",
+      "group_size": "Taille du groupe",
+      "language": "Langue",
+      "rating": "Évaluation"
+    },
+    "sections": {
+      "about": "À propos de ce voyage",
+      "itinerary": "Itinéraire détaillé",
+      "itinerary_full_req": "Itinéraire complet disponible sur demande",
+      "includes": "Le prix comprend",
+      "excludes": "Le prix ne comprend pas"
+    },
+    "itinerary_static": {
+      "day1_title": "Arrivée au Caire",
+      "day1_desc": "Accueil à l'aéroport et transfert à votre hôtel de luxe.",
+      "day2_title": "Les Pyramides de Gizeh & Saqqarah",
+      "day2_desc": "Journée entière dédiée aux origines de la civilisation.",
+      "day4_title": "Assouan : Début de la Croisière",
+      "day4_mobile": "Assouan",
+      "day4_subtitle": "Le moment magique",
+      "day4_brief": "Embarquement et navigation",
+      "day4_content": "Vol matinal pour Assouan. Visite du temple de Philae, la perle de l'Égypte. En milieu d'après-midi, embarquement sur votre felouque privée.",
+      "day4_feat1": "Déjeuner et dîner à bord préparés par votre cuisinier nubien.",
+      "day4_feat2": "Nuit étoilée sur le pont (matelas confortables fournis)."
+    },
+    "expert": {
+      "help_title": "Besoin d'aide ?",
+      "expert_name": "Sara",
+      "expert_title": "Votre experte voyage",
+      "contact_link": "Parler à un conseiller"
+    }
+  },
+  "booking_form": {
+    "title": "Réserver ce Voyage",
+    "labels": {
+      "name": "Nom Complet *",
+      "name_placeholder": "Votre nom",
+      "email": "Adresse Email *",
+      "email_placeholder": "votre@email.com",
+      "phone": "Numéro de Téléphone",
+      "date": "Dates souhaitées",
+      "date_placeholder": "Choisir une période",
+      "adults": "Adultes",
+      "children": "Enfants"
+    },
+    "summary": {
+      "starts_from": "À partir de",
+      "per_person": "par personne",
+      "per_pers_short": "/ pers",
+      "on_quote": "Sur devis",
+      "early_bird": "-15% Early Bird",
+      "price_base": "Prix base ({{count}} pers)",
+      "child_discount": "Réduction enfants",
+      "fees": "Frais de dossier & Visa",
+      "total_estimate": "Estimation Totale"
+    },
+    "submit": "Désormais",
+    "loading": "Envoi en cours...",
+    "success": {
+      "title": "Merci Beaucoup !",
+      "message": "Votre demande pour \"{{title}}\" a été transmise à notre équipe. Nous vous contacterons par email ({{email}}) très prochainement.",
+      "button": "Envoyer une autre demande"
+    },
+    "error": "Une erreur est survenue lors de la réservation. Veuillez réessayer.",
+    "validation": {
+      "required": "Veuillez remplir les champs obligatoires.",
+      "invalid_email": "Veuillez entrer une adresse email valide.",
+      "invalid_phone": "Veuillez entrer un numéro de téléphone valide."
+    },
+    "confirmation_hint": "Confirmation rapide sous 24h"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur : {{message}}",
+    "private": "Privé"
+  }
+}

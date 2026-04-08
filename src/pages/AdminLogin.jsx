@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../context/AuthContext'
 import { Lock, Mail, Eye, EyeOff } from 'lucide-react'
 
 export default function AdminLogin() {
+  const { t } = useTranslation()
   const { signIn } = useAuth()
   const navigate = useNavigate()
 
@@ -21,7 +23,7 @@ export default function AdminLogin() {
       await signIn(email, password)
       navigate('/admin/dashboard')
     } catch (err) {
-      setError(err.message || 'Login failed. Check your credentials.')
+      setError(err.message || t('admin.login.error_failed'))
     } finally {
       setLoading(false)
     }
@@ -32,9 +34,9 @@ export default function AdminLogin() {
       <div className="w-full max-w-md">
         {/* Logo / Brand */}
         <div className="text-center mb-10">
-          <p className="font-['Caveat'] text-primary text-2xl mb-1">Route d'Égypte</p>
-          <h1 className="text-3xl font-extrabold font-headline text-on-surface">Admin Portal</h1>
-          <p className="text-on-surface-variant text-sm mt-2">Sign in to manage your trips and categories</p>
+          <p className="font-['Caveat'] text-primary text-2xl mb-1">{t('admin.dashboard_subtitle')}</p>
+          <h1 className="text-3xl font-extrabold font-headline text-on-surface">{t('admin.login.portal')}</h1>
+          <p className="text-on-surface-variant text-sm mt-2">{t('admin.login.subtitle')}</p>
         </div>
 
         <form
@@ -51,7 +53,7 @@ export default function AdminLogin() {
           {/* Email */}
           <div>
             <label htmlFor="admin-email" className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">
-              Email
+              {t('admin.login.email')}
             </label>
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-outline w-4 h-4" />
@@ -71,7 +73,7 @@ export default function AdminLogin() {
           {/* Password */}
           <div>
             <label htmlFor="admin-password" className="block text-xs uppercase tracking-widest font-bold text-outline mb-2">
-              Password
+              {t('admin.login.password')}
             </label>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-outline w-4 h-4" />
@@ -100,12 +102,12 @@ export default function AdminLogin() {
             disabled={loading}
             className="w-full py-4 bg-linear-to-br from-primary to-primary-container text-on-primary font-headline font-extrabold uppercase tracking-widest rounded-xl shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {loading ? 'Signing in…' : 'Sign In'}
+            {loading ? t('admin.login.signing_in') : t('admin.login.submit')}
           </button>
         </form>
 
         <p className="text-center text-xs text-outline mt-6">
-          Forgot password? Reset it in the Supabase Dashboard → Authentication.
+          {t('admin.login.forgot')}
         </p>
       </div>
     </div>

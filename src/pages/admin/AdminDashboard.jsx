@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { supabase } from '../../lib/supabaseClient'
 import { useAuth } from '../../context/AuthContext'
 import { useCategories } from '../../hooks/useCategories'
 import { useTrips } from '../../hooks/useTrips'
 import { 
   PlusCircle, Edit2, Trash2, LogOut, Settings, LayoutGrid, 
-  ClipboardList, CheckCircle2, Clock, XCircle, Search
+  ClipboardList, Search
 } from 'lucide-react'
 
 export default function AdminDashboard() {
+  const { t, i18n } = useTranslation()
   const { signOut } = useAuth()
   const navigate = useNavigate()
-  const { categories } = useCategories()
+  const { entries: categories } = useCategories()
   const { trips, loading } = useTrips()
   const [deletingId, setDeletingId] = useState(null)
   const [toast, setToast] = useState(null)
@@ -65,32 +67,32 @@ export default function AdminDashboard() {
     if (error) {
       showToast(error.message, 'error')
     } else {
-      showToast(`Status updated to ${newStatus}`)
+      showToast(t('admin.bookings.status_updated', { status: t(`admin.bookings.statuses.${newStatus}`) }))
       setBookings(prev => prev.map(b => b.id === id ? { ...b, status: newStatus } : b))
     }
     setUpdatingId(null)
   }
 
   const handleDeleteBooking = async (id) => {
-    if (!window.confirm('Supprimer cette demande ?')) return
+    if (!window.confirm(t('admin.bookings.confirm_delete'))) return
     const { error } = await supabase.from('bookings').delete().eq('id', id)
     if (error) {
       showToast(error.message, 'error')
     } else {
       setBookings(prev => prev.filter(b => b.id !== id))
-      showToast('Demande supprimée')
+      showToast(t('admin.bookings.deleted_msg'))
     }
   }
 
   const handleDelete = async (id, title) => {
-    if (!window.confirm(`Delete "${title}"?\n\nThis cannot be undone.`)) return
+    if (!window.confirm(t('admin.trips.confirm_delete', { title }))) return
     setDeletingId(id)
     const { error } = await supabase.from('trips').delete().eq('id', id)
     setDeletingId(null)
     if (error) {
       showToast(`Error: ${error.message}`, 'error')
     } else {
-      showToast(`"${title}" deleted.`)
+      showToast(t('admin.trips.deleted_msg', { title }))
       // Refresh by reloading; hooks will re-fetch
       window.location.reload()
     }
@@ -103,8 +105,8 @@ export default function AdminDashboard() {
         <div className="flex items-center gap-3">
           <LayoutGrid className="text-primary w-6 h-6" />
           <div>
-            <p className="font-headline font-bold text-on-surface text-lg leading-none">Admin Dashboard</p>
-            <p className="text-xs text-outline mt-0.5">Route d'Égypte</p>
+            <p className="font-headline font-bold text-on-surface text-lg leading-none">{t('admin.dashboard_title')}</p>
+            <p className="text-xs text-outline mt-0.5">{t('admin.dashboard_subtitle')}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -112,13 +114,13 @@ export default function AdminDashboard() {
             to="/admin/categories"
             className="flex items-center gap-2 text-sm font-bold text-on-surface-variant hover:text-primary px-3 py-2 rounded-xl hover:bg-surface-container transition-colors"
           >
-            <Settings className="w-4 h-4" /> Categories
+            <Settings className="w-4 h-4" /> {t('admin.nav_categories')}
           </Link>
           <button
             onClick={handleLogout}
             className="flex items-center gap-2 text-sm font-bold text-error hover:bg-error/10 px-3 py-2 rounded-xl transition-colors"
           >
-            <LogOut className="w-4 h-4" /> Logout
+            <LogOut className="w-4 h-4" /> {t('admin.logout')}
           </button>
         </div>
       </header>
@@ -134,11 +136,11 @@ export default function AdminDashboard() {
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
           {[
-            { label: 'Total Trips',      value: trips.length,      color: 'text-primary' },
-            { label: 'Demandes',         value: bookings.length || '—', color: 'text-secondary' },
-            { label: 'En attente',       value: bookings.filter(b => b.status === 'pending').length || 0, color: 'text-error' },
-            { label: 'Cruises',          value: trips.filter(t => t.category_slug === 'cruises').length,    color: 'text-primary' },
-            { label: 'Excursions',       value: trips.filter(t => t.category_slug === 'excursions').length, color: 'text-secondary' },
+            { label: t('admin.stats.total_trips'), value: trips.length,      color: 'text-primary' },
+            { label: t('admin.stats.total_bookings'), value: bookings.length || '—', color: 'text-secondary' },
+            { label: t('admin.stats.pending'), value: bookings.filter(b => b.status === 'pending').length || 0, color: 'text-error' },
+            { label: t('home.categories.cruises'), value: trips.filter(t => t.category_slug === 'cruises').length,    color: 'text-primary' },
+            { label: t('home.categories.excursions'), value: trips.filter(t => t.category_slug === 'excursions').length, color: 'text-secondary' },
           ].map((stat) => (
             <div key={stat.label} className="bg-surface rounded-2xl p-6 border border-outline-variant/20 shadow-sm">
               <p className={`text-4xl font-black font-headline ${stat.color}`}>{stat.value}</p>
@@ -153,13 +155,13 @@ export default function AdminDashboard() {
             onClick={() => setActiveTab('trips')}
             className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all ${activeTab === 'trips' ? 'bg-white text-primary shadow-md' : 'text-outline hover:text-on-surface'}`}
           >
-            <LayoutGrid size={18} /> Gérer les Voyages
+            <LayoutGrid size={18} /> {t('admin.tabs.manage_trips')}
           </button>
           <button 
             onClick={() => setActiveTab('bookings')}
             className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all ${activeTab === 'bookings' ? 'bg-white text-primary shadow-md' : 'text-outline hover:text-on-surface'}`}
           >
-            <ClipboardList size={18} /> Demandes de Réservation
+            <ClipboardList size={18} /> {t('admin.tabs.view_bookings')}
             {bookings.filter(b => b.status === 'pending').length > 0 && (
               <span className="flex w-2 h-2 rounded-full bg-error animate-pulse ml-1" />
             )}
@@ -170,12 +172,12 @@ export default function AdminDashboard() {
           <>
             {/* Action row */}
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold font-headline text-on-surface">All Trips</h2>
+              <h2 className="text-2xl font-bold font-headline text-on-surface">{t('admin.trips.title')}</h2>
               <Link
                 to="/admin/trips/new"
                 className="flex items-center gap-2 bg-linear-to-br from-primary to-primary-container text-on-primary px-5 py-3 rounded-xl font-bold text-sm shadow-md hover:scale-[1.02] transition-transform"
               >
-                <PlusCircle className="w-4 h-4" /> Add New Trip
+                <PlusCircle className="w-4 h-4" /> {t('admin.trips.add_new')}
               </Link>
             </div>
 
@@ -187,18 +189,18 @@ export default function AdminDashboard() {
                 </div>
               ) : trips.length === 0 ? (
                 <div className="p-12 text-center text-on-surface-variant">
-                  <p className="text-lg font-bold mb-2">No trips yet</p>
-                  <p className="text-sm">Add your first trip or run the seed script.</p>
+                  <p className="text-lg font-bold mb-2">{t('admin.trips.no_trips')}</p>
+                  <p className="text-sm">{t('admin.trips.no_trips_hint')}</p>
                 </div>
               ) : (
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-outline-variant/20 bg-surface-container-low text-left">
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs">Title</th>
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs hidden md:table-cell">Category</th>
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs hidden lg:table-cell">Duration</th>
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs hidden lg:table-cell">Price (€)</th>
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs text-right">Actions</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs">{t('admin.trips.table.title')}</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs hidden md:table-cell">{t('admin.trips.table.category')}</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs hidden lg:table-cell">{t('admin.trips.table.duration')}</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs hidden lg:table-cell">{t('admin.trips.table.price')}</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs text-right">{t('admin.trips.table.actions')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-outline-variant/10">
@@ -209,7 +211,7 @@ export default function AdminDashboard() {
                           <div className="flex items-center gap-2 mt-0.5">
                             <p className="text-outline text-xs font-mono">{trip.id}</p>
                             {trip.is_featured && (
-                              <span className="px-1.5 py-0.5 bg-secondary/10 text-secondary text-[10px] uppercase font-black rounded border border-secondary/20">Featured</span>
+                              <span className="px-1.5 py-0.5 bg-secondary/10 text-secondary text-[10px] uppercase font-black rounded border border-secondary/20">{t('admin.trips.table.featured')}</span>
                             )}
                           </div>
                         </td>
@@ -220,14 +222,14 @@ export default function AdminDashboard() {
                         </td>
                         <td className="px-6 py-4 text-on-surface-variant hidden lg:table-cell">{trip.duration || '—'}</td>
                         <td className="px-6 py-4 font-bold text-primary hidden lg:table-cell">
-                          {trip.price_per_person != null ? `${trip.price_per_person} €` : '—'}
+                          {trip.price_per_person != null ? `${trip.price_per_person} ${t('admin.stats.currency')}` : '—'}
                         </td>
                         <td className="px-6 py-4 text-right">
                           <div className="flex items-center justify-end gap-2">
                             <Link
                               to={`/admin/trips/${trip.id}/edit`}
                               className="p-2 rounded-lg hover:bg-primary/10 text-primary transition-colors"
-                              title="Edit trip"
+                              title={t('admin.trips.table.actions_edit')}
                             >
                               <Edit2 className="w-4 h-4" />
                             </Link>
@@ -235,7 +237,7 @@ export default function AdminDashboard() {
                               onClick={() => handleDelete(trip.id, trip.title)}
                               disabled={deletingId === trip.id}
                               className="p-2 rounded-lg hover:bg-error/10 text-error transition-colors disabled:opacity-50"
-                              title="Delete trip"
+                              title={t('admin.trips.table.actions_delete')}
                             >
                               <Trash2 className="w-4 h-4" />
                             </button>
@@ -251,12 +253,12 @@ export default function AdminDashboard() {
         ) : (
           <>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold font-headline text-on-surface">Demandes de Réservation</h2>
+              <h2 className="text-2xl font-bold font-headline text-on-surface">{t('admin.tabs.view_bookings')}</h2>
               <button 
                 onClick={fetchBookings}
                 className="text-primary font-bold text-sm hover:underline flex items-center gap-2"
               >
-                Actualiser
+                {t('admin.bookings.refresh')}
               </button>
             </div>
 
@@ -267,18 +269,18 @@ export default function AdminDashboard() {
                 </div>
               ) : bookings.length === 0 ? (
                 <div className="p-12 text-center text-on-surface-variant">
-                  <p className="text-lg font-bold mb-2">Aucune demande</p>
-                  <p className="text-sm">Les demandes envoyées via le site apparaîtront ici.</p>
+                  <p className="text-lg font-bold mb-2">{t('admin.bookings.no_bookings')}</p>
+                  <p className="text-sm">{t('admin.bookings.no_bookings_hint')}</p>
                 </div>
               ) : (
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-outline-variant/20 bg-surface-container-low text-left">
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs">Client</th>
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs">Voyage</th>
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs hidden md:table-cell">Détails</th>
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs">Status</th>
-                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs text-right">Actions</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs">{t('admin.bookings.table.client')}</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs">{t('admin.bookings.table.trip')}</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs hidden md:table-cell">{t('admin.bookings.table.details')}</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs">{t('admin.bookings.table.status')}</th>
+                      <th className="px-6 py-4 font-bold text-outline uppercase tracking-widest text-xs text-right">{t('admin.bookings.table.actions')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-outline-variant/10">
@@ -290,16 +292,16 @@ export default function AdminDashboard() {
                           <p className="text-xs text-outline">{b.customer_phone}</p>
                         </td>
                         <td className="px-6 py-4">
-                          <p className="font-bold text-on-surface line-clamp-1">{b.trips?.title || 'Trip unknown'}</p>
+                          <p className="font-bold text-on-surface line-clamp-1">{b.trips?.title || t('admin.bookings.trip_unknown')}</p>
                           <p className="text-[10px] text-outline uppercase font-black mt-1">
-                            {new Date(b.created_at).toLocaleDateString()}
+                            {new Date(b.created_at).toLocaleDateString(i18n.language)}
                           </p>
                         </td>
                         <td className="px-6 py-4 hidden md:table-cell">
                           <div className="space-y-1 text-xs">
-                            <p><span className="text-outline">Date:</span> <span className="font-medium">{b.travel_date || '—'}</span></p>
-                            <p><span className="text-outline">Pers:</span> <span className="font-medium text-primary">{b.adults}A, {b.children}E</span></p>
-                            <p><span className="text-outline">Total:</span> <span className="font-bold text-primary">{b.total_price} €</span></p>
+                            <p><span className="text-outline">{t('booking_form.labels.date')}:</span> <span className="font-medium">{b.travel_date || '—'}</span></p>
+                            <p><span className="text-outline">{t('admin.bookings.table.people')}:</span> <span className="font-medium text-primary">{b.adults}{t('admin.stats.adults_abbr')}, {b.children}{t('admin.stats.children_abbr')}</span></p>
+                            <p><span className="text-outline">{t('booking_form.summary.total')}:</span> <span className="font-bold text-primary">{b.total_price} {t('admin.stats.currency')}</span></p>
                           </div>
                         </td>
                         <td className="px-6 py-4">
@@ -313,9 +315,9 @@ export default function AdminDashboard() {
                               'bg-secondary/10 text-secondary'
                             }`}
                           >
-                            <option value="pending">En attente</option>
-                            <option value="confirmed">Confirmé</option>
-                            <option value="cancelled">Annulé</option>
+                            <option value="pending">{t('admin.bookings.statuses.pending')}</option>
+                            <option value="confirmed">{t('admin.bookings.statuses.confirmed')}</option>
+                            <option value="cancelled">{t('admin.bookings.statuses.cancelled')}</option>
                           </select>
                         </td>
                         <td className="px-6 py-4 text-right">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { supabase } from '../../lib/supabaseClient'
 import { useCategories } from '../../hooks/useCategories'
 import { PlusCircle, Trash2, Upload, ArrowLeft, X } from 'lucide-react'
@@ -26,6 +27,7 @@ const DEFAULT_FORM = {
 }
 
 export default function TripForm() {
+  const { t } = useTranslation()
   const { tripId } = useParams()
   const isEdit = Boolean(tripId)
   const navigate = useNavigate()
@@ -86,14 +88,14 @@ export default function TripForm() {
       const { error: upErr } = await supabase.storage
         .from('trip-images')
         .upload(fileName, file, { cacheControl: '3600', upsert: false })
-      if (upErr) { showToast(`Upload error: ${upErr.message}`, 'error'); continue }
+      if (upErr) { showToast(t('admin.trip_form.toasts.upload_error', { message: upErr.message }), 'error'); continue }
       const { data: urlData } = supabase.storage.from('trip-images').getPublicUrl(fileName)
       urls.push(urlData.publicUrl)
     }
     setField('images', [...form.images, ...urls].slice(0, 10))
     setUploading(false)
     e.target.value = ''
-    showToast(`Uploaded ${urls.length} images!`)
+    showToast(t('admin.trip_form.toasts.uploaded', { count: urls.length }))
   }
 
   const removeImage = (idx) => setField('images', form.images.filter((_, i) => i !== idx))
@@ -118,12 +120,12 @@ export default function TripForm() {
 
     // Validation
     if (form.images.length < 5) {
-      setError('A trip must have at least 5 images.')
+      setError(t('admin.trip_form.toasts.min_images'))
       window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
     if (form.images.length > 10) {
-      setError('A trip cannot have more than 10 images.')
+      setError(t('admin.trip_form.toasts.max_images'))
       window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
@@ -162,7 +164,7 @@ export default function TripForm() {
 
     setSaving(false)
     if (err) { setError(err.message); return }
-    showToast(isEdit ? 'Trip updated!' : 'Trip created!')
+    showToast(isEdit ? t('admin.trip_form.toasts.updated') : t('admin.trip_form.toasts.created'))
     setTimeout(() => navigate('/admin/dashboard'), 1000)
   }
 
@@ -189,7 +191,7 @@ export default function TripForm() {
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <h1 className="font-headline font-bold text-on-surface text-lg">
-          {isEdit ? `Edit: ${tripId}` : 'Add New Trip'}
+          {isEdit ? t('admin.trip_form.edit', { id: tripId }) : t('admin.trip_form.add_new')}
         </h1>
       </header>
 
@@ -201,37 +203,39 @@ export default function TripForm() {
 
           {/* ── Basic Info ──────────────────────────────────────── */}
           <section className="bg-surface rounded-2xl p-8 border border-outline-variant/20 shadow-sm space-y-6">
-            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">Basic Information</h2>
+            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">
+              {t('admin.trip_form.sections.basic')}
+            </h2>
 
             {!isEdit && (
-              <Field label="Trip ID (slug)" hint="e.g. nile-cruise — auto-generated if blank">
+              <Field label={t('admin.trip_form.fields.id')} hint={t('admin.trip_form.fields.id_hint')}>
                 <input id="field-id" value={form.id} onChange={(e) => setField('id', e.target.value)}
-                  className={inputCls} placeholder="my-trip-slug" />
+                  className={inputCls} placeholder={t('admin.trip_form.placeholders.id')} />
               </Field>
             )}
 
-            <Field label="Title *">
+            <Field label={t('admin.trip_form.fields.title')}>
               <input id="field-title" value={form.title} onChange={(e) => setField('title', e.target.value)}
-                className={inputCls} required placeholder="Trip title" />
+                className={inputCls} required placeholder={t('admin.trip_form.placeholders.title')} />
             </Field>
 
-            <Field label="Category">
+            <Field label={t('admin.trip_form.fields.category')}>
               <select id="field-category" value={form.category_slug} onChange={(e) => setField('category_slug', e.target.value)} className={inputCls}>
-                <option value="">— Select category —</option>
+                <option value="">{t('admin.trip_form.fields.category_select')}</option>
                 {categories.map((c) => (
                   <option key={c.slug} value={c.slug}>{c.title} ({c.slug})</option>
                 ))}
               </select>
             </Field>
 
-            <Field label="Short Description">
+            <Field label={t('admin.trip_form.fields.short_description')}>
               <textarea id="field-desc" value={form.short_description} onChange={(e) => setField('short_description', e.target.value)}
-                className={inputCls + ' min-h-[100px]'} placeholder="Brief teaser text shown on listing cards" />
+                className={inputCls + ' min-h-[100px]'} placeholder={t('admin.trip_form.placeholders.short_description')} />
             </Field>
 
-            <Field label="Category Label" hint="e.g. Expérience Signature">
+            <Field label={t('admin.trip_form.fields.category_label')} hint={t('admin.trip_form.fields.category_label_hint')}>
               <input id="field-catlabel" value={form.category_label} onChange={(e) => setField('category_label', e.target.value)}
-                className={inputCls} placeholder="Category label" />
+                className={inputCls} placeholder={t('admin.trip_form.placeholders.category_label')} />
             </Field>
 
             <div className="flex items-center gap-3 pt-2">
@@ -243,57 +247,63 @@ export default function TripForm() {
                 className="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"
               />
               <label htmlFor="field-featured" className="text-sm font-bold text-on-surface cursor-pointer">
-                Featured on Home Page
+                {t('admin.trip_form.fields.featured')}
               </label>
             </div>
           </section>
 
           {/* ── Logistics ──────────────────────────────────────── */}
           <section className="bg-surface rounded-2xl p-8 border border-outline-variant/20 shadow-sm space-y-6">
-            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">Logistics</h2>
+            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">
+              {t('admin.trip_form.sections.logistics')}
+            </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              <Field label="Duration">
+              <Field label={t('admin.trip_form.fields.duration')}>
                 <input id="field-duration" value={form.duration} onChange={(e) => setField('duration', e.target.value)}
-                  className={inputCls} placeholder="10 Jours / 9 Nuits" />
+                  className={inputCls} placeholder={t('admin.trip_form.placeholders.duration')} />
               </Field>
-              <Field label="Group Size">
+              <Field label={t('admin.trip_form.fields.group_size')}>
                 <input id="field-group" value={form.group_size} onChange={(e) => setField('group_size', e.target.value)}
-                  className={inputCls} placeholder="Max 12 Personnes" />
+                  className={inputCls} placeholder={t('admin.trip_form.placeholders.group_size')} />
               </Field>
-              <Field label="Language">
+              <Field label={t('admin.trip_form.fields.language')}>
                 <input id="field-lang" value={form.language} onChange={(e) => setField('language', e.target.value)}
-                  className={inputCls} placeholder="Français, Anglais" />
+                  className={inputCls} placeholder={t('admin.trip_form.placeholders.language')} />
               </Field>
-              <Field label="Departing Details">
+              <Field label={t('admin.trip_form.fields.departing')}>
                 <input id="field-depart" value={form.departing_details} onChange={(e) => setField('departing_details', e.target.value)}
-                  className={inputCls} placeholder="Departs from Cairo every Saturday" />
+                  className={inputCls} placeholder={t('admin.trip_form.placeholders.departing')} />
               </Field>
             </div>
           </section>
 
           {/* ── Pricing ────────────────────────────────────────── */}
           <section className="bg-surface rounded-2xl p-8 border border-outline-variant/20 shadow-sm space-y-6">
-            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">Pricing</h2>
+            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">
+              {t('admin.trip_form.sections.pricing')}
+            </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <Field label="Price Per Person (€)">
+              <Field label={t('admin.trip_form.fields.price_person')}>
                 <input id="field-price1" type="number" min="0" step="0.01" value={form.price_per_person}
-                  onChange={(e) => setField('price_per_person', e.target.value)} className={inputCls} placeholder="2450" />
+                  onChange={(e) => setField('price_per_person', e.target.value)} className={inputCls} placeholder={t('admin.trip_form.placeholders.price')} />
               </Field>
-              <Field label="Price Per Two (€)">
+              <Field label={t('admin.trip_form.fields.price_two')}>
                 <input id="field-price2" type="number" min="0" step="0.01" value={form.price_per_two}
-                  onChange={(e) => setField('price_per_two', e.target.value)} className={inputCls} placeholder="4200" />
+                  onChange={(e) => setField('price_per_two', e.target.value)} className={inputCls} placeholder={t('admin.trip_form.placeholders.price')} />
               </Field>
-              <Field label="Star Rating (1–5)">
+              <Field label={t('admin.trip_form.fields.rating')}>
                 <input id="field-stars" type="number" min="1" max="5" step="0.1" value={form.star_rating}
-                  onChange={(e) => setField('star_rating', e.target.value)} className={inputCls} placeholder="4.9" />
+                  onChange={(e) => setField('star_rating', e.target.value)} className={inputCls} placeholder={t('admin.trip_form.placeholders.rating')} />
               </Field>
             </div>
           </section>
 
           {/* ── Tags ───────────────────────────────────────────── */}
           <section className="bg-surface rounded-2xl p-8 border border-outline-variant/20 shadow-sm space-y-6">
-            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">Tags</h2>
-            <Field label="Tags" hint="e.g. Premium, Bestseller, Luxury (press Enter to add)">
+            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">
+              {t('admin.trip_form.sections.tags')}
+            </h2>
+            <Field label={t('admin.trip_form.fields.tags')} hint={t('admin.trip_form.fields.tags_hint')}>
               <div className="flex flex-wrap gap-2 mb-3">
                 {form.tags.map((tag, i) => (
                   <span key={i} className="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full flex items-center gap-2">
@@ -306,7 +316,7 @@ export default function TripForm() {
               </div>
               <input
                 className={inputCls}
-                placeholder="Add a tag..."
+                placeholder={t('admin.trip_form.placeholders.tags')}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault()
@@ -323,38 +333,40 @@ export default function TripForm() {
 
           {/* ── Images ─────────────────────────────────────────── */}
           <section className="bg-surface rounded-2xl p-8 border border-outline-variant/20 shadow-sm space-y-6">
-            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">Images</h2>
+            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">
+              {t('admin.trip_form.sections.images')}
+            </h2>
 
             {/* Upload button */}
             <div className="space-y-4">
               <div className="flex items-center justify-between font-headline font-bold text-sm">
                 <span className={form.images.length < 5 ? 'text-error' : 'text-primary'}>
-                  Images: {form.images.length} / 10
-                  {form.images.length < 5 && ' (Min 5 required)'}
+                  {t('admin.trip_form.fields.image_limit', { count: form.images.length })}
+                  {form.images.length < 5 && ` ${t('admin.trip_form.fields.image_min_hint')}`}
                 </span>
               </div>
 
               <div className="flex items-center gap-4">
                 <label htmlFor="field-upload" className={`grow flex items-center justify-center gap-2 px-5 py-4 rounded-xl border-2 border-dashed border-primary/40 text-primary font-bold text-sm cursor-pointer hover:bg-primary/5 transition-all active:scale-95 ${uploading || form.images.length >= 10 ? 'opacity-60 pointer-events-none' : ''}`}>
                   <Upload className="w-5 h-5" />
-                  {uploading ? 'Uploading…' : form.images.length >= 10 ? 'Limit reached (10)' : 'Upload New Images'}
+                  {uploading ? t('admin.trip_form.fields.image_uploading') : form.images.length >= 10 ? t('admin.trip_form.fields.image_limit_reached') : t('admin.trip_form.fields.image_upload')}
                 </label>
                 <input id="field-upload" type="file" accept="image/*" multiple onChange={handleImageUpload} className="hidden" />
               </div>
               
               <p className="text-[10px] text-outline leading-tight uppercase tracking-widest font-bold opacity-60">
-                Supports multiple files • Bucket: <code>trip-images</code>
+                {t('admin.trip_form.fields.image_supports')}
               </p>
             </div>
 
             {/* URL textarea for pasting external URLs */}
-            <Field label="Or paste image URLs (one per line)">
+            <Field label={t('admin.trip_form.fields.image_urls')}>
               <textarea
                 id="field-img-urls"
                 value={form.images.join('\n')}
                 onChange={(e) => setField('images', e.target.value.split('\n').map(s => s.trim()).filter(Boolean))}
                 className={inputCls + ' min-h-[80px] font-mono text-xs'}
-                placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"
+                placeholder={t('admin.trip_form.placeholders.image_urls')}
               />
             </Field>
 
@@ -378,14 +390,14 @@ export default function TripForm() {
           {/* ── Itinerary ───────────────────────────────────────── */}
           <section className="bg-surface rounded-2xl p-8 border border-outline-variant/20 shadow-sm space-y-6">
             <div className="flex items-center justify-between border-b border-outline-variant/20 pb-4">
-              <h2 className="font-headline text-xl font-bold text-on-surface">Itinerary</h2>
+              <h2 className="font-headline text-xl font-bold text-on-surface">{t('admin.trip_form.sections.itinerary')}</h2>
               <button type="button" onClick={addDay}
                 className="flex items-center gap-1 text-primary font-bold text-sm hover:bg-primary/10 px-3 py-2 rounded-xl transition-colors">
-                <PlusCircle className="w-4 h-4" /> Add Day
+                <PlusCircle className="w-4 h-4" /> {t('admin.trip_form.buttons.add_day')}
               </button>
             </div>
             {form.itinerary.length === 0 && (
-              <p className="text-sm text-outline text-center py-4">No itinerary days yet. Click "Add Day" to begin.</p>
+              <p className="text-sm text-outline text-center py-4">{t('admin.trip_form.buttons.itinerary_empty')}</p>
             )}
             {form.itinerary.map((item, i) => (
               <div key={i} className="border border-outline-variant/20 rounded-xl p-5 space-y-3 relative">
@@ -394,18 +406,18 @@ export default function TripForm() {
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>
                 <div className="grid grid-cols-3 gap-3">
-                  <Field label="Day #" className="col-span-1">
+                  <Field label={t('admin.trip_form.fields.itinerary_day')} className="col-span-1">
                     <input type="number" min="1" value={item.day} onChange={(e) => updateDay(i, 'day', parseInt(e.target.value))}
                       className={inputCls} />
                   </Field>
-                  <Field label="Day Title" className="col-span-2">
+                  <Field label={t('admin.trip_form.fields.itinerary_title')} className="col-span-2">
                     <input value={item.title} onChange={(e) => updateDay(i, 'title', e.target.value)}
-                      className={inputCls} placeholder="Arrival in Cairo" />
+                      className={inputCls} placeholder={t('admin.trip_form.placeholders.itinerary_title')} />
                   </Field>
                 </div>
-                <Field label="Description">
+                <Field label={t('admin.trip_form.fields.itinerary_desc')}>
                   <textarea value={item.description} onChange={(e) => updateDay(i, 'description', e.target.value)}
-                    className={inputCls + ' min-h-[80px]'} placeholder="Detailed description of this day's activities…" />
+                    className={inputCls + ' min-h-[80px]'} placeholder={t('admin.trip_form.placeholders.itinerary_desc')} />
                 </Field>
               </div>
             ))}
@@ -413,10 +425,12 @@ export default function TripForm() {
 
           {/* ── Includes / Excludes ─────────────────────────────── */}
           <div className="grid md:grid-cols-2 gap-6">
-            <ListEditor label="Price Includes" items={form.includes} fieldKey="includes"
+            <ListEditor label={t('admin.trip_form.sections.includes')} items={form.includes} fieldKey="includes"
+              t_add={t('admin.trip_form.buttons.list_add')} t_empty={t('admin.trip_form.buttons.list_empty')} t_placeholder={t('admin.trip_form.placeholders.list_item')}
               onAdd={() => addListItem('includes')} onRemove={(i) => removeListItem('includes', i)}
               onUpdate={(i, v) => updateListItem('includes', i, v)} />
-            <ListEditor label="Price Excludes" items={form.excludes} fieldKey="excludes"
+            <ListEditor label={t('admin.trip_form.sections.excludes')} items={form.excludes} fieldKey="excludes"
+              t_add={t('admin.trip_form.buttons.list_add')} t_empty={t('admin.trip_form.buttons.list_empty')} t_placeholder={t('admin.trip_form.placeholders.list_item')}
               onAdd={() => addListItem('excludes')} onRemove={(i) => removeListItem('excludes', i)}
               onUpdate={(i, v) => updateListItem('excludes', i, v)} />
           </div>
@@ -425,11 +439,11 @@ export default function TripForm() {
           <div className="flex gap-4">
             <button type="submit" disabled={saving}
               className="flex-1 py-4 bg-linear-to-br from-primary to-primary-container text-on-primary font-headline font-extrabold uppercase tracking-widest rounded-xl shadow-lg hover:scale-[1.01] transition-transform disabled:opacity-60">
-              {saving ? 'Saving…' : isEdit ? 'Update Trip' : 'Create Trip'}
+              {saving ? t('admin.trip_form.buttons.saving') : isEdit ? t('admin.trip_form.buttons.submit_update') : t('admin.trip_form.buttons.submit_create')}
             </button>
             <Link to="/admin/dashboard"
               className="px-8 py-4 border border-outline-variant rounded-xl font-bold text-on-surface-variant hover:bg-surface-container transition-colors text-center">
-              Cancel
+              {t('admin.trip_form.buttons.cancel')}
             </Link>
           </div>
         </form>
@@ -452,21 +466,21 @@ function Field({ label, hint, children, className = '' }) {
   )
 }
 
-function ListEditor({ label, items, onAdd, onRemove, onUpdate }) {
+function ListEditor({ label, items, onAdd, onRemove, onUpdate, t_add, t_empty, t_placeholder }) {
   return (
     <section className="bg-surface rounded-2xl p-6 border border-outline-variant/20 shadow-sm space-y-4">
       <div className="flex items-center justify-between border-b border-outline-variant/20 pb-3">
         <h2 className="font-headline text-base font-bold text-on-surface">{label}</h2>
         <button type="button" onClick={onAdd}
           className="flex items-center gap-1 text-primary text-xs font-bold hover:bg-primary/10 px-2 py-1.5 rounded-lg transition-colors">
-          <PlusCircle className="w-3.5 h-3.5" /> Add
+          <PlusCircle className="w-3.5 h-3.5" /> {t_add}
         </button>
       </div>
-      {items.length === 0 && <p className="text-xs text-outline text-center py-2">None yet</p>}
+      {items.length === 0 && <p className="text-xs text-outline text-center py-2">{t_empty}</p>}
       {items.map((item, i) => (
         <div key={i} className="flex gap-2 items-center">
           <input value={item} onChange={(e) => onUpdate(i, e.target.value)}
-            className={inputCls + ' flex-1'} placeholder="Item description" />
+            className={inputCls + ' flex-1'} placeholder={t_placeholder} />
           <button type="button" onClick={() => onRemove(i)}
             className="p-2 rounded-lg hover:bg-error/10 text-error shrink-0 transition-colors">
             <X className="w-4 h-4" />

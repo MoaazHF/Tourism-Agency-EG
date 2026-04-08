@@ -1,8 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
-import { Globe, Mail, Phone, MapPin } from 'lucide-react'; // Simulating material icons
+import { Globe, Mail, Phone, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const RootLayout = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -16,7 +19,7 @@ const RootLayout = () => {
           {/* Brand Column */}
           <div className="space-y-6 opacity-80 hover:opacity-100 transition-opacity">
             <div className="text-xl font-black text-[#1a2b48] dark:text-[#f8faf3]">Route d'Égypte</div>
-            <p class="text-[#695d48] dark:text-[#f2f4ed]/70">The excellence of tailor-made travel in Egypt. Discover authentic and luxurious experiences created for discerning travelers.</p>
+            <p className="text-[#695d48] dark:text-[#f2f4ed]/70">{t('footer.description')}</p>
             <div className="flex gap-4">
               <Globe className="text-primary cursor-pointer w-5 h-5" />
               <Mail className="text-primary cursor-pointer w-5 h-5" />
@@ -25,29 +28,29 @@ const RootLayout = () => {
           
           {/* Quick Links */}
           <div className="space-y-6">
-            <h4 className="font-headline font-bold text-[#1a2b48] dark:text-[#f8faf3] uppercase tracking-wider text-xs">Quick Links</h4>
+            <h4 className="font-headline font-bold text-[#1a2b48] dark:text-[#f8faf3] uppercase tracking-wider text-xs">{t('footer.links_title')}</h4>
             <ul className="space-y-4 text-[#695d48] dark:text-[#f2f4ed]/70">
-              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">About Us</a></li>
-              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">Terms of Service</a></li>
-              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">Privacy Policy</a></li>
-              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">FAQ</a></li>
+              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">{t('footer.about')}</a></li>
+              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">{t('footer.terms')}</a></li>
+              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">{t('footer.privacy')}</a></li>
+              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">{t('footer.faq')}</a></li>
             </ul>
           </div>
           
           {/* Destinations */}
           <div className="space-y-6">
-            <h4 className="font-headline font-bold text-[#1a2b48] dark:text-[#f8faf3] uppercase tracking-wider text-xs">Destinations</h4>
+            <h4 className="font-headline font-bold text-[#1a2b48] dark:text-[#f8faf3] uppercase tracking-wider text-xs">{t('footer.destinations_title')}</h4>
             <ul className="space-y-4 text-[#695d48] dark:text-[#f2f4ed]/70">
-              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">Cairo & Giza</a></li>
-              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">Luxor & Aswan</a></li>
-              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">Red Sea</a></li>
-              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">Oasis & Deserts</a></li>
+              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">{t('footer.cairo_giza')}</a></li>
+              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">{t('footer.luxor_aswan')}</a></li>
+              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">{t('footer.red_sea')}</a></li>
+              <li><a className="hover:text-primary dark:hover:text-primary-container underline underline-offset-4" href="#">{t('footer.oasis_deserts')}</a></li>
             </ul>
           </div>
           
           {/* Contact */}
           <div className="space-y-6">
-            <h4 className="font-headline font-bold text-[#1a2b48] dark:text-[#f8faf3] uppercase tracking-wider text-xs">Contact & Support</h4>
+            <h4 className="font-headline font-bold text-[#1a2b48] dark:text-[#f8faf3] uppercase tracking-wider text-xs">{t('footer.contact_title')}</h4>
             <ul className="space-y-4 text-[#695d48] dark:text-[#f2f4ed]/70">
               <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> +20 123 456 789</li>
               <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> contact@routedegypte.com</li>
@@ -57,7 +60,7 @@ const RootLayout = () => {
         </div>
         
         <div className="max-w-7xl mx-auto px-12 mt-20 pt-8 border-t border-[#695d48]/10 text-center text-[#695d48] dark:text-[#f2f4ed]/50 text-xs">
-          © 2024 Route d'Égypte. The Sands of Distinction.
+          {t('footer.copyright')}
         </div>
       </footer>
     </div>

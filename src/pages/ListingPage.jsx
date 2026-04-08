@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useCategory } from '../hooks/useCategory';
 import { ArrowRight, Edit3, Compass, Headset, Leaf, Check, CheckCircle2, Star } from 'lucide-react';
 
@@ -23,6 +24,7 @@ function SkeletonCard() {
 }
 
 export default function ListingPage({ defaultCategory }) {
+  const { t } = useTranslation();
   const { '*': path } = useParams();
   const categoryId = defaultCategory || path?.split('/')[0] || 'cruises';
 
@@ -59,13 +61,13 @@ export default function ListingPage({ defaultCategory }) {
   if (error) {
     return (
       <div className="pt-24 px-4 min-h-[50vh] flex flex-col items-center justify-center gap-4">
-        <p className="text-2xl font-bold text-error">Something went wrong</p>
+        <p className="text-2xl font-bold text-error">{t('listing.error.title')}</p>
         <p className="text-on-surface-variant text-sm max-w-md text-center">{error}</p>
         <button
           onClick={() => window.location.reload()}
           className="mt-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm"
         >
-          Try Again
+          {t('listing.error.retry')}
         </button>
       </div>
     );
@@ -75,7 +77,7 @@ export default function ListingPage({ defaultCategory }) {
   if (!data) {
     return (
       <div className="pt-24 px-4 min-h-[50vh] flex items-center justify-center">
-        <h1 className="text-2xl font-bold">Category not found</h1>
+        <h1 className="text-2xl font-bold">{t('listing.not_found')}</h1>
       </div>
     );
   }
@@ -135,7 +137,7 @@ export default function ListingPage({ defaultCategory }) {
                 onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
                 className="text-secondary font-bold hover:text-secondary-fixed transition-colors mt-2 inline-flex items-center gap-1"
               >
-                {isDescriptionExpanded ? 'Voir Moins' : 'Voir Plus'}
+                {isDescriptionExpanded ? t('listing.intro.see_less') : t('listing.intro.see_more')}
               </button>
             )}
           </div>
@@ -146,7 +148,7 @@ export default function ListingPage({ defaultCategory }) {
       <section className="pb-24 px-6 md:px-8 max-w-7xl mx-auto">
         {trips.length === 0 ? (
           <p className="text-center text-on-surface-variant py-16">
-            No trips found in this category yet.
+            {t('listing.no_trips')}
           </p>
         ) : (
           <div className="grid md:grid-cols-2 gap-10">
@@ -224,13 +226,13 @@ export default function ListingPage({ defaultCategory }) {
 
                     <div className="flex items-center justify-between mt-6 border-t border-surface-container-high pt-6">
                       <div>
-                        <p className="text-xs text-secondary-fixed-dim uppercase tracking-wider mb-1">Starts from</p>
+                        <p className="text-xs text-secondary-fixed-dim uppercase tracking-wider mb-1">{t('listing.trip_card.starts_from')}</p>
                         <p className="font-bold text-xl text-primary">
-                          {price != null ? `${price} €` : 'Sur devis'}
+                          {price != null ? `${price} €` : t('listing.trip_card.on_quote')}
                         </p>
                       </div>
                       <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-4 transition-all">
-                        Voir Le Voyage <ArrowRight className="w-4 h-4" />
+                        {t('listing.trip_card.view_trip')} <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
@@ -245,47 +247,47 @@ export default function ListingPage({ defaultCategory }) {
       <section className="py-24 bg-surface-container-low">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline text-on-surface mb-4">Pourquoi voyager avec Route d'Égypte ?</h2>
-            <p className="text-tertiary max-w-2xl mx-auto">Une expertise forgée au cœur du Nil pour des voyages qui vous ressemblent.</p>
+            <h2 className="text-3xl md:text-4xl font-bold font-headline text-on-surface mb-4">{t('listing.value_prop.title')}</h2>
+            <p className="text-tertiary max-w-2xl mx-auto">{t('listing.value_prop.subtitle')}</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform">
               <Edit3 className="text-primary-container w-10 h-10 mb-6" />
-              <h4 className="text-xl font-bold font-headline mb-4">100% Sur-mesure</h4>
+              <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.custom.title')}</h4>
               <ul className="space-y-3 text-sm text-tertiary">
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Itinéraires flexibles</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Rythme personnalisé</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Choix de l'hôtellerie</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.custom.item1')}</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.custom.item2')}</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.custom.item3')}</li>
               </ul>
             </div>
 
             <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform">
               <Compass className="text-primary-container w-10 h-10 mb-6" />
-              <h4 className="text-xl font-bold font-headline mb-4">Expertise locale</h4>
+              <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.expertise.title')}</h4>
               <ul className="space-y-3 text-sm text-tertiary">
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Guides francophones</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Accès privilégiés</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Savoir-faire ancestral</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.expertise.item1')}</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.expertise.item2')}</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.expertise.item3')}</li>
               </ul>
             </div>
 
             <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform">
               <Headset className="text-primary-container w-10 h-10 mb-6" />
-              <h4 className="text-xl font-bold font-headline mb-4">Assistance 24/7</h4>
+              <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.assistance.title')}</h4>
               <ul className="space-y-3 text-sm text-tertiary">
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Conciergerie dédiée</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Réactivité immédiate</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Tranquillité d'esprit</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.assistance.item1')}</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.assistance.item2')}</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.assistance.item3')}</li>
               </ul>
             </div>
 
             <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform">
               <Leaf className="text-primary-container w-10 h-10 mb-6" />
-              <h4 className="text-xl font-bold font-headline mb-4">Engagement durable</h4>
+              <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.sustainable.title')}</h4>
               <ul className="space-y-3 text-sm text-tertiary">
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Soutien aux locaux</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Préservation des sites</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> Tourisme responsable</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.sustainable.item1')}</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.sustainable.item2')}</li>
+                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.sustainable.item3')}</li>
               </ul>
             </div>
           </div>
@@ -297,25 +299,25 @@ export default function ListingPage({ defaultCategory }) {
         <div className="max-w-6xl mx-auto bg-secondary rounded-3xl p-8 md:p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12">
           <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full opacity-10" style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
           <div className="relative z-10 flex-1 w-full">
-            <h2 className="text-3xl lg:text-5xl font-bold font-headline text-surface mb-8 leading-tight">Prêt à planifier votre voyage de rêve ?</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold font-headline text-surface mb-8 leading-tight">{t('listing.cta.title')}</h2>
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
-              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>Devis gratuit en 24h</span></div>
-              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>Modification flexible</span></div>
-              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>Paiement sécurisé</span></div>
-              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>Garantie Voyageur</span></div>
+              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit1')}</span></div>
+              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit2')}</span></div>
+              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit3')}</span></div>
+              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit4')}</span></div>
             </div>
             <button className="bg-linear-to-br from-primary to-primary-container text-on-primary px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:scale-105 transition-transform duration-300 w-full sm:w-auto">
-              Planifier maintenant
+              {t('listing.cta.button')}
             </button>
           </div>
           <div className="relative z-10 lg:w-1/3 w-full">
             <div className="bg-surface/10 backdrop-blur-md p-8 rounded-2xl border border-surface/20">
-              <p className="font-headline text-2xl text-primary-container mb-6 italic">"Le Nil ne se raconte pas, il se vit."</p>
+              <p className="font-headline text-2xl text-primary-container mb-6 italic">{t('listing.cta.quote')}</p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/30 flex items-center justify-center font-bold text-surface">AM</div>
                 <div>
-                  <p className="text-surface font-bold">Ahmed M.</p>
-                  <p className="text-surface/60 text-xs uppercase tracking-wider">Expert Croisières</p>
+                  <p className="text-surface font-bold">{t('listing.cta.expert_name')}</p>
+                  <p className="text-surface/60 text-xs uppercase tracking-wider">{t('listing.cta.expert_title')}</p>
                 </div>
               </div>
             </div>

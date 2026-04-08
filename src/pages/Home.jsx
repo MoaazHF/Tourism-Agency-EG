@@ -1,9 +1,12 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Map, CarFront, Clock, ShieldCheck, Ship, Calendar } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useTrips } from '../hooks/useTrips';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const Home = () => {
+  const { t } = useTranslation();
   const { trips, loading } = useTrips();
 
   const getCategoryTrips = (slug) => {
@@ -27,16 +30,16 @@ const Home = () => {
         <div className="absolute inset-0 hero-gradient"></div>
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4">
           <div className="mb-4">
-            <span className="text-[#f0bf5d] font-caveat text-4xl transform -rotate-2 inline-block">Tailor-Made Travel</span>
+            <span className="text-[#f0bf5d] font-caveat text-4xl transform -rotate-2 inline-block">{t('home.hero.badge')}</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white font-headline tracking-tight mb-6 max-w-4xl leading-tight">
-            Discover the Soul of <span className="text-transparent bg-clip-text btn-primary-gradient">Egypt</span>
+            {t('home.hero.title_part1')} <span className="text-transparent bg-clip-text btn-primary-gradient">{t('home.hero.title_part2')}</span>
           </h1>
           <p className="text-lg md:text-xl text-surface-container-low max-w-2xl font-body opacity-90 mb-10 leading-relaxed">
-            The excellence of tailor-made travel in Egypt. Discover authentic and luxurious experiences created for discerning travelers.
+            {t('home.hero.subtitle')}
           </p>
           <button className="btn-primary-gradient text-white px-8 py-4 rounded-xl font-headline font-bold uppercase tracking-wider shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
-            Craft Your Itinerary <ArrowRight className="w-5 h-5" />
+            {t('home.hero.cta_explore')} <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </section>
@@ -44,8 +47,8 @@ const Home = () => {
       {/* Trust Section */}
       <section className="py-24 bg-surface max-w-screen-2xl mx-auto px-8">
         <div className="text-center mb-16">
-          <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">The Difference</h2>
-          <h3 className="text-4xl font-bold text-on-surface font-headline">Why Book With Us?</h3>
+          <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('home.explore.badge')}</h2>
+          <h3 className="text-4xl font-bold text-on-surface font-headline">{t('home.explore.title')}</h3>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto">
@@ -54,9 +57,9 @@ const Home = () => {
             <div className="w-16 h-16 bg-[#c79a3c]/10 text-[#7b5800] rounded-full flex items-center justify-center mx-auto mb-6">
               <Map className="w-8 h-8" />
             </div>
-            <h4 className="text-xl font-bold text-[#1a2b48] mb-4 font-headline">Local Expertise</h4>
+            <h4 className="text-xl font-bold text-[#1a2b48] mb-4 font-headline">{t('home.features.serenity.title')}</h4>
             <p className="text-on-surface-variant font-body text-sm leading-relaxed">
-              Our guides are passionate Egyptologists who reveal the best-kept secrets of the pharaohs.
+              {t('home.features.serenity.desc')}
             </p>
           </div>
           {/* Card 2 */}
@@ -64,9 +67,9 @@ const Home = () => {
             <div className="w-16 h-16 bg-[#c79a3c]/10 text-[#7b5800] rounded-full flex items-center justify-center mx-auto mb-6">
               <CarFront className="w-8 h-8" />
             </div>
-            <h4 className="text-xl font-bold text-[#1a2b48] mb-4 font-headline">Private Vehicles</h4>
+            <h4 className="text-xl font-bold text-[#1a2b48] mb-4 font-headline">{t('home.features.excellence.title')}</h4>
             <p className="text-on-surface-variant font-body text-sm leading-relaxed">
-              Travel in absolute comfort aboard our recent, air-conditioned, and fully privatized vehicles.
+              {t('home.features.excellence.desc')}
             </p>
           </div>
           {/* Card 3 */}
@@ -74,9 +77,9 @@ const Home = () => {
             <div className="w-16 h-16 bg-[#c79a3c]/10 text-[#7b5800] rounded-full flex items-center justify-center mx-auto mb-6">
               <Clock className="w-8 h-8" />
             </div>
-            <h4 className="text-xl font-bold text-[#1a2b48] mb-4 font-headline">24/7 Assistance</h4>
+            <h4 className="text-xl font-bold text-[#1a2b48] mb-4 font-headline">{t('home.features.authentic.title')}</h4>
             <p className="text-on-surface-variant font-body text-sm leading-relaxed">
-              Dedicated support from your arrival to your departure for total peace of mind.
+              {t('home.features.authentic.desc')}
             </p>
           </div>
         </div>
@@ -87,11 +90,11 @@ const Home = () => {
         <div className="max-w-screen-2xl mx-auto px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
             <div>
-              <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">On The Nile</h2>
-              <h3 className="text-4xl font-bold text-on-surface font-headline">Signature Cruises</h3>
+              <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('nav.cruises')}</h2>
+              <h3 className="text-4xl font-bold text-on-surface font-headline">{t('nav.dropdowns.ship_tours')}</h3>
             </div>
             <Link to="/cruises" className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
-              View All Ships <ArrowRight className="w-4 h-4" />
+              {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -122,7 +125,7 @@ const Home = () => {
           
           <div className="mt-12 text-center md:hidden">
              <Link to="/cruises" className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
-              View All Ships <ArrowRight className="w-4 h-4" />
+              {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -136,15 +139,15 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div>
               <div className="text-5xl md:text-7xl font-bold text-white font-headline mb-2" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>15+</div>
-              <div className="text-tertiary-fixed font-headline font-semibold uppercase tracking-wider text-sm">Years of Expertise</div>
+              <div className="text-tertiary-fixed font-headline font-semibold uppercase tracking-wider text-sm">{t('home.stats.years')}</div>
             </div>
             <div>
               <div className="text-5xl md:text-7xl font-bold text-white font-headline mb-2" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>2500+</div>
-              <div className="text-tertiary-fixed font-headline font-semibold uppercase tracking-wider text-sm">Happy Travelers</div>
+              <div className="text-tertiary-fixed font-headline font-semibold uppercase tracking-wider text-sm">{t('home.stats.travelers')}</div>
             </div>
             <div>
               <div className="text-5xl md:text-7xl font-bold text-white font-headline mb-2" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>100%</div>
-              <div className="text-tertiary-fixed font-headline font-semibold uppercase tracking-wider text-sm">Tailor-Made</div>
+              <div className="text-tertiary-fixed font-headline font-semibold uppercase tracking-wider text-sm">{t('home.stats.custom')}</div>
             </div>
           </div>
         </div>
@@ -155,11 +158,11 @@ const Home = () => {
         <div className="max-w-screen-2xl mx-auto px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
             <div>
-              <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">Off the beaten path</h2>
-              <h3 className="text-4xl font-bold text-on-surface font-headline">Desert Safari</h3>
+              <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('home.categories.desert')}</h2>
+              <h3 className="text-4xl font-bold text-on-surface font-headline">{t('home.categories.desert')}</h3>
             </div>
             <Link to="/safari" className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
-              View All Safaris <ArrowRight className="w-4 h-4" />
+              {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -190,7 +193,7 @@ const Home = () => {
           
           <div className="mt-12 text-center md:hidden">
              <Link to="/safari" className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
-              View All Safaris <ArrowRight className="w-4 h-4" />
+              {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -201,11 +204,11 @@ const Home = () => {
         <div className="max-w-screen-2xl mx-auto px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
             <div>
-              <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">Curated Itineraries</h2>
-              <h3 className="text-4xl font-bold text-on-surface font-headline">Tours & Packages</h3>
+              <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('home.explore.badge')}</h2>
+              <h3 className="text-4xl font-bold text-on-surface font-headline">{t('home.categories.luxury')}</h3>
             </div>
             <Link to="/tours" className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
-              View All Packages <ArrowRight className="w-4 h-4" />
+              {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -236,7 +239,7 @@ const Home = () => {
           
           <div className="mt-12 text-center md:hidden">
              <Link to="/tours" className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
-              View All Packages <ArrowRight className="w-4 h-4" />
+              {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -247,11 +250,11 @@ const Home = () => {
         <div className="max-w-screen-2xl mx-auto px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
             <div>
-              <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">Day Trips</h2>
-              <h3 className="text-4xl font-bold text-on-surface font-headline">Excursions</h3>
+              <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('home.categories.excursions')}</h2>
+              <h3 className="text-4xl font-bold text-on-surface font-headline">{t('home.categories.excursions')}</h3>
             </div>
             <Link to="/excursions" className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
-              View All Excursions <ArrowRight className="w-4 h-4" />
+              {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -282,7 +285,7 @@ const Home = () => {
           
           <div className="mt-12 text-center md:hidden">
              <Link to="/excursions" className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
-              View All Excursions <ArrowRight className="w-4 h-4" />
+              {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -296,14 +299,14 @@ const Home = () => {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#7b5800]/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
           
           <div className="relative z-10">
-            <h3 className="text-3xl font-bold text-on-surface font-headline mb-4">Subscribe to our Newsletter</h3>
+            <h3 className="text-3xl font-bold text-on-surface font-headline mb-4">{t('home.newsletter.title')}</h3>
             <p className="text-on-surface-variant font-body mb-10 max-w-xl mx-auto">
-              Stay informed about our exclusive offers, new itineraries, and travel inspiration for Egypt.
+              {t('home.newsletter.subtitle')}
             </p>
             <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
               <input 
                 type="email" 
-                placeholder="Your email address" 
+                placeholder={t('home.newsletter.placeholder')} 
                 className="grow bg-white border border-surface-dim px-6 py-4 rounded-xl font-body text-[#191c18] focus:outline-none focus:ring-2 focus:ring-[#c79a3c] focus:border-transparent"
                 required
               />
@@ -311,7 +314,7 @@ const Home = () => {
                 type="submit" 
                 className="btn-primary-gradient text-white px-8 py-4 rounded-xl font-headline font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5 duration-200 whitespace-nowrap"
               >
-                Subscribe
+                {t('home.newsletter.button')}
               </button>
             </form>
           </div>
