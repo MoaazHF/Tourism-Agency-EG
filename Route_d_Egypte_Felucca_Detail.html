@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Route d'Égypte - Felucca Cruise Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=Caveat&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#d9dbd4",
+                        "on-secondary-fixed-variant": "#374765",
+                        "on-tertiary-fixed-variant": "#504532",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#d5c4ab",
+                        "surface-container-highest": "#e1e3dd",
+                        "on-secondary-container": "#4f5f7f",
+                        "secondary-fixed-dim": "#b6c7eb",
+                        "inverse-primary": "#f0bf5d",
+                        "on-error": "#ffffff",
+                        "outline": "#807665",
+                        "surface-container-high": "#e7e9e2",
+                        "on-primary-container": "#4a3400",
+                        "primary": "#7b5800",
+                        "on-tertiary-container": "#413624",
+                        "tertiary": "#695d48",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#f0bf5d",
+                        "secondary-container": "#cadaff",
+                        "surface-tint": "#7b5800",
+                        "on-background": "#191c18",
+                        "surface-variant": "#e1e3dd",
+                        "outline-variant": "#d2c5b1",
+                        "on-primary-fixed-variant": "#5d4200",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#c79a3c",
+                        "on-error-container": "#93000a",
+                        "background": "#f8faf3",
+                        "on-surface-variant": "#4e4637",
+                        "primary-fixed": "#ffdea4",
+                        "inverse-on-surface": "#eff2eb",
+                        "secondary-fixed": "#d7e2ff",
+                        "inverse-surface": "#2e312d",
+                        "tertiary-fixed": "#f2e0c6",
+                        "surface-container": "#edefe8",
+                        "tertiary-fixed": "#f2e0c6",
+                        "surface-container-low": "#f2f4ed",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#4e5f7e",
+                        "on-surface": "#191c18",
+                        "on-tertiary-fixed": "#231a0a",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface": "#f8faf3",
+                        "surface-bright": "#f8faf3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: repeat(2, 250px);
+            gap: 1rem;
+        }
+        @media (max-width: 768px) {
+            .editorial-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 200px);
+            }
+        }
+        .hero-title {
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-[#f8faf3]/80 dark:bg-[#1a2b48]/80 backdrop-blur-xl fixed top-0 w-full z-50 no-border tonal-layering">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#1a2b48] dark:text-[#f8faf3]">Route d'Égypte</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#4e5f7e] dark:text-[#f2f4ed] font-['Plus_Jakarta_Sans'] tracking-tight text-sm uppercase font-bold hover:text-[#c79a3c] transition-colors duration-300" href="#">Cruises</a>
+<a class="text-[#4e5f7e] dark:text-[#f2f4ed] font-['Plus_Jakarta_Sans'] tracking-tight text-sm uppercase font-bold hover:text-[#c79a3c] transition-colors duration-300" href="#">Safari</a>
+<a class="text-[#7b5800] dark:text-[#c79a3c] border-b-2 border-[#7b5800] pb-1 font-['Plus_Jakarta_Sans'] tracking-tight text-sm uppercase font-bold" href="#">Tours</a>
+<a class="text-[#4e5f7e] dark:text-[#f2f4ed] font-['Plus_Jakarta_Sans'] tracking-tight text-sm uppercase font-bold hover:text-[#c79a3c] transition-colors duration-300" href="#">Excursions</a>
+<a class="text-[#4e5f7e] dark:text-[#f2f4ed] font-['Plus_Jakarta_Sans'] tracking-tight text-sm uppercase font-bold hover:text-[#c79a3c] transition-colors duration-300" href="#">Planning</a>
+</div>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-[#7b5800] cursor-pointer scale-105 transition-transform duration-200">language</span>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-2.5 rounded-xl font-bold text-sm uppercase tracking-wider hover:scale-105 transition-transform duration-200 shadow-lg shadow-primary/20">Book Now</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<!-- Breadcrumbs -->
+<nav class="flex items-center space-x-2 text-xs font-medium uppercase tracking-widest text-outline mb-8">
+<a class="hover:text-primary transition-colors" href="#">Accueil</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Tours</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-secondary">Croisière en Felouque</span>
+</nav>
+<!-- Title Section -->
+<header class="mb-12">
+<span class="font-['Caveat'] text-2xl text-primary mb-2 block">Expérience Signature</span>
+<h1 class="hero-title font-headline text-4xl md:text-6xl font-extrabold text-secondary max-w-4xl">
+                    Au départ du Caire visites et croisière d’Assouan à Louxor en felouque
+                </h1>
+</header>
+<!-- Gallery Grid -->
+<section class="editorial-grid mb-12">
+<div class="md:row-span-2 overflow-hidden rounded-xl bg-surface-container shadow-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a traditional wooden sailing boat called a felucca drifting on the calm blue waters of the Nile river at sunset with golden light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Ts9_GbJSd5Jrk9HlA-ChzKIqNKKNra9H2-IX7L2_ommiGQjGHUmJLYFVgC2ZOjQiCh4H8QTi7LuQ6DPW5AisNHN8CqUgj53SybLLrCUeIw_m5SFiuZlhM5rAvDHwuJgoQOi3oJ1k4as-diLNdAu0y0BVIPyTa381i71IjW6oB6oFboN2l1sJVGjlK4eDItKuHMwO1HooBU9x_qEo5ghhmBeduNzgS46DiyHIUHaV-0rAkKr85xqoDKi_gZo19PeoKjQONzKMNvgi"/>
+</div>
+<div class="overflow-hidden rounded-xl bg-surface-container shadow-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="ancient Egyptian temple columns with intricate hieroglyphics bathed in bright warm sunlight and clear blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWlSUnfNrfBuV6gl0v1oUYBgNcRL3cLHfbV_eInws9lAQTmYdrVzwsIJSk2oIHKDKA_Aigobj46ALITVfpTyYc0cgIkscL4Fyk6wWoxUTPoRK3xDR1AxjicLiycClpgO7_1WbyB6XWOphYti2XtlpT-v9bgVdl-Kcjh9NhJqUfXj4bQ8gEAhHJf008oPe-95L063KX77sYtqHU4GTlCPTgeVMF25CIXENJP0qWJV_InN6GNSnWQ03DvmUsqkdnuxQiHYZsZJairSJ0"/>
+</div>
+<div class="overflow-hidden rounded-xl bg-surface-container shadow-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="panoramic view of the Great Pyramids of Giza rising from the golden desert sands under a hazy midday sun" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtp6dKFE_dLV_6Iel1h4AFUQsxgwlljXJ5B2QYh89cUFwerlTX-_Kqqf5pL3jczlakWWVbttqnsnln-3oMDllzkpYcEJYBE_a28VBWyCBRLcO9A-6ITOFr26t8JnEarf_C32G1NIUTPf5WoaBLeFyF3wNpYfQs1lOtaoIkdDHVRJYt4Nn6pCmAu_PQHXzKH6TEFCgGI9kQW65kAJ0rUlvb_Vv6ffjIRdfPjYWTcgnU_JZM-ZB5ASyTFFdPwbTLzNNMTHfDfiZaXsCr"/>
+</div>
+<div class="overflow-hidden rounded-xl bg-surface-container shadow-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="luxurious Egyptian interior with textile patterns warm lanterns and comfortable seating overlooking the Nile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcMgIFj2GmZE5NIIyGR9X52VqYwS-DFQPybb6Y10ZUJLLTPByZ9Vjw0bwyWigy9ebm0F2rdZt7xYfyGrCHLp88Q1VBtTDfAZ2iixWxj0iPR74Z8E_dEfIml4fRRu_xpybv4sRMHgBH7takWaSGIDrIJXJf5y70LrmQxIt18jWOGfSUl8gONZu31ooQJyxdb6qE4qVqQiWi1HFyGajE6I-io04zpTEFlOysqvqw7QpXIk-ML3Y2Y9wnWoh4aFOraw-0p-Hw7IumtS-U"/>
+</div>
+<div class="overflow-hidden rounded-xl bg-surface-container shadow-sm group relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="vibrant local market in Cairo with spice piles in deep reds and oranges and copper lanterns hanging from above" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW0BzdOwc4pPtpoGr6pdw0UALcYlxtv3wUK3aiI4QzdxXzkz4_8XGBckUZIg1gqvKlAcSE1GEy1tP2MtShMscBsUI0-OfBHhw-GsJKpWB5QNjEg_3L2qNRBJGSejrg7reTt-UhL9U2fvP0Yc_anBpB01Zl3MZD9Mbjty2E_R4wdfdRhhlV1QK1XCLrMX0UQ1sAocSpY4VESvzmkdpNwZTWfsBUDEdk9sCwoBEzjtCTUjvgJc5QeESG4fyaxFptL7ynPknDTiXr4f4B"/>
+<div class="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] flex items-center justify-center cursor-pointer">
+<span class="text-white font-bold text-lg">+12 Photos</span>
+</div>
+</div>
+</section>
+<!-- Info Bar -->
+<section class="bg-surface-container-low rounded-xl px-8 py-6 mb-16 flex flex-wrap gap-8 items-center justify-between">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Durée</p>
+<p class="font-bold text-secondary">10 Jours / 9 Nuits</p>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Taille du groupe</p>
+<p class="font-bold text-secondary">Max 12 Personnes</p>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">language</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Langue</p>
+<p class="font-bold text-secondary">Français, Anglais</p>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">star</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Évaluation</p>
+<p class="font-bold text-secondary">4.9/5 (128 avis)</p>
+</div>
+</div>
+</section>
+<!-- Main Content Layout -->
+<div class="flex flex-col lg:flex-row gap-16">
+<!-- Left Column: Details -->
+<div class="lg:w-2/3 space-y-16">
+<!-- Description -->
+<article>
+<h2 class="font-headline text-3xl font-bold text-secondary mb-6">À propos de ce voyage</h2>
+<div class="space-y-4 text-on-surface-variant leading-relaxed text-lg font-light">
+<p>Découvrez l'Égypte dans son authenticité la plus pure. Ce voyage exclusif commence par l'effervescence du Caire et ses pyramides millénaires avant de vous emmener vers le sud, où le temps semble s'être arrêté.</p>
+<p>La croisière en felouque, voilier traditionnel du Nil, est une immersion sensorielle. Sans moteur, bercé par le vent, vous accosterez sur des îles inaccessibles aux gros paquebots, dînerez sous les étoiles et rencontrerez les communautés nubiennes au cœur de paysages d'une beauté désarmante.</p>
+</div>
+</article>
+<!-- Itinerary Accordion -->
+<section>
+<h2 class="font-headline text-3xl font-bold text-secondary mb-8">Itinéraire détaillé</h2>
+<div class="space-y-4">
+<!-- Day 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden group border border-outline-variant/10">
+<div class="px-6 py-5 flex items-center justify-between cursor-pointer">
+<div class="flex items-center space-x-6">
+<span class="font-headline font-black text-primary/30 text-4xl">01</span>
+<div>
+<h3 class="font-bold text-secondary">Arrivée au Caire</h3>
+<p class="text-sm text-outline">Accueil à l'aéroport et transfert à votre hôtel de luxe.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">add</span>
+</div>
+</div>
+<!-- Day 2-3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden group border border-outline-variant/10">
+<div class="px-6 py-5 flex items-center justify-between cursor-pointer">
+<div class="flex items-center space-x-6">
+<span class="font-headline font-black text-primary/30 text-4xl">02</span>
+<div>
+<h3 class="font-bold text-secondary">Les Pyramides de Gizeh &amp; Saqqarah</h3>
+<p class="text-sm text-outline">Journée entière dédiée aux origines de la civilisation.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">add</span>
+</div>
+</div>
+<!-- Day 4 (Active Example) -->
+<div class="bg-white rounded-xl overflow-hidden border-2 border-primary/20 shadow-xl shadow-primary/5">
+<div class="px-6 py-5 flex items-center justify-between bg-primary-container/10">
+<div class="flex items-center space-x-6">
+<span class="font-headline font-black text-primary text-4xl">04</span>
+<div>
+<h3 class="font-bold text-secondary text-lg">Assouan : Début de la Croisière</h3>
+<p class="text-sm text-primary font-medium italic">Le moment magique</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary">remove</span>
+</div>
+<div class="px-10 py-6 text-on-surface-variant text-base leading-relaxed border-t border-outline-variant/10">
+<p class="mb-4">Vol matinal pour Assouan. Visite du temple de Philae, la perle de l'Égypte, posée sur son île. En milieu d'après-midi, embarquement sur votre felouque privée. Première navigation au gré du vent entre les îles de granit.</p>
+<ul class="space-y-2 text-sm">
+<li class="flex items-center space-x-2"><span class="material-symbols-outlined text-primary text-lg">restaurant</span> <span>Déjeuner et dîner à bord préparés par votre cuisinier nubien.</span></li>
+<li class="flex items-center space-x-2"><span class="material-symbols-outlined text-primary text-lg">bed</span> <span>Nuit étoilée sur le pont (matelas confortables fournis).</span></li>
+</ul>
+</div>
+</div>
+<!-- Day 5-10 collapsed... -->
+<div class="bg-surface-container-low/50 rounded-xl px-6 py-4 text-center">
+<button class="text-primary font-bold text-sm uppercase tracking-widest hover:underline">Voir les 6 jours restants</button>
+</div>
+</div>
+</section>
+<!-- Inclusions / Exclusions -->
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-surface-container-low/40 rounded-2xl p-8">
+<h3 class="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+                                Le prix comprend
+                            </h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-lg">done</span>
+<span>Hébergement 5* au Caire et à Louxor</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-lg">done</span>
+<span>3 nuits en felouque traditionnelle (privatisée)</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-lg">done</span>
+<span>Pension complète pendant la navigation</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-lg">done</span>
+<span>Guide égyptologue francophone certifié</span>
+</li>
+</ul>
+</div>
+<div class="bg-surface-container-low/40 rounded-2xl p-8">
+<h3 class="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-error">cancel</span>
+                                Le prix ne comprend pas
+                            </h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-error/60 text-lg">close</span>
+<span>Vols internationaux</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-error/60 text-lg">close</span>
+<span>Frais de visa (environ 25€)</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-error/60 text-lg">close</span>
+<span>Pourboires usuels pour le guide et l'équipage</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right Column: Booking Form -->
+<aside class="lg:w-1/3">
+<div class="sticky top-28 bg-white rounded-2xl p-8 shadow-2xl shadow-secondary/10 border border-outline-variant/10">
+<div class="flex justify-between items-baseline mb-8">
+<div>
+<span class="text-outline text-xs uppercase tracking-widest font-bold">À partir de</span>
+<div class="text-4xl font-black text-secondary">2 450 €<span class="text-sm font-normal text-outline ml-1">/ pers</span></div>
+</div>
+<div class="bg-primary-container/20 text-primary px-3 py-1 rounded-full text-xs font-bold">-15% Early Bird</div>
+</div>
+<form class="space-y-6">
+<div>
+<label class="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Sélectionnez vos dates</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-0 rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary text-secondary placeholder:text-outline/50" placeholder="Choisir une période" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline">calendar_today</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Adultes</label>
+<div class="flex items-center justify-between bg-surface-container-low rounded-xl px-4 py-3">
+<button class="text-primary font-bold" type="button">-</button>
+<span class="font-bold text-secondary">2</span>
+<button class="text-primary font-bold" type="button">+</button>
+</div>
+</div>
+<div>
+<label class="block text-xs uppercase tracking-widest font-bold text-outline mb-2">Enfants</label>
+<div class="flex items-center justify-between bg-surface-container-low rounded-xl px-4 py-3">
+<button class="text-primary font-bold" type="button">-</button>
+<span class="font-bold text-secondary">0</span>
+<button class="text-primary font-bold" type="button">+</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-dashed border-outline-variant p-4 rounded-xl space-y-2">
+<div class="flex justify-between text-sm">
+<span class="text-outline">Prix par personne</span>
+<span class="text-secondary font-bold">2 450 €</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-outline">Suppléments (Visa + Taxes)</span>
+<span class="text-secondary font-bold">85 €</span>
+</div>
+<div class="pt-4 mt-2 border-t border-outline-variant flex justify-between items-center">
+<span class="font-bold text-secondary">Total</span>
+<span class="text-2xl font-black text-primary">5 070 €</span>
+</div>
+</div>
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-5 rounded-xl font-headline font-extrabold uppercase tracking-[0.2em] shadow-xl shadow-primary/30 hover:scale-[1.02] transition-transform" type="submit">
+                                Réserver l'Aventure
+                            </button>
+<p class="text-center text-[10px] text-outline uppercase tracking-tighter">Aucun paiement requis pour le moment</p>
+</form>
+<div class="mt-8 pt-8 border-t border-outline-variant/30 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="portrait of a professional travel consultant smiling in a warm office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPAFcHIIndeT06PfTl20olsZYUaR18R47Xzsa6_98g6JL_11VOue0BcB0i0m77Z9h0moEfcNJyycJxM77I-p6zxuZGhf5SIsfnYOye7KiqX0CfaFVU_kovJCFidHV4zcSaDhH-0mbHUFYeIIz2sg8z7oz33daKHQHx1JSzZojGAagNzccM-TrTFBnuYEHwcYiTB_AZaW7AA7CRdotTGIIi_ttPPHMZo6dsvx7DK0MoF_cfofsJqVxSpM_2pEXWcxy0O4-aDcDd-hSZ"/>
+</div>
+<div>
+<p class="text-xs font-bold text-secondary">Besoin d'aide ?</p>
+<p class="text-xs text-outline">Karim, votre expert Croisière</p>
+<a class="text-xs text-primary font-bold underline" href="tel:+">Parler à un conseiller</a>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f2f4ed] dark:bg-[#1a2b48] w-full pt-20 pb-10 tonal-shift-no-border">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="text-xl font-black text-[#1a2b48] dark:text-[#f8faf3] mb-6">Route d'Égypte</div>
+<p class="text-sm leading-relaxed text-[#695d48] dark:text-[#f2f4ed]/70">Une expérience artisanale du voyage en Égypte, alliant luxe discret et héritage millénaire.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 col-span-1 md:col-span-3 gap-8">
+<div>
+<h4 class="font-bold text-[#7b5800] dark:text-[#c79a3c] mb-4 text-sm uppercase tracking-widest">Compagnie</h4>
+<ul class="space-y-3 font-['Inter'] text-sm">
+<li><a class="text-[#695d48] dark:text-[#f2f4ed]/70 hover:text-[#7b5800] dark:hover:text-[#c79a3c] transition-opacity" href="#">About Us</a></li>
+<li><a class="text-[#695d48] dark:text-[#f2f4ed]/70 hover:text-[#7b5800] dark:hover:text-[#c79a3c] transition-opacity" href="#">Partner Program</a></li>
+<li><a class="text-[#695d48] dark:text-[#f2f4ed]/70 hover:text-[#7b5800] dark:hover:text-[#c79a3c] transition-opacity" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-[#7b5800] dark:text-[#c79a3c] mb-4 text-sm uppercase tracking-widest">Support</h4>
+<ul class="space-y-3 font-['Inter'] text-sm">
+<li><a class="text-[#695d48] dark:text-[#f2f4ed]/70 hover:text-[#7b5800] dark:hover:text-[#c79a3c] transition-opacity" href="#">FAQ</a></li>
+<li><a class="text-[#695d48] dark:text-[#f2f4ed]/70 hover:text-[#7b5800] dark:hover:text-[#c79a3c] transition-opacity" href="#">Terms of Service</a></li>
+<li><a class="text-[#695d48] dark:text-[#f2f4ed]/70 hover:text-[#7b5800] dark:hover:text-[#c79a3c] transition-opacity" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-[#7b5800] dark:text-[#c79a3c] mb-4 text-sm uppercase tracking-widest">Réseaux</h4>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary cursor-pointer">photo_camera</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer">play_circle</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer">travel_explore</span>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-12 mt-20 pt-8 border-t border-[#695d48]/10 text-center text-xs text-[#695d48]/60">
+            © 2024 Route d'Égypte. The Sands of Distinction.
+        </div>
+</footer>
+</body></html>

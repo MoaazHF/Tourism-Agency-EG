@@ -8,6 +8,8 @@ export default function ListingPage({ defaultCategory }) {
   const categoryId = defaultCategory || path?.split('/')[0] || "cruises";
   const data = categoriesData[categoryId];
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  // Per-trip image index for a lightweight local gallery in listing cards
+  const [imageIndex, setImageIndex] = useState({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -83,6 +85,8 @@ export default function ListingPage({ defaultCategory }) {
           {data.tripKeys.map((key) => {
             const trip = tripsData[key];
             if (!trip) return null;
+            const currentIndex = imageIndex[trip.id] ?? 0;
+            const mainSrc = (trip.images?.[currentIndex] ?? trip.images?.[0] ?? 'https://via.placeholder.com/800x600?text=No+Image');
             return (
               <Link 
                 id={trip.id}
@@ -94,12 +98,28 @@ export default function ListingPage({ defaultCategory }) {
                   <img 
                     alt={trip.title} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                    src={trip.images[0]} 
+                    src={mainSrc} 
+                    onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/800x600?text=No+Image'; }}
                   />
                   <div className="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary uppercase tracking-wider">
                     {trip.duration}
                   </div>
                 </div>
+                {trip.images.length > 1 && (
+                  <div className="px-3 py-2 flex items-center gap-2 overflow-x-auto bg-surface-container-lowest">
+                    {trip.images.map((src, idx) => (
+                      <img
+                        key={idx}
+                        src={src}
+                        alt={`${trip.title} image ${idx + 1}`}
+                        onClick={() => setImageIndex((prev) => ({ ...prev, [trip.id]: idx }))}
+                        className={`w-8 h-8 object-cover rounded border ${currentIndex === idx ? 'border-primary' : 'border-transparent'}`}
+                        style={{ cursor: 'pointer' }}
+                        onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/150?text=No+Image'; }}
+                      />
+                    ))}
+                  </div>
+                )}
                 <div className="p-8 md:p-10">
                   <h3 className="text-2xl font-bold font-headline mb-3 text-on-surface line-clamp-2">
                     {trip.title}
