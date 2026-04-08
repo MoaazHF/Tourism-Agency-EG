@@ -49,7 +49,7 @@ export const categoriesData = {
       "L'aventure avec un grand A. Des paysages hors du commun et des rencontres inoubliables avec les tribus bédouines.",
       "Explorez les endroits les plus reculés de l'Égypte en toute sécurité avec nos guides expérimentés."
     ],
-    tripKeys: ["giza-pyramids", "valley-of-kings", "abu-simbel"] // Using existing trips as placeholders
+    tripKeys: ["safari-siwa", "safari-fayoum", "safari-sinai"]
   }
 };
 
@@ -57,6 +57,7 @@ export const tripsData = {
   "felucca": {
     id: "felucca",
     title: "Au départ du Caire: de Louxor à Assouan en felouque",
+    shortDescription: "L'expérience la plus authentique. Sans moteur, laissez-vous porter par le vent et dormez à la belle étoile sur les rives sablonneuses du fleuve mythique.",
     categoryLabel: "Expérience Signature",
     duration: "10 Jours / 9 Nuits",
     groupSize: "Max 12 Personnes",
@@ -74,6 +75,7 @@ export const tripsData = {
   "dahabeya": {
     id: "dahabeya",
     title: "Croisière de rêve sur une Dahabeya luxueuse",
+    shortDescription: "Le summum du luxe discret. Ces voiliers à deux mâts offrent l'exclusivité d'un yacht privé avec tout le raffinement de la Belle Époque.",
     categoryLabel: "Expérience Signature",
     duration: "5 Jours / 4 Nuits",
     groupSize: "Max 8 Personnes",
@@ -89,6 +91,7 @@ export const tripsData = {
   "the-luxor": {
     id: "the-luxor",
     title: "The Luxor: Royal Cruise on the Nile",
+    shortDescription: "Confort et commodité. Profitez de piscines sur le pont, de restaurants gourmets et d'un itinéraire parfaitement orchestré entre Louxor et Assouan.",
     categoryLabel: "Luxury",
     duration: "7 Jours / 6 Nuits",
     groupSize: "Max 40 Personnes",
@@ -103,6 +106,7 @@ export const tripsData = {
   "the-sandal": {
     id: "the-sandal",
     title: "The Sandal: Authentic Private Cruise",
+    shortDescription: "Une immersion authentique loin des foules. Ce navire vous offre une navigation privée au plus près de la vie locale égyptienne.",
     categoryLabel: "Classic Intimate",
     duration: "4 Jours / 3 Nuits",
     groupSize: "Max 6 Personnes",
@@ -116,6 +120,7 @@ export const tripsData = {
   "white-desert": {
     id: "white-desert",
     title: "The White Desert: Lunar Landscapes under the Stars",
+    shortDescription: "Un paysage lunaire sculpté dans la craie. Passez la nuit sous un ciel étoilé au cœur de formations géologiques surréalistes.",
     categoryLabel: "Off the beaten path",
     duration: "3 Jours / 2 Nuits",
     groupSize: "Max 4 Personnes (Private)",
@@ -129,6 +134,7 @@ export const tripsData = {
   "siwa-oasis": {
     id: "siwa-oasis",
     title: "Siwa Oasis: The Hidden Gem of the Western Desert",
+    shortDescription: "Une île de verdure perdue dans l'océan de sable. Découvrez le temple d'Alexandre le Grand et baignez-vous dans des lacs salés cristallins.",
     categoryLabel: "Off the beaten path",
     duration: "4 Jours / 3 Nuits",
     groupSize: "Max 4 Personnes (Private)",
@@ -142,6 +148,7 @@ export const tripsData = {
   "black-desert": {
     id: "black-desert",
     title: "Black Desert & Bahariya Springs Expedition",
+    shortDescription: "Des montagnes d'origine volcanique. Explorez les sources chaudes de Bahariya et les mystères de cette région volcanique.",
     categoryLabel: "Off the beaten path",
     duration: "2 Jours / 1 Nuits",
     groupSize: "Max 4 Personnes (Private)",
@@ -155,6 +162,7 @@ export const tripsData = {
   "classic-egypt": {
     id: "classic-egypt",
     title: "Classic Egypt: 4 Cities Historic Journey",
+    shortDescription: "L'expérience incontournable. Du Caire aux Pyramides, de Louxor et Assouan au fil du Nil dans une formule complète et prestigieuse.",
     categoryLabel: "Curated Itineraries",
     duration: "8 Jours / 7 Nuits",
     groupSize: "Max 12 Personnes",
@@ -168,6 +176,7 @@ export const tripsData = {
   "pharaohs-coral": {
     id: "pharaohs-coral",
     title: "Pharaohs & Coral: Temples to the Red Sea",
+    shortDescription: "L'équilibre parfait entre culture et farniente. Explorez les grands temples avant de vous prélasser sur des plages divines de la mer Rouge.",
     categoryLabel: "Curated Itineraries",
     duration: "11 Jours / 10 Nuits",
     groupSize: "Max 15 Personnes",
@@ -181,6 +190,7 @@ export const tripsData = {
   "deep-south": {
     id: "deep-south",
     title: "Deep South Explorer: Aswan and Abu Simbel",
+    shortDescription: "Aventurez-vous en pays nubien. D'Assouan aux majestueux temples d'Abou Simbel, une plongée fascinante à la lisière du lac Nasser.",
     categoryLabel: "Curated Itineraries",
     duration: "6 Jours / 5 Nuits",
     groupSize: "Max 10 Personnes",
@@ -194,6 +204,7 @@ export const tripsData = {
   "giza-pyramids": {
     id: "giza-pyramids",
     title: "Giza Pyramids & Sphinx Private Half-Day Tour",
+    shortDescription: "Une visite éclair au summum de l'histoire. Tenez-vous face à l'unique merveille du monde antique encore debout avec votre guide privé.",
     categoryLabel: "Day Trips",
     duration: "Half Day (4h)",
     groupSize: "Private",
@@ -207,6 +218,7 @@ export const tripsData = {
   "valley-of-kings": {
     id: "valley-of-kings",
     title: "Valley of the Kings & Karnak Tour",
+    shortDescription: "Passez à l'Ouest. Descendez dans les tombes royales de Thèbes et émerveillez-vous devant les immenses colonnes du temple de Karnak.",
     categoryLabel: "Day Trips",
     duration: "Full Day (8h)",
     groupSize: "Private",
@@ -220,6 +232,7 @@ export const tripsData = {
   "abu-simbel": {
     id: "abu-simbel",
     title: "Abu Simbel Majestic Temples",
+    shortDescription: "Un pèlerinage inoubliable au sud de l'Égypte. Admirez les colosses de Ramsès II, directement taillés dans la roche nubienne.",
     categoryLabel: "Day Trips",
     duration: "Full Day (10h)",
     groupSize: "Private or Group",
@@ -229,6 +242,42 @@ export const tripsData = {
     images: [
       "https://images.unsplash.com/photo-1628172102146-24ba0baedce0?q=80&w=2070&auto=format&fit=crop"
     ]
+  },
+  "safari-siwa": {
+    id: "safari-siwa",
+    title: "Expédition 4x4 à l'Oasis de Siwa",
+    shortDescription: "Partez à la découverte des confins du pays. Baignez-vous dans des lacs d'eau salée et explorez les ruines antiques.",
+    categoryLabel: "Safari",
+    duration: "4 Jours / 3 Nuits",
+    groupSize: "Max 6 Personnes",
+    language: "Français, Anglais",
+    rating: "4.9/5 (112 avis)",
+    price: "450",
+    images: ["https://images.unsplash.com/photo-1682687220063-4742bd7fd538?q=80&w=2070&auto=format&fit=crop"]
+  },
+  "safari-fayoum": {
+    id: "safari-fayoum",
+    title: "Aventure au Fayoum et Vallée des Baleines",
+    shortDescription: "Glissez sur d'immenses dunes de sable et admirez les fossiles vieux de millions d'années dans un décor époustouflant.",
+    categoryLabel: "Safari",
+    duration: "2 Jours / 1 Nuits",
+    groupSize: "Max 8 Personnes",
+    language: "Français, Anglais",
+    rating: "4.8/5 (84 avis)",
+    price: "220",
+    images: ["https://images.unsplash.com/photo-1551041777-ed277b8dd348?q=80&w=2070&auto=format&fit=crop"]
+  },
+  "safari-sinai": {
+    id: "safari-sinai",
+    title: "Trek Bédouin dans les Montagnes du Sinaï",
+    shortDescription: "Une randonnée hors du temps. Grimpez les sommets sacrés et dormez à la belle étoile autour du feu avec les Bédouins.",
+    categoryLabel: "Safari",
+    duration: "3 Jours / 2 Nuits",
+    groupSize: "Max 10 Personnes",
+    language: "Français, Anglais",
+    rating: "4.7/5 (156 avis)",
+    price: "310",
+    images: ["https://images.unsplash.com/photo-1579848523573-0eb4778ac05d?q=80&w=2070&auto=format&fit=crop"]
   }
 };
 

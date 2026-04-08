@@ -90,6 +90,9 @@ export default function ListingPage({ defaultCategory }) {
                   <h3 className="text-2xl font-bold font-headline mb-3 text-on-surface line-clamp-2">
                     {trip.title}
                   </h3>
+                  <p className="text-tertiary mb-6 line-clamp-3">
+                    {trip.shortDescription}
+                  </p>
                   <div className="text-tertiary text-sm mb-6 flex items-center gap-2">
                     <span className="font-semibold text-secondary">{trip.categoryLabel}</span>
                     <span>•</span>
