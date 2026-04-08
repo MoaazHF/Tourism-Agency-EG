@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import RootLayout from './components/RootLayout';
 import Home from './pages/Home';
+import TripDetails from './pages/TripDetails';
 
 // Empty page components
 const EmptyPage = ({ title }) => (
@@ -18,19 +19,19 @@ function App() {
           <Route index element={<Home />} />
           
           <Route path="cruises">
-            <Route path="felucca" element={<EmptyPage title="Felucca Cruises" />} />
-            <Route path="dahabeya" element={<EmptyPage title="Dahabeya Cruises" />} />
-            <Route path="ship-tours" element={<EmptyPage title="Cruise Ship Tours" />} />
-            <Route path="lake-nasser" element={<EmptyPage title="Cruise on Lake Nasser" />} />
+            <Route path="felucca" element={<TripDetails title="Felucca Cruises" />} />
+            <Route path="dahabeya" element={<TripDetails title="Dahabeya Cruises" />} />
+            <Route path="ship-tours" element={<TripDetails title="Cruise Ship Tours" />} />
+            <Route path="lake-nasser" element={<TripDetails title="Cruise on Lake Nasser" />} />
           </Route>
 
           <Route path="excursions">
-            <Route path="cairo" element={<EmptyPage title="Starting from Cairo" />} />
-            <Route path="luxor" element={<EmptyPage title="Luxor & Its Region" />} />
-            <Route path="aswan" element={<EmptyPage title="Aswan & Its Region" />} />
-            <Route path="gouna-hurghada-safaga" element={<EmptyPage title="From El Gouna / Hurghada / Safaga" />} />
-            <Route path="marsa-alam" element={<EmptyPage title="Starting from Marsa Alam" />} />
-            <Route path="sinai" element={<EmptyPage title="Starting from Southern Sinai" />} />
+            <Route path="cairo" element={<TripDetails title="Starting from Cairo" />} />
+            <Route path="luxor" element={<TripDetails title="Luxor & Its Region" />} />
+            <Route path="aswan" element={<TripDetails title="Aswan & Its Region" />} />
+            <Route path="gouna-hurghada-safaga" element={<TripDetails title="From El Gouna / Hurghada / Safaga" />} />
+            <Route path="marsa-alam" element={<TripDetails title="Starting from Marsa Alam" />} />
+            <Route path="sinai" element={<TripDetails title="Starting from Southern Sinai" />} />
           </Route>
 
           <Route path="about" element={<EmptyPage title="Who Are We?" />} />
