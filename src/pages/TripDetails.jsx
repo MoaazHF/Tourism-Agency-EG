@@ -1,4 +1,21 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { 
+  ChevronRight, 
+  ChevronLeft, 
+  X, 
+  Clock, 
+  Users, 
+  Globe, 
+  Star, 
+  CheckCircle, 
+  Check, 
+  Plus, 
+  Minus, 
+  Send,
+  XCircle
+} from 'lucide-react';
 import { useTrip } from '../hooks/useTrip';
 import { supabase } from '../lib/supabaseClient';
 
@@ -127,10 +144,10 @@ const TripDetails = () => {
   }
 
   // ── Normalise snake_case DB → display fields ────────────────────
-  const duration      = trip.duration        || 'Contact us';
-  const groupSize     = trip.group_size      || trip.groupSize  || 'Customizable';
-  const language      = trip.language        || 'Français, Anglais';
-  const categoryLabel = trip.category_label  || trip.categoryLabel || 'Expérience Signature';
+  const duration      = trip.duration        || t('common.contact_us');
+  const groupSize     = trip.group_size      || trip.groupSize  || t('common.customizable');
+  const language      = trip.language        || t('common.languages_default');
+  const categoryLabel = trip.category_label  || trip.categoryLabel || t('common.signature_experience');
   const shortDesc     = trip.short_description || trip.shortDescription || '';
   const ratingLabel   = trip.extra_data?.rating_label || (trip.star_rating ? `${trip.star_rating}/5` : 'New');
   const price         = trip.price_per_person ?? null;

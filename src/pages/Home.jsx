@@ -33,7 +33,7 @@ const Home = () => {
             <span className="text-[#f0bf5d] font-caveat text-4xl transform -rotate-2 inline-block">{t('home.hero.badge')}</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white font-headline tracking-tight mb-6 max-w-4xl leading-tight">
-            {t('home.hero.title_part1')} <span className="text-transparent bg-clip-text btn-primary-gradient">{t('home.hero.title_part2')}</span>
+            {t('home.hero.title.part1')} <span className="text-transparent bg-clip-text btn-primary-gradient">{t('home.hero.title.part2')}</span>
           </h1>
           <p className="text-lg md:text-xl text-surface-container-low max-w-2xl font-body opacity-90 mb-10 leading-relaxed">
             {t('home.hero.subtitle')}

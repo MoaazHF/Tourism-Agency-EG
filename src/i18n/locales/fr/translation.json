@@ -20,49 +20,43 @@
     }
   },
   "home": {
-    "categories": {
-      "cruises": "Croisières",
-      "excursions": "Excursions",
-      "safaris": "Safaris",
-      "tours": "Voyages"
-    },
     "hero": {
       "badge": "Voyage Sur Mesure",
-      "title": "Découvrez l'Âme de l'Égypte",
+      "title": {
+        "part1": "Découvrez",
+        "part2": "l'Âme de l'Égypte"
+      },
       "subtitle": "L'excellence du voyage sur mesure en Égypte. Découvrez des expériences authentiques et luxueuses créées pour les voyageurs exigeants.",
-      "cta": "Créez votre Itinéraire"
+      "cta_explore": "Créez votre Itinéraire"
     },
-    "trust": {
+    "explore": {
       "badge": "La Différence",
       "title": "Pourquoi Réserver Avec Nous ?",
-      "expertise": {
-        "title": "Expertise Locale",
-        "text": "Nos guides sont des égyptologues passionnés qui révèlent les secrets les mieux gardés des pharaons."
-      },
-      "vehicles": {
-        "title": "Véhicules Privés",
-        "text": "Voyagez en toute sérénité à bord de nos véhicules récents, climatisés et entièrement privatisés."
-      },
-      "assistance": {
-        "title": "Assistance 24/7",
-        "text": "Un accompagnement dédié de votre arrivée à votre départ pour une tranquillité d'esprit totale."
-      }
-    },
-    "sections": {
-      "cruises_badge": "Sur le Nil",
-      "cruises_title": "Croisières Signature",
-      "safari_badge": "Hors des sentiers battus",
-      "safari_title": "Safari dans le Désert",
-      "tours_badge": "Itinéraires de Curateurs",
-      "tours_title": "Tours & Forfaits",
-      "excursions_badge": "Excursions d'une Journée",
-      "excursions_title": "Excursions",
       "view_all": "Tout Voir"
     },
+    "features": {
+      "serenity": {
+        "title": "Expertise Locale",
+        "desc": "Nos guides sont des égyptologues passionnés qui révèlent les secrets les mieux gardés des pharaons."
+      },
+      "excellence": {
+        "title": "Véhicules Privés",
+        "desc": "Voyagez en toute sérénité à bord de nos véhicules récents, climatisés et entièrement privatisés."
+      },
+      "authentic": {
+        "title": "Assistance 24/7",
+        "desc": "Un accompagnement dédié de votre arrivée à votre départ pour une tranquillité d'esprit totale."
+      }
+    },
     "stats": {
-      "expertise": "Années d'Expertise",
+      "years": "Années d'Expertise",
       "travelers": "Voyageurs Heureux",
-      "tailor_made": "Sur Mesure"
+      "custom": "Sur Mesure"
+    },
+    "categories": {
+      "desert": "Safari dans le Désert",
+      "luxury": "Tours & Forfaits",
+      "excursions": "Excursions"
     },
     "newsletter": {
       "title": "Inscrivez-vous à notre Newsletter",
@@ -388,7 +382,7 @@
       "fees": "Frais de dossier & Visa",
       "total_estimate": "Estimation Totale"
     },
-    "submit": "Désormais",
+    "submit": "Réserver",
     "loading": "Envoi en cours...",
     "success": {
       "title": "Merci Beaucoup !",
@@ -406,6 +400,10 @@
   "common": {
     "loading": "Chargement...",
     "error": "Erreur : {{message}}",
-    "private": "Privé"
+    "private": "Privé",
+    "contact_us": "Nous contacter",
+    "customizable": "Personnalisable",
+    "languages_default": "Français, Anglais",
+    "signature_experience": "Expérience Signature"
   }
 }

@@ -20,49 +20,43 @@
     }
   },
   "home": {
-    "categories": {
-      "cruises": "Cruises",
-      "excursions": "Excursions",
-      "safaris": "Safaris",
-      "tours": "Tours"
-    },
     "hero": {
       "badge": "Tailor-Made Travel",
-      "title": "Discover the Soul of Egypt",
+      "title": {
+        "part1": "Discover the",
+        "part2": "Soul of Egypt"
+      },
       "subtitle": "The excellence of tailor-made travel in Egypt. Discover authentic and luxurious experiences created for discerning travelers.",
-      "cta": "Craft Your Itinerary"
+      "cta_explore": "Craft Your Itinerary"
     },
-    "trust": {
+    "explore": {
       "badge": "The Difference",
       "title": "Why Book With Us?",
-      "expertise": {
-        "title": "Local Expertise",
-        "text": "Our guides are passionate Egyptologists who reveal the best-kept secrets of the pharaohs."
-      },
-      "vehicles": {
-        "title": "Private Vehicles",
-        "text": "Travel in absolute comfort aboard our recent, air-conditioned, and fully privatized vehicles."
-      },
-      "assistance": {
-        "title": "24/7 Assistance",
-        "text": "Dedicated support from your arrival to your departure for total peace of mind."
-      }
-    },
-    "sections": {
-      "cruises_badge": "On The Nile",
-      "cruises_title": "Signature Cruises",
-      "safari_badge": "Off the beaten path",
-      "safari_title": "Desert Safari",
-      "tours_badge": "Curated Itineraries",
-      "tours_title": "Tours & Packages",
-      "excursions_badge": "Day Trips",
-      "excursions_title": "Excursions",
       "view_all": "View All"
     },
+    "features": {
+      "serenity": {
+        "title": "Local Expertise",
+        "desc": "Our guides are passionate Egyptologists who reveal the best-kept secrets of the pharaohs."
+      },
+      "excellence": {
+        "title": "Private Vehicles",
+        "desc": "Travel in absolute comfort aboard our recent, air-conditioned, and fully privatized vehicles."
+      },
+      "authentic": {
+        "title": "24/7 Assistance",
+        "desc": "Dedicated support from your arrival to your departure for total peace of mind."
+      }
+    },
     "stats": {
-      "expertise": "Years of Expertise",
+      "years": "Years of Expertise",
       "travelers": "Happy Travelers",
-      "tailor_made": "Tailor-Made"
+      "custom": "Tailor-Made"
+    },
+    "categories": {
+      "desert": "Desert Safari",
+      "luxury": "Tours & Packages",
+      "excursions": "Excursions"
     },
     "newsletter": {
       "title": "Subscribe to our Newsletter",
@@ -406,6 +400,10 @@
   "common": {
     "loading": "Loading...",
     "error": "Error: {{message}}",
-    "private": "Private"
+    "private": "Private",
+    "contact_us": "Contact us",
+    "customizable": "Customizable",
+    "languages_default": "French, English",
+    "signature_experience": "Signature Experience"
   }
 }

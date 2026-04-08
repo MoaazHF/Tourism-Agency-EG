@@ -1,0 +1,389 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "cruises": "الرحلات النيلية",
+    "excursions": "الجولات السياحية",
+    "admin": "لوحة التحكم"
+  },
+  "home": {
+    "hero": {
+      "badge": "تجربة حصرية",
+      "title": {
+        "part1": "رحلتك الفاخرة",
+        "part2": "في قلب النيل"
+      },
+      "subtitle": "اكتشف مصر من خلال مسارات أصيلة وخدمات راقية مصممة خصيصاً لك.",
+      "cta_planning": "خطط لرحلتي",
+      "cta_explore": "استكشف الرحلات النيلية"
+    },
+    "explore": {
+      "badge": "التميز",
+      "title": "لماذا تحجز معنا؟",
+      "view_all": "عرض الكل"
+    },
+    "features": {
+      "serenity": {
+        "title": "خبرة محلية",
+        "desc": "مرشدونا هم علماء مصريات شغوفين يكشفون عن أسرار الفراعنة."
+      },
+      "excellence": {
+        "title": "سيارات خاصة",
+        "desc": "سافر براحة تامة على متن سياراتنا الحديثة والمكيفة والخاصة بالكامل."
+      },
+      "authentic": {
+        "title": "دعم ٢٤/٧",
+        "desc": "دعم مخصص من وصولك حتى مغادرتك لراحة بال تامة."
+      }
+    },
+    "stats": {
+      "years": "سنوات من الخبرة",
+      "travelers": "مسافرون سعداء",
+      "custom": "حسب الطلب"
+    },
+    "categories": {
+      "title": "مجموعاتنا",
+      "subtitle": "اختر الطريقة التي تريد بها تجربة النيل",
+      "cruises": "رحلات نيلية",
+      "cruises_desc": "أبحر على متن فلوكة تقليدية أو دهبية فاخرة لتجربة غامرة.",
+      "excursions": "رحلات وجولات",
+      "excursions_desc": "من أهرامات الجيزة إلى معابد أبو سمبل، استكشف كنوز مصر.",
+      "button": "عرض المجموعة",
+      "desert": "سفاري الصحراء",
+      "luxury": "جولات وحزم"
+    },
+    "newsletter": {
+      "title": "اشترك في نشرتنا الإخبارية",
+      "subtitle": "ابقَ على اطلاع بعروضنا الحصرية ومساراتنا الجديدة.",
+      "placeholder": "عنوان بريدك الإلكتروني",
+      "button": "اشتراك"
+    },
+    "featured": {
+      "title": "تجارب مميزة",
+      "subtitle": "أجمل تجاربنا المختارة بعناية من قبل خبرائنا.",
+      "view_all": "عرض جميع الرحلات"
+    }
+  },
+  "listing": {
+    "error": {
+      "title": "حدث خطأ ما",
+      "retry": "إعادة المحاولة"
+    },
+    "not_found": "الفئة غير موجودة",
+    "intro": {
+      "see_more": "عرض المزيد",
+      "see_less": "عرض أقل"
+    },
+    "no_trips": "لم يتم العثور على رحلات في هذه الفئة حالياً.",
+    "trip_card": {
+      "starts_from": "تبدأ من",
+      "on_quote": "حسب الطلب",
+      "view_trip": "عرض الرحلة"
+    },
+    "value_prop": {
+      "title": "لماذا تسافر مع طريق مصر؟",
+      "subtitle": "خبرة صِيغت في قلب النيل لرحلات تشبهك.",
+      "custom": {
+        "title": "١٠٠٪ حسب الطلب",
+        "item1": "مسارات مرنة",
+        "item2": "إيقاع شخصي",
+        "item3": "اختيار الفنادق"
+      },
+      "expertise": {
+        "title": "خبرة محلية",
+        "item1": "مرشدون خبراء",
+        "item2": "وصول حصري",
+        "item3": "معرفة عريقة"
+      },
+      "assistance": {
+        "title": "دعم ٢٤/٧",
+        "item1": "كونسيرج مخصص",
+        "item2": "استجابة فورية",
+        "item3": "راحة البال"
+      },
+      "sustainable": {
+        "title": "الالتزام المستدام",
+        "item1": "دعم المجتمع المحلي",
+        "item2": "الحفاظ على المواقع",
+        "item3": "سياحة مسؤولة"
+      }
+    },
+    "cta": {
+      "title": "مستعد للتخطيط لرحلة أحلامك؟",
+      "benefit1": "عرض سعر مجاني خلال ٢٤ ساعة",
+      "benefit2": "تعديل مرن",
+      "benefit3": "دفع آمن",
+      "benefit4": "ضمان المسافر",
+      "button": "خطط الآن",
+      "quote": "\"النيل لا يُوصف، بل يُعاش.\"",
+      "expert_name": "أحمد م.",
+      "expert_title": "خبير الرحلات النيلية"
+    }
+  },
+  "trip_details": {
+    "error": {
+      "title": "حدث خطأ ما",
+      "retry": "إعادة المحاولة"
+    },
+    "not_found": {
+      "title": "الرحلة غير موجودة",
+      "subtitle": "هذه الرحلة غير موجودة أو تم حذفها.",
+      "back_home": "العودة للرئيسية"
+    },
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "tours": "الجولات"
+    },
+    "gallery": {
+      "more_photos": "+{{count}} صور",
+      "no_images": "لا توجد صور متاحة لهذه الرحلة"
+    },
+    "info": {
+      "duration": "المدة",
+      "group_size": "حجم المجموعة",
+      "language": "اللغة",
+      "rating": "التقييم"
+    },
+    "sections": {
+      "about": "عن هذه الرحلة",
+      "itinerary": "المسار التفصيلي",
+      "itinerary_full_req": "المسار الكامل متاح عند الطلب",
+      "includes": "السعر يشمل",
+      "excludes": "السعر لا يشمل"
+    },
+    "itinerary_static": {
+      "day1_title": "الوصول إلى القاهرة",
+      "day1_desc": "الاستقبال في المطار والانتقال إلى فندقك الفاخر.",
+      "day2_title": "أهرامات الجيزة وسقارة",
+      "day2_desc": "يوم كامل مخصص لأصول الحضارة.",
+      "day4_title": "أسوان: بداية الرحلة النيلية",
+      "day4_mobile": "أسوان",
+      "day4_subtitle": "اللحظة السحرية",
+      "day4_brief": "الصعود والملاحة",
+      "day4_content": "رحلة صباحية إلى أسوان. زيارة معبد فيلة. في منتصف الظهر، الصعود على متن الفلوكة الخاصة بك.",
+      "day4_feat1": "الغداء والعشاء على متن المركب من إعداد طباخنا النوبي.",
+      "day4_feat2": "ليلة تحت النجوم على اليخت (مراتب مريحة متوفرة)."
+    },
+    "expert": {
+      "help_title": "تحتاج مساعدة؟",
+      "expert_name": "سارة",
+      "expert_title": "خبيرتك في السفر",
+      "contact_link": "تحدث إلى مستشار"
+    }
+  },
+  "booking_form": {
+    "title": "احجز هذه الرحلة",
+    "labels": {
+      "name": "الاسم الكامل *",
+      "name_placeholder": "اسمك",
+      "email": "البريد الإلكتروني *",
+      "email_placeholder": "votre@email.com",
+      "phone": "رقم الهاتف",
+      "date": "التواريخ المطلوبة",
+      "date_placeholder": "اختر الفترة",
+      "adults": "بالغين",
+      "children": "أطفال"
+    },
+    "summary": {
+      "starts_from": "تبدأ من",
+      "per_person": "للفرد",
+      "per_pers_short": "/ فرد",
+      "on_quote": "حسب الطلب",
+      "early_bird": "-١٥٪ الحجز المبكر",
+      "price_base": "السعر الأساسي ({{count}} أفراد)",
+      "child_discount": "خصم الأطفال",
+      "fees": "رسوم الخدمة والتأشيرة",
+      "total_estimate": "الإجمالي التقديري",
+      "total": "الإجمالي"
+    },
+    "submit": "احجز الآن",
+    "loading": "جاري الإرسال...",
+    "success": {
+      "title": "شكراً جزيلاً!",
+      "message": "تم إرسال طلبك لرحلة \"{{title}}\". سنتواصل معك عبر البريد الإلكتروني ({{email}}) قريباً.",
+      "button": "إرسال طلب آخر"
+    },
+    "error": "حدث خطأ أثناء الحجز. يرجى المحاولة مرة أخرى.",
+    "validation": {
+      "required": "يرجى ملء الحقول المطلوبة.",
+      "invalid_email": "يرجى إدخال بريد إلكتروني صحيح.",
+      "invalid_phone": "يرجى إدخال رقم هاتف صحيح."
+    },
+    "confirmation_hint": "تأكيد سريع خلال ٢٤ ساعة"
+  },
+  "admin": {
+    "dashboard_title": "لوحة إدارة الإدارة",
+    "dashboard_subtitle": "طريق مصر",
+    "logout": "تسجيل الخروج",
+    "nav_categories": "الفئات",
+    "sidebar_home": "العودة للرئيسية",
+    "stats": {
+      "total_trips": "إجمالي الرحلات",
+      "total_bookings": "الطلبات",
+      "pending": "قيد الانتظار",
+      "total_categories": "الفئات",
+      "adults_abbr": "ب",
+      "children_abbr": "ط",
+      "currency": "€"
+    },
+    "tabs": {
+      "manage_trips": "إدارة الرحلات",
+      "view_bookings": "طلبات الحجز"
+    },
+    "trips": {
+      "title": "جميع الرحلات",
+      "add_new": "إضافة رحلة",
+      "no_trips": "لا توجد رحلات",
+      "no_trips_hint": "أضف رحلتك الأولى.",
+      "table": {
+        "title": "العنوان",
+        "category": "الفئة",
+        "duration": "المدة",
+        "price": "السعر (€)",
+        "actions": "الإجراءات",
+        "featured": "مميز",
+        "actions_edit": "تعديل",
+        "actions_delete": "حذف"
+      },
+      "confirm_delete": "حذف \"{{title}}\"؟\n\nلا يمكن التراجع عن هذا الإجراء.",
+      "deleted_msg": "تم حذف \"{{title}}\"."
+    },
+    "categories": {
+      "title_manage": "إدارة الفئات",
+      "toast_no_changes": "لا توجد تغييرات لحفظها.",
+      "toast_saved": "تم حفظ \"{{title}}\"!",
+      "status_unsaved": "غير محفوظ",
+      "save_button": "حفظ التغييرات",
+      "saving": "جاري الحفظ...",
+      "fields": {
+        "title": "العنوان",
+        "hero_tag": "علامة الهيرو",
+        "subtitle": "العنوان الفرعي",
+        "hero_image": "رابط صورة الهيرو",
+        "intro_title": "عنوان المقدمة",
+        "intro_text": "نص المقدمة (فقرة جديدة لكل سطر)"
+      }
+    },
+    "trip_form": {
+      "add_new": "إضافة رحلة جديدة",
+      "edit": "تعديل: {{id}}",
+      "toasts": {
+        "uploaded": "تم رفع {{count}} صور!",
+        "upload_error": "خطأ في الرفع: {{message}}",
+        "updated": "تم تحديث الرحلة!",
+        "created": "تم إنشاء الرحلة!",
+        "min_images": "يجب توفر ٥ صور على الأقل.",
+        "max_images": "لا يمكن تجاوز ١٠ صور.",
+        "uploading": "جاري الرفع..."
+      },
+      "sections": {
+        "basic": "المعلومات الأساسية",
+        "logistics": "الخدمات اللوجستية",
+        "pricing": "التسعير",
+        "tags": "الوسوم",
+        "images": "الصور",
+        "itinerary": "المسار",
+        "includes": "السعر يشمل",
+        "excludes": "السعر لا يشمل"
+      },
+      "fields": {
+        "id": "معرف الرحلة (slug)",
+        "id_hint": "مثال: croisiere-nil",
+        "title": "العنوان *",
+        "category": "الفئة",
+        "category_select": "— اختر فئة —",
+        "short_description": "وصف قصير",
+        "category_label": "تسمية الفئة",
+        "category_label_hint": "مثال: تجربة مميزة",
+        "featured": "مميز في الصفحة الرئيسية",
+        "duration": "المدة",
+        "group_size": "حجم المجموعة",
+        "language": "اللغة",
+        "departing": "تفاصيل المغادرة",
+        "price_person": "السعر للفرد (€)",
+        "price_two": "السعر لشخصين (€)",
+        "rating": "التقييم (١-٥)",
+        "tags": "الوسوم",
+        "tags_hint": "مثال: Premium (اضغط Enter)",
+        "image_urls": "أو ضع روابط الصور (واحدة لكل سطر)",
+        "image_limit": "الصور: {{count}} / ١٠",
+        "image_min_hint": "(الأدنى ٥)",
+        "image_upload": "رفع صور",
+        "image_uploading": "جاري الرفع...",
+        "image_limit_reached": "تم الوصول للحد الأقصى (١٠)",
+        "image_supports": "يدعم عدة ملفات",
+        "itinerary_day": "اليوم #",
+        "itinerary_title": "عنوان اليوم",
+        "itinerary_desc": "الوصف"
+      },
+      "placeholders": {
+        "id": "trip-slug",
+        "title": "عنوان الرحلة",
+        "short_description": "وصف موجز للمقالات",
+        "category_label": "تسمية الفئة",
+        "duration": "١٠ أيام / ٩ ليالٍ",
+        "group_size": "أقصى ١٢ فرد",
+        "language": "العربية، الإنجليزية",
+        "departing": "المغادرة من القاهرة",
+        "price": "٢٤٥٠",
+        "rating": "٤.٩",
+        "tags": "أضف وسماً...",
+        "image_urls": "https://...",
+        "itinerary_title": "الوصول",
+        "itinerary_desc": "وصف يومي...",
+        "list_item": "وصف العنصر"
+      },
+      "buttons": {
+        "add_day": "إضافة يوم",
+        "itinerary_empty": "لا يوجد مسار حتى الآن.",
+        "list_add": "إضافة",
+        "list_empty": "فارغ",
+        "submit_create": "إنشاء الرحلة",
+        "submit_update": "تحديث الرحلة",
+        "saving": "جاري الحفظ...",
+        "cancel": "إلغاء"
+      }
+    },
+    "login": {
+      "portal": "بوابة المسؤول",
+      "subtitle": "سجل الدخول للإدارة",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "submit": "دخول",
+      "signing_in": "جاري الدخول...",
+      "forgot": "نسيت كلمة المرور",
+      "error_failed": "فشل الدخول"
+    },
+    "bookings": {
+      "title": "طلبات الحجز",
+      "refresh": "تحديث",
+      "no_bookings": "لا توجد طلبات",
+      "no_bookings_hint": "الطلبات ستظهر هنا.",
+      "trip_unknown": "رحلة غير معروفة",
+      "table": {
+        "client": "العميل",
+        "trip": "الرحلة",
+        "details": "التفاصيل",
+        "status": "الحالة",
+        "actions": "الإجراءات",
+        "people": "الأفراد"
+      },
+      "statuses": {
+        "pending": "قيد الانتظار",
+        "confirmed": "مؤكد",
+        "cancelled": "ملغى"
+      },
+      "status_updated": "تم تحديث الحالة: {{status}}",
+      "confirm_delete": "حذف هذا الطلب؟",
+      "deleted_msg": "تم حذف الطلب"
+    }
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ: {{message}}",
+    "private": "خاص",
+    "contact_us": "اتصل بنا",
+    "customizable": "قابل للتخصيص",
+    "languages_default": "العربية، الإنجليزية",
+    "signature_experience": "تجربة مميزة"
+  }
+}

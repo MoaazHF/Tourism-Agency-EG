@@ -1,0 +1,389 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "cruises": "Cruceros",
+    "excursions": "Excursiones",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero": {
+      "badge": "Experiencia Exclusiva",
+      "title": {
+        "part1": "Tu Viaje de Lujo",
+        "part2": "en el Corazón del Nilo"
+      },
+      "subtitle": "Descubra Egipto a través de itinerarios auténticos y servicios de alta gama personalizados para usted.",
+      "cta_planning": "Planificar Mi Viaje",
+      "cta_explore": "Explorar Cruceros"
+    },
+    "explore": {
+      "badge": "La Diferencia",
+      "title": "¿Por qué reservar con nosotros?",
+      "view_all": "Ver Todo"
+    },
+    "features": {
+      "serenity": {
+        "title": "Experto Local",
+        "desc": "Nuestros guías son apasionados egiptólogos que revelan los secretos mejor guardados."
+      },
+      "excellence": {
+        "title": "Vehículos Privados",
+        "desc": "Viaje con total comodidad a bordo de nuestros vehículos recientes y climatizados."
+      },
+      "authentic": {
+        "title": "Asistencia 24/7",
+        "desc": "Soporte dedicado desde su llegada hasta su partida para total tranquilidad."
+      }
+    },
+    "stats": {
+      "years": "Años de Experiencia",
+      "travelers": "Viajeros Felices",
+      "custom": "A Medida"
+    },
+    "categories": {
+      "title": "Nuestras Colecciones",
+      "subtitle": "Elija la forma en que desea vivir el Nilo",
+      "cruises": "Cruceros por el Nilo",
+      "cruises_desc": "Navegue en una Feluca tradicional o en un Dahabiya de lujo para una inmersión total.",
+      "excursions": "Excursiones y Tours",
+      "excursions_desc": "Desde las Pirámides de Giza hasta los templos de Abu Simbel, explore los tesoros de Egipto.",
+      "button": "Ver Colección",
+      "desert": "Safari por el Desierto",
+      "luxury": "Tours y Paquetes"
+    },
+    "newsletter": {
+      "title": "Suscríbete a nuestro boletín",
+      "subtitle": "Mantente informado sobre nuestras ofertas exclusivas y nuevos itinerarios.",
+      "placeholder": "Tu dirección de correo",
+      "button": "Suscribirse"
+    },
+    "featured": {
+      "title": "Experiencias Destacadas",
+      "subtitle": "Nuestras pepitas más bellas seleccionadas por nuestros expertos.",
+      "view_all": "Ver todos los viajes"
+    }
+  },
+  "listing": {
+    "error": {
+      "title": "Ha ocurrido un error",
+      "retry": "Reintentar"
+    },
+    "not_found": "Categoría no encontrada",
+    "intro": {
+      "see_more": "Ver Más",
+      "see_less": "Ver Menos"
+    },
+    "no_trips": "No se encontraron viajes en esta categoría por el momento.",
+    "trip_card": {
+      "starts_from": "Desde",
+      "on_quote": "Bajo presupuesto",
+      "view_trip": "Ver viaje"
+    },
+    "value_prop": {
+      "title": "¿Por qué viajar con Route d'Égypte?",
+      "subtitle": "Experiencia forjada en el corazón del Nilo para viajes que se parecen a usted.",
+      "custom": {
+        "title": "100% A medida",
+        "item1": "Itinerarios flexibles",
+        "item2": "Ritmo personalizado",
+        "item3": "Elección de hoteles"
+      },
+      "expertise": {
+        "title": "Experto local",
+        "item1": "Guías expertos",
+        "item2": "Acceso privilegiado",
+        "item3": "Conocimiento ancestral"
+      },
+      "assistance": {
+        "title": "Asistencia 24/7",
+        "item1": "Conserjería dedicada",
+        "item2": "Reactividad inmediata",
+        "item3": "Tranquilidad"
+      },
+      "sustainable": {
+        "title": "Compromiso sostenible",
+        "item1": "Soporte a locales",
+        "item2": "Preservación de sitios",
+        "item3": "Turismo responsable"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para planificar el viaje de sus sueños?",
+      "benefit1": "Presupuesto gratuito en 24h",
+      "benefit2": "Modificación flexible",
+      "benefit3": "Pago seguro",
+      "benefit4": "Garantía del viajero",
+      "button": "Planificar ahora",
+      "quote": "\"El Nilo no se cuenta, se vive.\"",
+      "expert_name": "Ahmed M.",
+      "expert_title": "Experto en Cruceros"
+    }
+  },
+  "trip_details": {
+    "error": {
+      "title": "Ha ocurrido un error",
+      "retry": "Reintentar"
+    },
+    "not_found": {
+      "title": "Viaje no encontrado",
+      "subtitle": "Este viaje no existe o ha sido eliminado.",
+      "back_home": "Volver al inicio"
+    },
+    "breadcrumb": {
+      "home": "Inicio",
+      "tours": "Tours"
+    },
+    "gallery": {
+      "more_photos": "+{{count}} Fotos",
+      "no_images": "No hay imágenes disponibles para este viaje"
+    },
+    "info": {
+      "duration": "Duración",
+      "group_size": "Tamaño del grupo",
+      "language": "Idioma",
+      "rating": "Calificación"
+    },
+    "sections": {
+      "about": "Sobre este viaje",
+      "itinerary": "Itinerario detallado",
+      "itinerary_full_req": "Itinerario completo disponible bajo petición",
+      "includes": "El precio incluye",
+      "excludes": "El precio no incluye"
+    },
+    "itinerary_static": {
+      "day1_title": "Llegada a El Cairo",
+      "day1_desc": "Bienvenida en el aeropuerto y traslado a su hotel de lujo.",
+      "day2_title": "Pirámides de Giza y Saqqara",
+      "day2_desc": "Día completo dedicado a los orígenes de la civilización.",
+      "day4_title": "Asuán: Inicio del Crucero",
+      "day4_mobile": "Asuán",
+      "day4_subtitle": "El momento mágico",
+      "day4_brief": "Embarque y navegación",
+      "day4_content": "Vuelo matutino a Asuán. Visita al templo de Philae. Por la tarde, embarque en su feluca privada.",
+      "day4_feat1": "Almuerzo y cena a bordo preparados por su cocinero nubio.",
+      "day4_feat2": "Noche estrellada en cubierta (colchones cómodos incluidos)."
+    },
+    "expert": {
+      "help_title": "¿Necesita ayuda?",
+      "expert_name": "Sara",
+      "expert_title": "Su experta en viajes",
+      "contact_link": "Hablar con un asesor"
+    }
+  },
+  "booking_form": {
+    "title": "Reservar este Viaje",
+    "labels": {
+      "name": "Nombre Completo *",
+      "name_placeholder": "Su nombre",
+      "email": "Correo Electrónico *",
+      "email_placeholder": "su@email.com",
+      "phone": "Número de Teléfono",
+      "date": "Fechas deseadas",
+      "date_placeholder": "Elegir período",
+      "adults": "Adultos",
+      "children": "Niños"
+    },
+    "summary": {
+      "starts_from": "Desde",
+      "per_person": "por persona",
+      "per_pers_short": "/ pers",
+      "on_quote": "Bajo presupuesto",
+      "early_bird": "-15% Early Bird",
+      "price_base": "Precio base ({{count}} pers)",
+      "child_discount": "Descuento niños",
+      "fees": "Tasas y Visa",
+      "total_estimate": "Estimación Total",
+      "total": "Total"
+    },
+    "submit": "Reservar",
+    "loading": "Enviando...",
+    "success": {
+      "title": "¡Muchas Gracias!",
+      "message": "Su solicitud para \"{{title}}\" ha sido enviada. Nos pondremos en contacto por email ({{email}}) pronto.",
+      "button": "Enviar otra solicitud"
+    },
+    "error": "Ocurrió un error al reservar. Inténtelo de nuevo.",
+    "validation": {
+      "required": "Por favor complete los campos obligatorios.",
+      "invalid_email": "Por favor ingrese un email válido.",
+      "invalid_phone": "Por favor ingrese un teléfono válido."
+    },
+    "confirmation_hint": "Confirmación rápida en 24h"
+  },
+  "admin": {
+    "dashboard_title": "Panel de Administración",
+    "dashboard_subtitle": "Route d'Égypte",
+    "logout": "Cerrar Sesión",
+    "nav_categories": "Categorías",
+    "sidebar_home": "Volver al Inicio",
+    "stats": {
+      "total_trips": "Viajes Totales",
+      "total_bookings": "Reservas",
+      "pending": "Pendientes",
+      "total_categories": "Categorías",
+      "adults_abbr": "A",
+      "children_abbr": "N",
+      "currency": "€"
+    },
+    "tabs": {
+      "manage_trips": "Gestionar Viajes",
+      "view_bookings": "Ver Reservas"
+    },
+    "trips": {
+      "title": "Todos los Viajes",
+      "add_new": "Añadir Viaje",
+      "no_trips": "No hay viajes",
+      "no_trips_hint": "Añada su primer viaje.",
+      "table": {
+        "title": "Título",
+        "category": "Categoría",
+        "duration": "Duración",
+        "price": "Precio (€)",
+        "actions": "Acciones",
+        "featured": "Destacado",
+        "actions_edit": "Editar",
+        "actions_delete": "Eliminar"
+      },
+      "confirm_delete": "¿Eliminar \"{{title}}\"?\n\nEsta acción es irreversible.",
+      "deleted_msg": "\"{{title}}\" eliminado."
+    },
+    "categories": {
+      "title_manage": "Gestionar Categorías",
+      "toast_no_changes": "Sin cambios para guardar.",
+      "toast_saved": "¡\"{{title}}\" guardado!",
+      "status_unsaved": "no guardado",
+      "save_button": "Guardar Cambios",
+      "saving": "Guardando...",
+      "fields": {
+        "title": "Título",
+        "hero_tag": "Etiqueta Hero",
+        "subtitle": "Subtítulo",
+        "hero_image": "URL Imagen Hero",
+        "intro_title": "Título de Introducción",
+        "intro_text": "Texto de Introducción (doble enter para párrafos)"
+      }
+    },
+    "trip_form": {
+      "add_new": "Añadir nuevo viaje",
+      "edit": "Editar: {{id}}",
+      "toasts": {
+        "uploaded": "¡{{count}} imágenes subidas!",
+        "upload_error": "Error de subida: {{message}}",
+        "updated": "Viaje actualizado!",
+        "created": "Viaje creado!",
+        "min_images": "Mínimo 5 imágenes.",
+        "max_images": "Máximo 10 imágenes.",
+        "uploading": "Subiendo..."
+      },
+      "sections": {
+        "basic": "Información Básica",
+        "logistics": "Logística",
+        "pricing": "Precios",
+        "tags": "Etiquetas",
+        "images": "Imágenes",
+        "itinerary": "Itinerario",
+        "includes": "Incluye",
+        "excludes": "No Incluye"
+      },
+      "fields": {
+        "id": "ID del Viaje (slug)",
+        "id_hint": "ej: crucero-nilo",
+        "title": "Título *",
+        "category": "Categoría",
+        "category_select": "— Seleccionar categoría —",
+        "short_description": "Descripción Corta",
+        "category_label": "Etiqueta de Categoría",
+        "category_label_hint": "ej: Experiencia Firma",
+        "featured": "Destacado en inicio",
+        "duration": "Duración",
+        "group_size": "Tamaño del Grupo",
+        "language": "Idioma",
+        "departing": "Detalles de Salida",
+        "price_person": "Precio por Persona (€)",
+        "price_two": "Precio para Dos (€)",
+        "rating": "Calificación (1–5)",
+        "tags": "Etiquetas",
+        "tags_hint": "ej: Premium (Presione Enter)",
+        "image_urls": "URLs de imágenes (una por línea)",
+        "image_limit": "Imágenes: {{count}} / 10",
+        "image_min_hint": "(Mín 5)",
+        "image_upload": "Subir imágenes",
+        "image_uploading": "Subiendo...",
+        "image_limit_reached": "Límite alcanzado (10)",
+        "image_supports": "Soporta múltiples archivos",
+        "itinerary_day": "Día #",
+        "itinerary_title": "Título del Día",
+        "itinerary_desc": "Descripción"
+      },
+      "placeholders": {
+        "id": "mi-viaje-slug",
+        "title": "Título del viaje",
+        "short_description": "Breve descripción",
+        "category_label": "Etiqueta",
+        "duration": "10 Días / 9 Noches",
+        "group_size": "Máx 12 Personas",
+        "language": "Español, Inglés",
+        "departing": "Salida desde El Cairo",
+        "price": "2450",
+        "rating": "4.9",
+        "tags": "Añadir etiqueta...",
+        "image_urls": "https://...",
+        "itinerary_title": "Llegada",
+        "itinerary_desc": "Detalle del día...",
+        "list_item": "Elemento de lista"
+      },
+      "buttons": {
+        "add_day": "Añadir Día",
+        "itinerary_empty": "Sin itinerario aún.",
+        "list_add": "Añadir",
+        "list_empty": "Vacío",
+        "submit_create": "Crear Viaje",
+        "submit_update": "Actualizar Viaje",
+        "saving": "Guardando...",
+        "cancel": "Cancelar"
+      }
+    },
+    "login": {
+      "portal": "Portal Admin",
+      "subtitle": "Inicie sesión para gestionar",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Entrar",
+      "signing_in": "Entrando...",
+      "forgot": "Olvidé mi contraseña",
+      "error_failed": "Error al entrar"
+    },
+    "bookings": {
+      "title": "Reservas",
+      "refresh": "Refrescar",
+      "no_bookings": "Sin reservas",
+      "no_bookings_hint": "Las solicitudes aparecerán aquí.",
+      "trip_unknown": "Viaje desconocido",
+      "table": {
+        "client": "Cliente",
+        "trip": "Viaje",
+        "details": "Detalles",
+        "status": "Estado",
+        "actions": "Acciones",
+        "people": "Personas"
+      },
+      "statuses": {
+        "pending": "Pendiente",
+        "confirmed": "Confirmado",
+        "cancelled": "Cancelado"
+      },
+      "status_updated": "Estado actualizado: {{status}}",
+      "confirm_delete": "¿Eliminar esta reserva?",
+      "deleted_msg": "Reserva eliminada"
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error: {{message}}",
+    "private": "Privado",
+    "contact_us": "Contáctenos",
+    "customizable": "Personalizable",
+    "languages_default": "Español, Inglés",
+    "signature_experience": "Experiencia Signature"
+  }
+}

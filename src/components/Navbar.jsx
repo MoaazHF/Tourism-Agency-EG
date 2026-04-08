@@ -54,7 +54,7 @@ const Navbar = () => {
             <Link to="/cruises" className={`flex items-center gap-1 uppercase tracking-tight text-sm font-bold border-b-2 pb-1 border-transparent text-secondary hover:text-primary transition-colors`}>
               {t('nav.cruises')} <ChevronDown size={14} />
             </Link>
-            <div className="absolute top-full left-0 mt-2 w-56 bg-surface-container-lowest shadow-lg rounded-md overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+            <div className="absolute top-full inset-s-0 mt-2 w-56 bg-surface-container-lowest shadow-lg rounded-md overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
               <div className="flex flex-col">
                 <Link to="/cruises/felucca" className="px-4 py-3 hover:bg-surface-container-low text-sm font-body text-on-surface">{t('nav.dropdowns.felucca')}</Link>
                 <Link to="/cruises/dahabeya" className="px-4 py-3 hover:bg-surface-container-low text-sm font-body text-on-surface">{t('nav.dropdowns.dahabeya')}</Link>
@@ -69,7 +69,7 @@ const Navbar = () => {
             <Link to="/excursions" className={`flex items-center gap-1 uppercase tracking-tight text-sm font-bold border-b-2 pb-1 border-transparent text-secondary hover:text-primary transition-colors`}>
               {t('nav.excursions')} <ChevronDown size={14} />
             </Link>
-            <div className="absolute top-full left-0 mt-2 w-64 bg-surface-container-lowest shadow-lg rounded-md overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+            <div className="absolute top-full inset-s-0 mt-2 w-64 bg-surface-container-lowest shadow-lg rounded-md overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
               <div className="flex flex-col">
                 <Link to="/excursions/cairo" className="px-4 py-3 hover:bg-surface-container-low text-sm font-body text-on-surface">{t('nav.dropdowns.starting_cairo')}</Link>
                 <Link to="/excursions/luxor" className="px-4 py-3 hover:bg-surface-container-low text-sm font-body text-on-surface">{t('nav.dropdowns.luxor_region')}</Link>
@@ -111,7 +111,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden absolute top-full left-0 w-full bg-surface-container-lowest shadow-md transition-all duration-300 overflow-hidden ${
+        className={`lg:hidden absolute top-full inset-s-0 w-full bg-surface-container-lowest shadow-md transition-all duration-300 overflow-hidden ${
           isOpen ? 'max-h-screen border-t' : 'max-h-0'
         }`}
       >
@@ -128,7 +128,7 @@ const Navbar = () => {
               </button>
             </div>
             <div className={`overflow-hidden transition-all duration-300 ${activeDropdown === 'cruises' ? 'max-h-60 mt-2' : 'max-h-0'}`}>
-              <div className="flex flex-col pl-4 gap-3 text-sm font-body">
+              <div className="flex flex-col ps-4 gap-3 text-sm font-body">
                 <Link to="/cruises/felucca" className="text-on-surface hover:text-primary" onClick={closeMenu}>{t('nav.dropdowns.felucca')}</Link>
                 <Link to="/cruises/dahabeya" className="text-on-surface hover:text-primary" onClick={closeMenu}>{t('nav.dropdowns.dahabeya')}</Link>
                 <Link to="/cruises/ship-tours" className="text-on-surface hover:text-primary" onClick={closeMenu}>{t('nav.dropdowns.ship_tours')}</Link>
@@ -145,7 +145,7 @@ const Navbar = () => {
               </button>
             </div>
             <div className={`overflow-hidden transition-all duration-300 ${activeDropdown === 'excursions' ? 'max-h-60 mt-2' : 'max-h-0'}`}>
-              <div className="flex flex-col pl-4 gap-3 text-sm font-body">
+              <div className="flex flex-col ps-4 gap-3 text-sm font-body">
                 <Link to="/excursions/cairo" className="text-on-surface hover:text-primary" onClick={closeMenu}>{t('nav.dropdowns.starting_cairo')}</Link>
                 <Link to="/excursions/luxor" className="text-on-surface hover:text-primary" onClick={closeMenu}>{t('nav.dropdowns.luxor_region')}</Link>
                 <Link to="/excursions/aswan" className="text-on-surface hover:text-primary" onClick={closeMenu}>{t('nav.dropdowns.aswan_region')}</Link>
