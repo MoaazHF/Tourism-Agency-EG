@@ -41,6 +41,8 @@ create table trips (
   includes          text[]   default '{}',
   excludes          text[]   default '{}',
   extra_data        jsonb    default '{}'::jsonb,  -- catch-all for unmapped fields
+  is_featured       boolean  default false not null,
+  tags              text[]   default '{}',
   created_at        timestamp with time zone default now()
 );
 

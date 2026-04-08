@@ -126,7 +126,12 @@ export default function AdminDashboard() {
                   <tr key={trip.id} className="hover:bg-surface-container-low transition-colors">
                     <td className="px-6 py-4">
                       <p className="font-bold text-on-surface line-clamp-1">{trip.title}</p>
-                      <p className="text-outline text-xs mt-0.5 font-mono">{trip.id}</p>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <p className="text-outline text-xs font-mono">{trip.id}</p>
+                        {trip.is_featured && (
+                          <span className="px-1.5 py-0.5 bg-secondary/10 text-secondary text-[10px] uppercase font-black rounded border border-secondary/20">Featured</span>
+                        )}
+                      </div>
                     </td>
                     <td className="px-6 py-4 hidden md:table-cell">
                       <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold capitalize">

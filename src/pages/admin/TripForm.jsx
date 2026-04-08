@@ -17,6 +17,8 @@ const DEFAULT_FORM = {
   price_per_two: '',
   departing_details: '',
   star_rating: '5',
+  is_featured: false,
+  tags: [],             // array of strings
   images: [],           // array of URL strings
   itinerary: [],        // [{day, title, description}]
   includes: [],         // string[]
@@ -54,6 +56,8 @@ export default function TripForm() {
         price_per_two:    data.price_per_two      != null ? String(data.price_per_two) : '',
         departing_details: data.departing_details || '',
         star_rating:      data.star_rating        != null ? String(data.star_rating) : '5',
+        is_featured:      data.is_featured        || false,
+        tags:             data.tags               || [],
         images:           data.images             || [],
         itinerary:        data.itinerary          || [],
         includes:         data.includes           || [],
@@ -86,9 +90,10 @@ export default function TripForm() {
       const { data: urlData } = supabase.storage.from('trip-images').getPublicUrl(fileName)
       urls.push(urlData.publicUrl)
     }
-    setField('images', [...form.images, ...urls])
+    setField('images', [...form.images, ...urls].slice(0, 10))
     setUploading(false)
     e.target.value = ''
+    showToast(`Uploaded ${urls.length} images!`)
   }
 
   const removeImage = (idx) => setField('images', form.images.filter((_, i) => i !== idx))
@@ -110,6 +115,19 @@ export default function TripForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError(null)
+
+    // Validation
+    if (form.images.length < 5) {
+      setError('A trip must have at least 5 images.')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+    if (form.images.length > 10) {
+      setError('A trip cannot have more than 10 images.')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
     setSaving(true)
 
     const payload = {
@@ -124,6 +142,8 @@ export default function TripForm() {
       price_per_two:    form.price_per_two    !== '' ? parseFloat(form.price_per_two)    : null,
       departing_details: form.departing_details || null,
       star_rating:      form.star_rating !== '' ? parseFloat(form.star_rating) : null,
+      is_featured:      form.is_featured,
+      tags:             form.tags.filter(Boolean),
       images:           form.images,
       itinerary:        form.itinerary,
       includes:         form.includes.filter(Boolean),
@@ -213,6 +233,19 @@ export default function TripForm() {
               <input id="field-catlabel" value={form.category_label} onChange={(e) => setField('category_label', e.target.value)}
                 className={inputCls} placeholder="Category label" />
             </Field>
+
+            <div className="flex items-center gap-3 pt-2">
+              <input
+                id="field-featured"
+                type="checkbox"
+                checked={form.is_featured}
+                onChange={(e) => setField('is_featured', e.target.checked)}
+                className="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary"
+              />
+              <label htmlFor="field-featured" className="text-sm font-bold text-on-surface cursor-pointer">
+                Featured on Home Page
+              </label>
+            </div>
           </section>
 
           {/* ── Logistics ──────────────────────────────────────── */}
@@ -257,18 +290,61 @@ export default function TripForm() {
             </div>
           </section>
 
+          {/* ── Tags ───────────────────────────────────────────── */}
+          <section className="bg-surface rounded-2xl p-8 border border-outline-variant/20 shadow-sm space-y-6">
+            <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">Tags</h2>
+            <Field label="Tags" hint="e.g. Premium, Bestseller, Luxury (press Enter to add)">
+              <div className="flex flex-wrap gap-2 mb-3">
+                {form.tags.map((tag, i) => (
+                  <span key={i} className="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full flex items-center gap-2">
+                    {tag}
+                    <button type="button" onClick={() => setField('tags', form.tags.filter((_, idx) => idx !== i))}>
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+              </div>
+              <input
+                className={inputCls}
+                placeholder="Add a tag..."
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    const val = e.target.value.trim()
+                    if (val && !form.tags.includes(val)) {
+                      setField('tags', [...form.tags, val])
+                      e.target.value = ''
+                    }
+                  }
+                }}
+              />
+            </Field>
+          </section>
+
           {/* ── Images ─────────────────────────────────────────── */}
           <section className="bg-surface rounded-2xl p-8 border border-outline-variant/20 shadow-sm space-y-6">
             <h2 className="font-headline text-xl font-bold text-on-surface border-b border-outline-variant/20 pb-4">Images</h2>
 
             {/* Upload button */}
-            <div>
-              <label htmlFor="field-upload" className={`inline-flex items-center gap-2 px-5 py-3 rounded-xl border-2 border-dashed border-primary/40 text-primary font-bold text-sm cursor-pointer hover:bg-primary/5 transition-colors ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
-                <Upload className="w-4 h-4" />
-                {uploading ? 'Uploading…' : 'Upload images to Supabase Storage'}
-              </label>
-              <input id="field-upload" type="file" accept="image/*" multiple onChange={handleImageUpload} className="hidden" />
-              <p className="text-xs text-outline mt-2">Uploads to the <code>trip-images</code> storage bucket (must be created &amp; set to PUBLIC in Supabase dashboard first)</p>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between font-headline font-bold text-sm">
+                <span className={form.images.length < 5 ? 'text-error' : 'text-primary'}>
+                  Images: {form.images.length} / 10
+                  {form.images.length < 5 && ' (Min 5 required)'}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <label htmlFor="field-upload" className={`grow flex items-center justify-center gap-2 px-5 py-4 rounded-xl border-2 border-dashed border-primary/40 text-primary font-bold text-sm cursor-pointer hover:bg-primary/5 transition-all active:scale-95 ${uploading || form.images.length >= 10 ? 'opacity-60 pointer-events-none' : ''}`}>
+                  <Upload className="w-5 h-5" />
+                  {uploading ? 'Uploading…' : form.images.length >= 10 ? 'Limit reached (10)' : 'Upload New Images'}
+                </label>
+                <input id="field-upload" type="file" accept="image/*" multiple onChange={handleImageUpload} className="hidden" />
+              </div>
+              
+              <p className="text-[10px] text-outline leading-tight uppercase tracking-widest font-bold opacity-60">
+                Supports multiple files • Bucket: <code>trip-images</code>
+              </p>
             </div>
 
             {/* URL textarea for pasting external URLs */}

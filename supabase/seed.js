@@ -17,10 +17,12 @@ import { createClient } from '@supabase/supabase-js'
 
 // ── Load env manually for Node (Vite doesn't run here) ──────────
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL
-const SUPABASE_KEY = process.env.VITE_SUPABASE_ANON_KEY
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY  // service_role bypasses RLS
 
-if (!SUPABASE_URL || !SUPABASE_KEY || SUPABASE_URL.startsWith('your_')) {
-  console.error('❌  Missing Supabase credentials. Fill in .env first.')
+if (!SUPABASE_URL || !SUPABASE_KEY || SUPABASE_KEY.startsWith('your_')) {
+  console.error('\n❌  Missing Supabase service_role key.')
+  console.error('   Open .env and fill in SUPABASE_SERVICE_KEY')
+  console.error('   Get it from: Supabase Dashboard > Project Settings > API > service_role (secret)\n')
   process.exit(1)
 }
 

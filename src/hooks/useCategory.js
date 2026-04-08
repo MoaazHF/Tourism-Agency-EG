@@ -61,8 +61,11 @@ export function useCategory(categorySlug) {
         .map((key) => (tripData || []).find((t) => t.id === key))
         .filter(Boolean)
 
-      // Append any trips not in trip_keys at the end
-      const extra = (tripData || []).filter((t) => !keys.includes(t.id))
+      // Append any trips not in trip_keys at the end, sorted by created_at desc
+      const extra = (tripData || [])
+        .filter((t) => !keys.includes(t.id))
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+
       setTrips([...ordered, ...extra])
       setLoading(false)
     }

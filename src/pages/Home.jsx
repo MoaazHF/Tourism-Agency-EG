@@ -1,7 +1,25 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Map, CarFront, Clock, ShieldCheck, Ship, Calendar } from 'lucide-react';
+import { useTrips } from '../hooks/useTrips';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Home = () => {
+  const { trips, loading } = useTrips();
+
+  const getCategoryTrips = (slug) => {
+    return trips
+      .filter(t => t.category_slug === slug)
+      .sort((a, b) => {
+        // Prioritize is_featured, then created_at desc
+        if (a.is_featured && !b.is_featured) return -1;
+        if (!a.is_featured && b.is_featured) return 1;
+        return new Date(b.created_at) - new Date(a.created_at);
+      })
+      .slice(0, 3);
+  };
+
+  if (loading) return <LoadingSpinner />;
+
   return (
     <div className="w-full">
       {/* Hero Section */}
@@ -78,62 +96,28 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Cruise 1 */}
-            <Link to="/cruises/dahabeya" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?q=80&w=2070&auto=format&fit=crop" alt="Dahabeya" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-current" /> Premium
+            {getCategoryTrips('cruises').map((trip) => (
+              <Link key={trip.id} to={`/cruises/${trip.id}`} className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+                <div className="relative h-72 overflow-hidden">
+                  <img src={trip.images?.[0] || 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?q=80&w=2070&auto=format&fit=crop'} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  {trip.is_featured && (
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-current" /> {trip.category_label || 'Premium'}
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">The Dahabeya</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  Intimate sailing along the Nile. Discover Egypt at a gentle pace on this traditional majestic sailboat.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> 5 Nights</span>
-                  <span className="flex items-center gap-1.5"><Ship className="w-4 h-4 text-[#c79a3c]" /> 8 Cabins</span>
+                <div className="p-8 flex flex-col grow">
+                  <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">{trip.title}</h4>
+                  <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6 line-clamp-2">
+                    {trip.short_description}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
+                    <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> {trip.duration}</span>
+                    <span className="flex items-center gap-1.5"><Ship className="w-4 h-4 text-[#c79a3c]" /> {trip.group_size || 'Private'}</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-
-            {/* Cruise 2 */}
-            <Link to="/cruises/the-luxor" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1600521605615-585a06584c31?q=80&w=2070&auto=format&fit=crop" alt="The Luxor" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-current" /> Luxury
-                </div>
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">The Luxor</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  Steamship charm from the 1920s. Relive the golden age of Nile cruises in absolute refinement.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> 7 Nights</span>
-                  <span className="flex items-center gap-1.5"><Ship className="w-4 h-4 text-[#c79a3c]" /> 22 Cabins</span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Cruise 3 */}
-            <Link to="/cruises/the-sandal" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1580834341580-8c1ee9dfeb8c?q=80&w=2070&auto=format&fit=crop" alt="The Sandal" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">The Sandal</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  Authentic experience away from the crowds. A two-masted boat for a private immersion in local life.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> 4 Nights</span>
-                  <span className="flex items-center gap-1.5"><Ship className="w-4 h-4 text-[#c79a3c]" /> 4 Cabins</span>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
           
           <div className="mt-12 text-center md:hidden">
@@ -180,59 +164,28 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Safari 1 */}
-            <Link to="/safari/white-desert" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1549646879-11ba18e775eb?q=80&w=1974&auto=format&fit=crop" alt="The White Desert" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-current" /> Most Popular
+            {getCategoryTrips('safari').map((trip) => (
+              <Link key={trip.id} to={`/safari/${trip.id}`} className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+                <div className="relative h-72 overflow-hidden">
+                  <img src={trip.images?.[0]} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  {trip.is_featured && (
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-current" /> {trip.category_label || 'Most Popular'}
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">The White Desert</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  A sculpted world of chalk. Spend the night under the stars amidst these surreal geological formations.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> 2 Nights</span>
-                  <span className="flex items-center gap-1.5"><CarFront className="w-4 h-4 text-[#c79a3c]" /> 4x4 Private</span>
+                <div className="p-8 flex flex-col grow">
+                  <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">{trip.title}</h4>
+                  <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6 line-clamp-2">
+                    {trip.short_description}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
+                    <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> {trip.duration}</span>
+                    <span className="flex items-center gap-1.5"><CarFront className="w-4 h-4 text-[#c79a3c]" /> {trip.group_size || '4x4 Private'}</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-
-            {/* Safari 2 */}
-            <Link to="/safari/siwa-oasis" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1502485542750-f8f533cc285b?q=80&w=2070&auto=format&fit=crop" alt="Siwa Oasis" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">Siwa Oasis</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  An island of palm trees and springs deep in the sand sea. Discover Alexander the Great's temple and salt lakes.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> 3 Nights</span>
-                  <span className="flex items-center gap-1.5"><CarFront className="w-4 h-4 text-[#c79a3c]" /> 4x4 Private</span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Safari 3 */}
-            <Link to="/safari/black-desert" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1627914441270-e4708fb56447?q=80&w=2070&auto=format&fit=crop" alt="Black Desert & Bahariya" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">Black Desert</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  Volcanic mountains rising from the golden sands. Explore hot springs and ancient dinosaur remnants.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> 1 Night</span>
-                  <span className="flex items-center gap-1.5"><CarFront className="w-4 h-4 text-[#c79a3c]" /> 4x4 Private</span>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
           
           <div className="mt-12 text-center md:hidden">
@@ -257,59 +210,28 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Tour 1 */}
-            <Link to="/tours/classic-egypt" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1539768942893-daf53e448371?q=80&w=2071&auto=format&fit=crop" alt="Classic Egypt" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-current" /> Bestseller
+            {getCategoryTrips('tours').map((trip) => (
+              <Link key={trip.id} to={`/tours/${trip.id}`} className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+                <div className="relative h-72 overflow-hidden">
+                  <img src={trip.images?.[0]} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  {trip.is_featured && (
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-current" /> {trip.category_label || 'Bestseller'}
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">Classic Egypt</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  Experience the quintessential highlights. Cairo, the Pyramids, Luxor, Aswan, and a gentle Nile Cruise.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> 7 Nights</span>
-                  <span className="flex items-center gap-1.5"><Map className="w-4 h-4 text-[#c79a3c]" /> 4 Cities</span>
+                <div className="p-8 flex flex-col grow">
+                  <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">{trip.title}</h4>
+                  <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6 line-clamp-2">
+                    {trip.short_description}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
+                    <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> {trip.duration}</span>
+                    <span className="flex items-center gap-1.5"><Map className="w-4 h-4 text-[#c79a3c]" /> {trip.group_size || 'Discovery'}</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-
-            {/* Tour 2 */}
-            <Link to="/tours/pharaohs-coral" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1589839461973-45ab8bb4167e?q=80&w=2070&auto=format&fit=crop" alt="Egypt & The Red Sea" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">Pharaohs & Coral</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  A perfect blend of culture and relaxation. Explore ancient temples followed by days on pristine Red Sea beaches.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> 10 Nights</span>
-                  <span className="flex items-center gap-1.5"><Map className="w-4 h-4 text-[#c79a3c]" /> 3 Cities</span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Tour 3 */}
-            <Link to="/tours/deep-south" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1600021319082-f538e12128aa?q=80&w=2070&auto=format&fit=crop" alt="Deep South Explorer" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">Deep South Explorer</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  Venture from Aswan down to the majestic temples of Abu Simbel. A journey into the heart of Nubia.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#c79a3c]" /> 5 Nights</span>
-                  <span className="flex items-center gap-1.5"><Map className="w-4 h-4 text-[#c79a3c]" /> 2 Cities</span>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
           
           <div className="mt-12 text-center md:hidden">
@@ -334,56 +256,28 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Excursion 1 */}
-            <Link to="/excursions/giza-pyramids" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1542475454-945b4c107eaa?q=80&w=2070&auto=format&fit=crop" alt="Giza Pyramids" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">Giza Pyramids & Sphinx</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  Half-day private tour. Stand before the last remaining wonder of the ancient world with an expert Egyptologist.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-[#c79a3c]" /> 4 Hours</span>
-                  <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#c79a3c]" /> Private Guide</span>
+            {getCategoryTrips('excursions').map((trip) => (
+              <Link key={trip.id} to={`/excursions/${trip.id}`} className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
+                <div className="relative h-72 overflow-hidden">
+                  <img src={trip.images?.[0]} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  {trip.is_featured && (
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-current" /> {trip.category_label || 'Expert Guide'}
+                    </div>
+                  )}
                 </div>
-              </div>
-            </Link>
-
-            {/* Excursion 2 */}
-            <Link to="/excursions/valley-of-kings" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1621255855078-d101d2ceeeff?q=80&w=2070&auto=format&fit=crop" alt="Valley of the Kings" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">Valley of the Kings</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  Full-day Luxor tour. Descend into royal tombs, marvel at Karnak Temple, and cross the majestic Nile.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-[#c79a3c]" /> 8 Hours</span>
-                  <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#c79a3c]" /> Private Guide</span>
+                <div className="p-8 flex flex-col grow">
+                  <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">{trip.title}</h4>
+                  <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6 line-clamp-2">
+                    {trip.short_description}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
+                    <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-[#c79a3c]" /> {trip.duration}</span>
+                    <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#c79a3c]" /> {trip.group_size || 'Private Guide'}</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-
-            {/* Excursion 3 */}
-            <Link to="/excursions/abu-simbel" className="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col">
-              <div className="relative h-72 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1628172102146-24ba0baedce0?q=80&w=2070&auto=format&fit=crop" alt="Abu Simbel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              </div>
-              <div className="p-8 flex flex-col grow">
-                <h4 className="text-2xl font-bold text-on-surface font-headline mb-3 group-hover:text-[#c79a3c] transition-colors">Abu Simbel Temples</h4>
-                <p className="text-on-surface-variant font-body text-sm leading-relaxed mb-6">
-                  From Aswan by air or road. Witness Ramses II's colossal monuments carved directly into the mountain side.
-                </p>
-                <div className="mt-auto flex items-center justify-between text-sm font-headline font-bold text-[#1a2b48]">
-                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-[#c79a3c]" /> 6 Hours</span>
-                  <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-[#c79a3c]" /> Private Guide</span>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
           
           <div className="mt-12 text-center md:hidden">
