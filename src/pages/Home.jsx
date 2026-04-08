@@ -72,9 +72,9 @@ const Home = () => {
               <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">On The Nile</h2>
               <h3 className="text-4xl font-bold text-on-surface font-headline">Signature Cruises</h3>
             </div>
-            <button className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
+            <Link to="/cruises" className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
               View All Ships <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -137,9 +137,9 @@ const Home = () => {
           </div>
           
           <div className="mt-12 text-center md:hidden">
-             <button className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
+             <Link to="/cruises" className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
               View All Ships <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -174,9 +174,9 @@ const Home = () => {
               <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">Off the beaten path</h2>
               <h3 className="text-4xl font-bold text-on-surface font-headline">Desert Safari</h3>
             </div>
-            <button className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
+            <Link to="/safari" className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
               View All Safaris <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -236,9 +236,9 @@ const Home = () => {
           </div>
           
           <div className="mt-12 text-center md:hidden">
-             <button className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
+             <Link to="/safari" className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
               View All Safaris <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -251,9 +251,9 @@ const Home = () => {
               <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">Curated Itineraries</h2>
               <h3 className="text-4xl font-bold text-on-surface font-headline">Tours & Packages</h3>
             </div>
-            <button className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
+            <Link to="/tours" className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
               View All Packages <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -313,9 +313,9 @@ const Home = () => {
           </div>
           
           <div className="mt-12 text-center md:hidden">
-             <button className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
+             <Link to="/tours" className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
               View All Packages <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -328,9 +328,9 @@ const Home = () => {
               <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">Day Trips</h2>
               <h3 className="text-4xl font-bold text-on-surface font-headline">Excursions</h3>
             </div>
-            <button className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
+            <Link to="/excursions" className="hidden md:flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
               View All Excursions <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -387,9 +387,9 @@ const Home = () => {
           </div>
           
           <div className="mt-12 text-center md:hidden">
-             <button className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
+             <Link to="/excursions" className="inline-flex items-center gap-2 text-[#7b5800] font-headline font-bold hover:text-[#c79a3c] transition-colors">
               View All Excursions <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
