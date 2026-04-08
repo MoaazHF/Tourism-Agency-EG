@@ -93,7 +93,7 @@ export default function AdminDashboard() {
           <h2 className="text-2xl font-bold font-headline text-on-surface">All Trips</h2>
           <Link
             to="/admin/trips/new"
-            className="flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-on-primary px-5 py-3 rounded-xl font-bold text-sm shadow-md hover:scale-[1.02] transition-transform"
+            className="flex items-center gap-2 bg-linear-to-br from-primary to-primary-container text-on-primary px-5 py-3 rounded-xl font-bold text-sm shadow-md hover:scale-[1.02] transition-transform"
           >
             <PlusCircle className="w-4 h-4" /> Add New Trip
           </Link>

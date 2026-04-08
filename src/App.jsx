@@ -8,6 +8,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import TripForm from './pages/admin/TripForm';
 import CategoryList from './pages/admin/CategoryList';
 import ProtectedRoute from './components/ProtectedRoute';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Empty page components
 const EmptyPage = ({ title }) => (
@@ -26,14 +27,14 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
 
-          <Route path="cruises" element={<ListingPage defaultCategory="cruises" />} />
-          <Route path="cruises/:tripId" element={<TripDetails />} />
-          <Route path="safari" element={<ListingPage defaultCategory="safari" />} />
-          <Route path="safari/:tripId" element={<TripDetails />} />
-          <Route path="tours" element={<ListingPage defaultCategory="tours" />} />
-          <Route path="tours/:tripId" element={<TripDetails />} />
-          <Route path="excursions" element={<ListingPage defaultCategory="excursions" />} />
-          <Route path="excursions/:tripId" element={<TripDetails />} />
+          <Route path="cruises" element={<ErrorBoundary><ListingPage defaultCategory="cruises" /></ErrorBoundary>} />
+          <Route path="cruises/:tripId" element={<ErrorBoundary><TripDetails /></ErrorBoundary>} />
+          <Route path="safari" element={<ErrorBoundary><ListingPage defaultCategory="safari" /></ErrorBoundary>} />
+          <Route path="safari/:tripId" element={<ErrorBoundary><TripDetails /></ErrorBoundary>} />
+          <Route path="tours" element={<ErrorBoundary><ListingPage defaultCategory="tours" /></ErrorBoundary>} />
+          <Route path="tours/:tripId" element={<ErrorBoundary><TripDetails /></ErrorBoundary>} />
+          <Route path="excursions" element={<ErrorBoundary><ListingPage defaultCategory="excursions" /></ErrorBoundary>} />
+          <Route path="excursions/:tripId" element={<ErrorBoundary><TripDetails /></ErrorBoundary>} />
 
           <Route path="about" element={<EmptyPage title="Who Are We?" />} />
           <Route path="contact" element={<EmptyPage title="Contact" />} />

@@ -348,7 +348,7 @@ export default function TripForm() {
           {/* ── Submit ─────────────────────────────────────────── */}
           <div className="flex gap-4">
             <button type="submit" disabled={saving}
-              className="flex-1 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-extrabold uppercase tracking-widest rounded-xl shadow-lg hover:scale-[1.01] transition-transform disabled:opacity-60">
+              className="flex-1 py-4 bg-linear-to-br from-primary to-primary-container text-on-primary font-headline font-extrabold uppercase tracking-widest rounded-xl shadow-lg hover:scale-[1.01] transition-transform disabled:opacity-60">
               {saving ? 'Saving…' : isEdit ? 'Update Trip' : 'Create Trip'}
             </button>
             <Link to="/admin/dashboard"

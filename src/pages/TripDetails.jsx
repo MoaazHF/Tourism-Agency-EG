@@ -280,7 +280,7 @@ const TripDetails = () => {
                             </p>
                           </div>
                         </div>
-                        {openDay === 4 ? <Minus size={20} className="text-primary flex-shrink-0" /> : <Plus size={20} className="text-outline flex-shrink-0" />}
+                        {openDay === 4 ? <Minus size={20} className="text-primary shrink-0" /> : <Plus size={20} className="text-outline shrink-0" />}
                       </div>
                       {openDay === 4 && (
                         <div className="px-10 py-6 text-on-surface-variant text-base leading-relaxed border-t border-outline-variant/10">

@@ -153,7 +153,7 @@ export default function CategoryList() {
                   type="button"
                   onClick={() => handleSave(cat)}
                   disabled={saving === cat.slug}
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-sm rounded-xl shadow-md hover:scale-[1.02] transition-transform disabled:opacity-60"
+                  className="flex items-center gap-2 px-6 py-3 bg-linear-to-br from-primary to-primary-container text-on-primary font-bold text-sm rounded-xl shadow-md hover:scale-[1.02] transition-transform disabled:opacity-60"
                 >
                   <Save className="w-4 h-4" />
                   {saving === cat.slug ? 'Saving…' : 'Save Changes'}

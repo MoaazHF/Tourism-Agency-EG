@@ -98,7 +98,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-extrabold uppercase tracking-widest rounded-xl shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full py-4 bg-linear-to-br from-primary to-primary-container text-on-primary font-headline font-extrabold uppercase tracking-widest rounded-xl shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? 'Signing in…' : 'Sign In'}
           </button>
