@@ -1,8 +1,13 @@
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import RootLayout from './components/RootLayout';
 import Home from './pages/Home';
 import TripDetails from './pages/TripDetails';
 import ListingPage from './pages/ListingPage';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import TripForm from './pages/admin/TripForm';
+import CategoryList from './pages/admin/CategoryList';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Empty page components
 const EmptyPage = ({ title }) => (
@@ -16,9 +21,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+
+        {/* ── Public site ───────────────────────────────────── */}
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
-          
+
           <Route path="cruises" element={<ListingPage defaultCategory="cruises" />} />
           <Route path="cruises/:tripId" element={<TripDetails />} />
           <Route path="safari" element={<ListingPage defaultCategory="safari" />} />
@@ -31,6 +38,28 @@ function App() {
           <Route path="about" element={<EmptyPage title="Who Are We?" />} />
           <Route path="contact" element={<EmptyPage title="Contact" />} />
         </Route>
+
+        {/* ── Admin area (no RootLayout / no navbar) ─────────── */}
+        <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        <Route
+          path="/admin/dashboard"
+          element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}
+        />
+        <Route
+          path="/admin/trips/new"
+          element={<ProtectedRoute><TripForm /></ProtectedRoute>}
+        />
+        <Route
+          path="/admin/trips/:tripId/edit"
+          element={<ProtectedRoute><TripForm /></ProtectedRoute>}
+        />
+        <Route
+          path="/admin/categories"
+          element={<ProtectedRoute><CategoryList /></ProtectedRoute>}
+        />
+
       </Routes>
     </BrowserRouter>
   );
