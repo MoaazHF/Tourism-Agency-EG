@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { categoriesData, tripsData } from '../data/trips';
 import { ArrowRight, Edit3, Compass, Headset, Leaf, Check, CheckCircle2 } from 'lucide-react';
 
 export default function ListingPage({ defaultCategory }) {
   const { '*': path } = useParams();
-  // Extact category from url if available, otherwise use defaultCategory
   const categoryId = defaultCategory || path?.split('/')[0] || "cruises";
   const data = categoriesData[categoryId];
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,7 +22,7 @@ export default function ListingPage({ defaultCategory }) {
   }
 
   return (
-    <div className="bg-surface font-body text-on-surface pb-16">
+    <div className="bg-surface font-body text-on-surface pb-16 scroll-smooth">
       
       {/* Hero Section */}
       <section className="relative h-[65vh] md:h-[870px] flex items-center justify-center overflow-hidden pt-20">
@@ -55,11 +55,24 @@ export default function ListingPage({ defaultCategory }) {
             <div className="w-16 h-1 bg-primary-container mt-6"></div>
           </div>
           <div className="md:col-span-3 space-y-6 text-tertiary leading-relaxed">
-            {data.introText.map((paragraph, index) => (
-              <p key={index} className={index === 0 ? "text-lg" : ""}>
-                {paragraph}
-              </p>
-            ))}
+            {data.introText.map((paragraph, index) => {
+              if (!isDescriptionExpanded && index > 0) return null;
+              return (
+                <p 
+                  key={index} 
+                  className={index === 0 ? "text-lg" : ""}
+                  dangerouslySetInnerHTML={{ __html: paragraph }}
+                />
+              );
+            })}
+            {data.introText.length > 1 && (
+              <button 
+                onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                className="text-secondary font-bold hover:text-secondary-fixed transition-colors mt-2 inline-flex items-center gap-1"
+              >
+                {isDescriptionExpanded ? "Voir Moins" : "Voir Plus"}
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -72,9 +85,10 @@ export default function ListingPage({ defaultCategory }) {
             if (!trip) return null;
             return (
               <Link 
+                id={trip.id}
                 to={`/${categoryId}/${trip.id}`} 
                 key={trip.id} 
-                className="group bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow transition-transform hover:-translate-y-2 duration-500 block"
+                className="group bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow transition-transform hover:-translate-y-2 duration-500 block scroll-mt-32"
               >
                 <div className="h-64 md:h-80 overflow-hidden relative">
                   <img 

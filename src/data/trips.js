@@ -7,8 +7,9 @@ export const categoriesData = {
     heroImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuDBLSowCMEM_A3cXCml_TGIHNqUl0kQQgN7s_5G0Wsclrnm_s40b_xLHygOLeaCfdPKD7VetCEfF3k2fWKLQxnoE0vxtxmitpkitPjLaj9XzuDK8UazHt_NTorNmFhmHvr3HaJcaRyUmHiPFSZxjGnJDF-DjaRWbPn_Kd8IOOBXEdegdPGlWg2J-b1OYBADrZSwTPZR7fmWviv1MEg-taKo9FDjZfbfRrFOSRHHtN-FmjRPmp-oH0VLFWt7cqIoE57Z1fsmPjktldJJ",
     introTitle: "Explorez le Nil sous toutes ses formes",
     introText: [
-      "Naviguer sur le Nil est une expérience sensorielle autant qu'historique. Nous avons sélectionné quatre façons uniques de découvrir les trésors de la Haute-Égypte, adaptées à chaque rythme et désir de sérénité.",
-      "De l'intimité d'une traditionnelle au confort moderne d'un bateau de croisière, en passant par l'élégance intemporelle du dahabiya ou l'immensité sauvage du Lac Nasser, chaque voyage est une promesse d'émerveillement."
+      "Naviguer sur le Nil est une expérience sensorielle autant qu'historique. Depuis l'antiquité, le fleuve est l'artère vitale de l'Égypte, et vous emmène au cœur des vestiges des anciens Pharaons.",
+      "Nous avons sélectionné différentes façons de découvrir les trésors de la Haute-Égypte. Pour les puristes à la recherche de la plus pure tradition, notre <a href='#felucca' class='text-secondary font-semibold hover:underline cursor-pointer'>Voyage en Felouque</a> offre un contact direct avec la nature et le vent. Si vous rêvez du raffinement du 19ème siècle, embarquez sur notre <a href='#dahabeya' class='text-secondary font-semibold hover:underline cursor-pointer'>Dahabeya</a>, un majestueux voilier traditionnel.",
+      "Vous préférez un confort optimal et des équipements modernes ? <a href='#the-luxor' class='text-secondary font-semibold hover:underline cursor-pointer'>The Luxor</a> répondra à toutes vos attentes avec ses immenses piscines et son service 5 étoiles. Enfin, pour une immersion totale en tout petit comité, <a href='#the-sandal' class='text-secondary font-semibold hover:underline cursor-pointer'>The Sandal</a> est votre refuge privé exclusif sur l'eau."
     ],
     tripKeys: ["felucca", "dahabeya", "the-luxor", "the-sandal"]
   },
@@ -20,8 +21,9 @@ export const categoriesData = {
     heroImage: "https://images.unsplash.com/photo-1549646879-11ba18e775eb?q=80&w=2070&auto=format&fit=crop",
     introTitle: "L'Égypte des sables et des mystères",
     introText: [
-      "Partez à la conquête des dunes dorées et découvrez une facette insoupçonnée de l'Égypte.",
-      "Des oasis lointaines aux formations rocheuses surréalistes du Désert Blanc, laissez-vous transporter par la magie des espaces infinis."
+      "L'Égypte ne se limite pas à la vallée du Nil. Partez à la conquête des immenses dunes dorées et découvrez une facette insoupçonnée, brute et mystérieuse, loin des foules.",
+      "Parmi nos évasions les plus insolites, l'aventure dans le <a href='#white-desert' class='text-secondary font-semibold hover:underline cursor-pointer'>Désert Blanc</a> vous transporte sur une autre planète avec ses formations calcaires immaculées. Plus à l'ouest, laissez-vous séduire par l'<a href='#siwa-oasis' class='text-secondary font-semibold hover:underline cursor-pointer'>Oasis de Siwa</a>, véritable paradis préservé aux sources salées curatives.",
+      "Pour les amateurs de contrastes frappants, l'expédition vers le <a href='#black-desert' class='text-secondary font-semibold hover:underline cursor-pointer'>Désert Noir</a> révèle des paysages volcaniques spectaculaires et les célèbres sources chaudes de Bahariya, pour une parenthèse hors du temps."
     ],
     tripKeys: ["white-desert", "siwa-oasis", "black-desert"]
   },
@@ -33,8 +35,9 @@ export const categoriesData = {
     heroImage: "https://images.unsplash.com/photo-1539768942893-daf53e448371?q=80&w=2071&auto=format&fit=crop",
     introTitle: "Le summum du voyage organisé",
     introText: [
-      "Laissez-nous prendre soin de chaque détail. Nos packages incluent le meilleur de l'Égypte avec des guides experts.",
-      "Embarquez pour des voyages mémorables, des pyramides du Caire aux récifs coralliens de la mer Rouge."
+      "Laissez-nous prendre soin de chaque détail. Nos circuits touristiques incluent le meilleur de l'Égypte, orchestrés avec précision et guidés par d'éminents égyptologues francophones.",
+      "Notre grand tour <a href='#classic-egypt' class='text-secondary font-semibold hover:underline cursor-pointer'>Classic Egypt</a> reste le choix privilégié pour une première visite, englobant les quatre capitales historiques dans un rythme parfait. Si vous désirez marier découvertes culturelles et farniente balnéaire, le circuit <a href='#pharaohs-coral' class='text-secondary font-semibold hover:underline cursor-pointer'>Pharaohs & Coral</a> est exactement ce qu'il vous faut.",
+      "Enfin, pour les vrais passionnés d'histoire souhaitant s'enfoncer plus loin, le programme <a href='#deep-south' class='text-secondary font-semibold hover:underline cursor-pointer'>Deep South Explorer</a> vous mènera jusqu'aux frontières nubiennes où trônent les colosses d'Abou Simbel."
     ],
     tripKeys: ["classic-egypt", "pharaohs-coral", "deep-south"]
   },
@@ -46,8 +49,9 @@ export const categoriesData = {
     heroImage: "https://images.unsplash.com/photo-1502485542750-f8f533cc285b?q=80&w=2070&auto=format&fit=crop",
     introTitle: "Pistes sauvages et nuits étoilées",
     introText: [
-      "L'aventure avec un grand A. Des paysages hors du commun et des rencontres inoubliables avec les tribus bédouines.",
-      "Explorez les endroits les plus reculés de l'Égypte en toute sécurité avec nos guides expérimentés."
+      "L'aventure avec un grand A vous attend. Explorez les endroits les plus reculés de l'Égypte en toute sécurité avec nos équipes de chauffeurs et guides bédouins expérimentés.",
+      "Plongez dans les profondeurs du désert occidental avec notre <a href='#safari-siwa' class='text-secondary font-semibold hover:underline cursor-pointer'>Expédition à l'Oasis de Siwa</a>, où lagons transparents et cités antiques se mélangent. Pour une escapade plus proche du Caire, l'<a href='#safari-fayoum' class='text-secondary font-semibold hover:underline cursor-pointer'>Aventure au Fayoum</a> est idéale pour slalomer sur les dunes magiques de la Vallée des Baleines.",
+      "Et si les sommets vous appellent, notre intense <a href='#safari-sinai' class='text-secondary font-semibold hover:underline cursor-pointer'>Trek dans le Sinaï</a> vous invite à suivre les anciennes pistes bédouines jusqu'au sommet des montagnes sacrées à la lueur des étoiles."
     ],
     tripKeys: ["safari-siwa", "safari-fayoum", "safari-sinai"]
   }
