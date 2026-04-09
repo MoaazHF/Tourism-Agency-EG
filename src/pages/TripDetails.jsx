@@ -61,7 +61,7 @@ const TripDetails = () => {
   const { tripId } = useParams();
 
   // ── Data from Supabase ──────────────────────────────────────────
-  const { trip, loading, error } = useTrip(tripId || 'felucca');
+  const { trip, loading, error } = useTrip(tripId);
   const [openDay, setOpenDay] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(null);
 

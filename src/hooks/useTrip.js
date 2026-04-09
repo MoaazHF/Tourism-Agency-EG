@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabaseClient'
 
 /**
- * Fetches a single trip by its ID.
+ * Fetches a single trip by its ID (UUID).
  *
- * @param {string} tripId - e.g. "felucca", "dahabeya"
+ * @param {string} tripId - UUID of the trip
  * @returns {{ trip: object|null, loading: boolean, error: string|null }}
  */
 export function useTrip(tripId) {

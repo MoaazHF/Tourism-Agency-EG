@@ -6,7 +6,6 @@ import { useCategories } from '../../hooks/useCategories'
 import { PlusCircle, Trash2, Upload, ArrowLeft, X } from 'lucide-react'
 
 const DEFAULT_FORM = {
-  id: '',
   category_slug: '',
   title: '',
   short_description: '',
@@ -46,7 +45,6 @@ export default function TripForm() {
     supabase.from('trips').select('*').eq('id', tripId).single().then(({ data, error: err }) => {
       if (err) { setError(err.message); setLoading(false); return }
       setForm({
-        id:               data.id                || '',
         category_slug:    data.category_slug      || '',
         title:            data.title              || '',
         short_description: data.short_description || '',
@@ -157,8 +155,7 @@ export default function TripForm() {
       const res = await supabase.from('trips').update(payload).eq('id', tripId)
       err = res.error
     } else {
-      const id = form.id.trim().toLowerCase().replace(/\s+/g, '-') || `trip-${Date.now()}`
-      const res = await supabase.from('trips').insert({ id, ...payload })
+      const res = await supabase.from('trips').insert(payload)
       err = res.error
     }
 
@@ -207,12 +204,6 @@ export default function TripForm() {
               {t('admin.trip_form.sections.basic')}
             </h2>
 
-            {!isEdit && (
-              <Field label={t('admin.trip_form.fields.id')} hint={t('admin.trip_form.fields.id_hint')}>
-                <input id="field-id" value={form.id} onChange={(e) => setField('id', e.target.value)}
-                  className={inputCls} placeholder={t('admin.trip_form.placeholders.id')} />
-              </Field>
-            )}
 
             <Field label={t('admin.trip_form.fields.title')}>
               <input id="field-title" value={form.title} onChange={(e) => setField('title', e.target.value)}
