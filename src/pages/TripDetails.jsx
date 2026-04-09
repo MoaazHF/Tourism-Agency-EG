@@ -18,6 +18,7 @@ import {
   XCircle
 } from 'lucide-react';
 import { useTrip } from '../hooks/useTrip';
+import { MotionReveal } from '../components/MotionReveal';
 import { supabase } from '../lib/supabaseClient';
 
 
