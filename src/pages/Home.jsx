@@ -9,6 +9,11 @@ import { Counter } from '../components/Counter';
 
 const Home = () => {
   const { t } = useTranslation();
+  // Set the document title for the main home page to a translated value.
+  useEffect(() => {
+    const title = (t('home.title') ?? 'Home').toString();
+    document.title = title;
+  }, [t]);
   const { trips, loading } = useTrips();
 
   const getCategoryTrips = (slug) => {
