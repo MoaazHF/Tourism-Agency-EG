@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Whatsapp } from 'lucide-react';
+import { WhatsApp } from 'lucide-react';
 
 // Lightweight WhatsApp chat float.
 // Props:
@@ -35,7 +35,7 @@ export default function WhatsAppChat({ phone, initialMessage = 'Hello, I would l
           className="bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center focus:outline-none"
         >
           <span className="sr-only">WhatsApp</span>
-          <Whatsapp className="w-5 h-5" />
+          <WhatsApp className="w-5 h-5" />
         </button>
 
         {open && (
