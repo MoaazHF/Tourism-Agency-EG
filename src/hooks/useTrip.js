@@ -17,25 +17,53 @@ export function useTrip(tripId) {
     let cancelled = false
 
     async function fetchTrip() {
+      // UUID validation: Prevent Supabase from throwing a type error for slugs
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      if (!uuidRegex.test(tripId)) {
+        console.warn('[useTrip] Invalid UUID format:', tripId);
+        setTrip(null);
+        setError('Invalid trip identifier. Please ensure the URL is correct.');
+        setLoading(false);
+        return;
+      }
+
       setLoading(true)
       setError(null)
 
-      const { data, error: err } = await supabase
-        .from('trips')
-        .select('*')
-        .eq('id', tripId)
-        .single()
+      try {
+        const { data, error: err } = await supabase
+          .from('trips')
+          .select('*')
+          .eq('id', tripId)
+          .single()
 
-      if (cancelled) return
+        if (cancelled) return
 
-      if (err) {
-        console.error('[useTrip]', err.message)
-        setError(err.message)
-        setTrip(null)
-      } else {
-        setTrip(data)
+        if (err) {
+          console.error('[useTrip]', err.message)
+          setError(err.message)
+          setTrip(null)
+        } else if (data) {
+          // Data Normalization: Ensure collections are always arrays
+          const normalized = {
+            ...data,
+            images: Array.isArray(data.images) ? data.images : [],
+            itinerary: Array.isArray(data.itinerary) ? data.itinerary : [],
+            includes: Array.isArray(data.includes) ? data.includes : [],
+            excludes: Array.isArray(data.excludes) ? data.excludes : []
+          }
+          setTrip(normalized)
+        } else {
+          setTrip(null)
+        }
+      } catch (e) {
+        if (!cancelled) {
+          setError(e.message)
+          setTrip(null)
+        }
+      } finally {
+        if (!cancelled) setLoading(false)
       }
-      setLoading(false)
     }
 
     fetchTrip()
