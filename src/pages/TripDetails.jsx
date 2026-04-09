@@ -19,7 +19,6 @@ import {
 } from 'lucide-react';
 import { useTrip } from '../hooks/useTrip';
 import { supabase } from '../lib/supabaseClient';
-import { Reveal } from '../components/Reveal';
 
 
 // ── Skeleton loader matching the bento gallery layout ────────────
@@ -223,7 +222,7 @@ const TripDetails = () => {
     <main className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Breadcrumbs */}
-        <Reveal animation="fade-in">
+        <MotionReveal animation="fade-in">
           <nav className="flex flex-wrap items-center space-x-2 text-xs font-medium uppercase tracking-widest text-outline mb-8">
             <Link to="/" className="hover:text-primary transition-colors">{t('trip_details.breadcrumb.home')}</Link>
             <ChevronRight size={14} />
@@ -233,22 +232,22 @@ const TripDetails = () => {
             <ChevronRight size={14} />
             <span className="text-secondary">{trip.title}</span>
           </nav>
-        </Reveal>
+        </MotionReveal>
 
         {/* Title Section */}
         <header className="mb-12">
-          <Reveal animation="fade-in-up">
+          <MotionReveal animation="fade-in-up">
             <span className="font-['Caveat'] text-2xl text-primary mb-2 block">{categoryLabel}</span>
-          </Reveal>
-          <Reveal animation="fade-in-up" delay={200}>
+          </MotionReveal>
+          <MotionReveal animation="fade-in-up" delay={200}>
             <h1 className="hero-title font-headline text-4xl md:text-6xl font-extrabold text-secondary max-w-4xl tracking-tight leading-[1.1]">
               {trip.title}
             </h1>
-          </Reveal>
+          </MotionReveal>
         </header>
 
         {/* Gallery Grid */}
-        <Reveal animation="zoom-in" delay={400}>
+        <MotionReveal animation="zoom-in" delay={400}>
           <section className="editorial-grid mb-12">
             {images.length > 0 ? (
               <>
@@ -279,7 +278,7 @@ const TripDetails = () => {
                </div>
             )}
           </section>
-        </Reveal>
+        </MotionReveal>
 
         {/* Image Lightbox Modal */}
         {activeImageIndex !== null && (
@@ -326,7 +325,7 @@ const TripDetails = () => {
         )}
 
         {/* Info Bar */}
-        <Reveal animation="slide-up" delay={600}>
+        <MotionReveal animation="slide-up" delay={600}>
           <section className="bg-surface-container-low rounded-xl px-8 py-6 mb-16 flex flex-wrap gap-8 items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Clock size={20} /></div>
@@ -357,17 +356,17 @@ const TripDetails = () => {
               </div>
             </div>
           </section>
-        </Reveal>
+        </MotionReveal>
 
         {/* Main Content Layout */}
         <div className="flex flex-col lg:flex-row gap-16">
           {/* Left Column: Details */}
           <div className="lg:w-2/3 space-y-16">
             <article>
-              <Reveal animation="slide-up">
+              <MotionReveal animation="slide-up">
                 <h2 className="font-headline text-3xl font-bold text-secondary mb-6">{t('trip_details.sections.about')}</h2>
-              </Reveal>
-              <Reveal animation="fade-in" delay={200}>
+              </MotionReveal>
+              <MotionReveal animation="fade-in" delay={200}>
                 <div className="space-y-4 text-on-surface-variant leading-relaxed text-lg font-light">
                   {shortDesc ? (
                     <p>{shortDesc}</p>
@@ -378,7 +377,7 @@ const TripDetails = () => {
                     </>
                   )}
                 </div>
-              </Reveal>
+              </MotionReveal>
             </article>
 
             {/* Itinerary Accordion — rendered from DB data or static fallback */}
@@ -412,11 +411,11 @@ const TripDetails = () => {
                           {isOpen ? <Minus size={20} className="text-primary flex-shrink-0" /> : <Plus size={20} className="text-outline flex-shrink-0" />}
                         </div>
                         {isOpen && item.description && (
-                          <Reveal animation="fade-in">
+                          <MotionReveal animation="fade-in">
                             <div className="px-10 py-6 text-on-surface-variant text-base leading-relaxed border-t border-outline-variant/10">
                               <p>{item.description}</p>
                             </div>
-                          </Reveal>
+                          </MotionReveal>
                         )}
                       </div>
                     );
@@ -485,7 +484,7 @@ const TripDetails = () => {
             </section>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <Reveal animation="slide-up">
+              <MotionReveal animation="slide-up">
                 <div className="bg-surface-container-low/40 rounded-2xl p-8 border border-outline-variant/10 h-full">
                   <h3 className="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
                     <CheckCircle size={24} className="text-primary" />{t('trip_details.sections.includes')}
@@ -506,8 +505,8 @@ const TripDetails = () => {
                     )}
                   </ul>
                 </div>
-              </Reveal>
-              <Reveal animation="slide-up" delay={200}>
+              </MotionReveal>
+              <MotionReveal animation="slide-up" delay={200}>
                 <div className="bg-surface-container-low/40 rounded-2xl p-8 border border-outline-variant/10 h-full">
                   <h3 className="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
                     <XCircle size={24} className="text-error" />{t('trip_details.sections.excludes')}
@@ -527,13 +526,13 @@ const TripDetails = () => {
                     )}
                   </ul>
                 </div>
-              </Reveal>
+              </MotionReveal>
             </div>
           </div>
 
           {/* Right Column: Booking Form */}
           <aside className="lg:w-1/3">
-            <Reveal animation="slide-up" delay={800}>
+            <MotionReveal animation="slide-up" delay={800}>
               <div className="sticky top-28 bg-white rounded-2xl p-8 shadow-2xl shadow-secondary/10 border border-outline-variant/10 overflow-hidden">
                 {bookingStatus === 'success' ? (
                   <div className="py-12 text-center animate-in fade-in zoom-in duration-500">
@@ -711,7 +710,7 @@ const TripDetails = () => {
                   </div>
                 </div>
               </div>
-            </Reveal>
+            </MotionReveal>
           </aside>
         </div>
       </div>

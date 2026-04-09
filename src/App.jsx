@@ -18,10 +18,17 @@ const EmptyPage = ({ title }) => (
   </div>
 );
 
+import { MotionLayer } from './components/MotionConfig';
+import { ScrollToTop } from './components/ScrollToTop';
+import { ScrollProgress } from './components/ScrollProgress';
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <MotionLayer>
+      <BrowserRouter>
+        <ScrollToTop />
+        <ScrollProgress />
+        <Routes>
 
         {/* ── Public site ───────────────────────────────────── */}
         <Route path="/" element={<RootLayout />}>
@@ -63,6 +70,7 @@ function App() {
 
       </Routes>
     </BrowserRouter>
+    </MotionLayer>
   );
 }
 

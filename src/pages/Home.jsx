@@ -4,7 +4,8 @@ import { ArrowRight, Star, Map, CarFront, Clock, ShieldCheck, Ship, Calendar } f
 import { useTranslation } from 'react-i18next';
 import { useTrips } from '../hooks/useTrips';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { Reveal } from '../components/Reveal';
+import { MotionReveal } from '../components/MotionReveal';
+import { Counter } from '../components/Counter';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -30,41 +31,41 @@ const Home = () => {
       <section className="relative w-full h-screen">
         <div className="absolute inset-0 hero-gradient"></div>
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4">
-          <Reveal variant="slide-up" delay={100}>
+          <MotionReveal variant="slide-up" delay={100}>
             <div className="mb-4">
               <span className="text-[#f0bf5d] font-caveat text-4xl transform -rotate-2 inline-block">{t('home.hero.badge')}</span>
             </div>
-          </Reveal>
-          <Reveal variant="slide-up" delay={200}>
+          </MotionReveal>
+          <MotionReveal variant="slide-up" delay={200}>
             <h1 className="text-5xl md:text-7xl font-bold text-white font-headline tracking-tight mb-6 max-w-4xl leading-tight">
               {t('home.hero.title.part1')} <span className="text-transparent bg-clip-text btn-primary-gradient">{t('home.hero.title.part2')}</span>
             </h1>
-          </Reveal>
-          <Reveal variant="slide-up" delay={300}>
+          </MotionReveal>
+          <MotionReveal variant="slide-up" delay={300}>
             <p className="text-lg md:text-xl text-surface-container-low max-w-2xl font-body opacity-90 mb-10 leading-relaxed">
               {t('home.hero.subtitle')}
             </p>
-          </Reveal>
-          <Reveal variant="slide-up" delay={400}>
+          </MotionReveal>
+          <MotionReveal variant="slide-up" delay={400}>
             <button className="btn-primary-gradient text-white px-8 py-4 rounded-xl font-headline font-bold uppercase tracking-wider shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
               {t('home.hero.cta_explore')} <ArrowRight className="w-5 h-5" />
             </button>
-          </Reveal>
+          </MotionReveal>
         </div>
       </section>
 
       {/* Trust Section */}
       <section className="py-24 bg-surface max-w-screen-2xl mx-auto px-8">
-        <Reveal variant="fade" delay={100}>
+        <MotionReveal variant="fade" delay={100}>
           <div className="text-center mb-16">
             <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('home.explore.badge')}</h2>
             <h3 className="text-4xl font-bold text-on-surface font-headline">{t('home.explore.title')}</h3>
           </div>
-        </Reveal>
+        </MotionReveal>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto">
           {/* Card 1 */}
-          <Reveal variant="slide-up" delay={100} className="h-full">
+          <MotionReveal variant="slide-up" delay={100} className="h-full">
             <div className="h-full p-10 rounded-2xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors duration-300 shadow-sm border border-transparent hover:border-[#e1e3dd] lift-on-hover">
               <div className="w-16 h-16 bg-[#c79a3c]/10 text-[#7b5800] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Map className="w-8 h-8" />
@@ -74,9 +75,9 @@ const Home = () => {
                 {t('home.features.serenity.desc')}
               </p>
             </div>
-          </Reveal>
+          </MotionReveal>
           {/* Card 2 */}
-          <Reveal variant="slide-up" delay={200} className="h-full">
+          <MotionReveal variant="slide-up" delay={200} className="h-full">
             <div className="h-full p-10 rounded-2xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors duration-300 shadow-sm border border-transparent hover:border-[#e1e3dd] lift-on-hover">
               <div className="w-16 h-16 bg-[#c79a3c]/10 text-[#7b5800] rounded-full flex items-center justify-center mx-auto mb-6">
                 <CarFront className="w-8 h-8" />
@@ -86,9 +87,9 @@ const Home = () => {
                 {t('home.features.excellence.desc')}
               </p>
             </div>
-          </Reveal>
+          </MotionReveal>
           {/* Card 3 */}
-          <Reveal variant="slide-up" delay={300} className="h-full">
+          <MotionReveal variant="slide-up" delay={300} className="h-full">
             <div className="h-full p-10 rounded-2xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors duration-300 shadow-sm border border-transparent hover:border-[#e1e3dd] lift-on-hover">
               <div className="w-16 h-16 bg-[#c79a3c]/10 text-[#7b5800] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Clock className="w-8 h-8" />
@@ -98,14 +99,14 @@ const Home = () => {
                 {t('home.features.authentic.desc')}
               </p>
             </div>
-          </Reveal>
+          </MotionReveal>
         </div>
       </section>
 
       {/* Signature Cruises Section */}
       <section className="py-24 bg-surface-container">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <Reveal variant="fade" delay={100}>
+          <MotionReveal variant="fade" delay={100}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-16">
               <div>
                 <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('nav.cruises')}</h2>
@@ -115,11 +116,11 @@ const Home = () => {
                 {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </Reveal>
+          </MotionReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {getCategoryTrips('cruises').map((trip, i) => (
-              <Reveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
+              <MotionReveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
                 <Link to={`/cruises/${trip.id}`} className="group h-full bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col lift-on-hover">
                   <div className="relative h-72 overflow-hidden">
                     <img src={trip.images?.[0] || 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?q=80&w=2070&auto=format&fit=crop'} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -140,7 +141,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Link>
-              </Reveal>
+              </MotionReveal>
             ))}
           </div>
           
@@ -158,24 +159,35 @@ const Home = () => {
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
         <div className="max-w-5xl mx-auto px-8 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-            <Reveal variant="fade" delay={100}>
+            {/* Year Stats */}
+            <MotionReveal variant="fade" delay={100}>
               <div>
-                <div className="text-5xl md:text-7xl font-bold text-white font-headline mb-2" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>15+</div>
+                <div className="text-5xl md:text-7xl font-bold text-white font-headline mb-2" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                  <Counter value={15} suffix="+" />
+                </div>
                 <div className="text-tertiary-fixed font-headline font-semibold uppercase tracking-wider text-sm">{t('home.stats.years')}</div>
               </div>
-            </Reveal>
-            <Reveal variant="fade" delay={200}>
+            </MotionReveal>
+
+            {/* Guest Stats */}
+            <MotionReveal variant="fade" delay={200}>
               <div>
-                <div className="text-5xl md:text-7xl font-bold text-white font-headline mb-2" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>2500+</div>
+                <div className="text-5xl md:text-7xl font-bold text-white font-headline mb-2" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                  <Counter value={2500} suffix="+" />
+                </div>
                 <div className="text-tertiary-fixed font-headline font-semibold uppercase tracking-wider text-sm">{t('home.stats.travelers')}</div>
               </div>
-            </Reveal>
-            <Reveal variant="fade" delay={300}>
+            </MotionReveal>
+
+            {/* Satisfaction Stats */}
+            <MotionReveal variant="fade" delay={300}>
               <div>
-                <div className="text-5xl md:text-7xl font-bold text-white font-headline mb-2" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>100%</div>
+                <div className="text-5xl md:text-7xl font-bold text-white font-headline mb-2" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                  <Counter value={100} suffix="%" />
+                </div>
                 <div className="text-tertiary-fixed font-headline font-semibold uppercase tracking-wider text-sm">{t('home.stats.custom')}</div>
               </div>
-            </Reveal>
+            </MotionReveal>
           </div>
         </div>
       </section>
@@ -183,7 +195,7 @@ const Home = () => {
       {/* Desert Safari Section */}
       <section className="py-24 bg-surface relative overflow-hidden">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <Reveal variant="fade" delay={100}>
+          <MotionReveal variant="fade" delay={100}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-16">
               <div>
                 <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('home.categories.desert')}</h2>
@@ -193,11 +205,11 @@ const Home = () => {
                 {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </Reveal>
+          </MotionReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {getCategoryTrips('safari').map((trip, i) => (
-              <Reveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
+              <MotionReveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
                 <Link to={`/safari/${trip.id}`} className="group h-full bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col lift-on-hover">
                   <div className="relative h-72 overflow-hidden">
                     <img src={trip.images?.[0]} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -218,7 +230,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Link>
-              </Reveal>
+              </MotionReveal>
             ))}
           </div>
           
@@ -233,7 +245,7 @@ const Home = () => {
       {/* Tours & Packages Section */}
       <section className="py-24 bg-surface-container">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <Reveal variant="fade" delay={100}>
+          <MotionReveal variant="fade" delay={100}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-16">
               <div>
                 <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('home.explore.badge')}</h2>
@@ -243,11 +255,11 @@ const Home = () => {
                 {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </Reveal>
+          </MotionReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {getCategoryTrips('tours').map((trip, i) => (
-              <Reveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
+              <MotionReveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
                 <Link to={`/tours/${trip.id}`} className="group h-full bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col lift-on-hover">
                   <div className="relative h-72 overflow-hidden">
                     <img src={trip.images?.[0]} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -268,7 +280,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Link>
-              </Reveal>
+              </MotionReveal>
             ))}
           </div>
           
@@ -283,7 +295,7 @@ const Home = () => {
       {/* Excursions Section */}
       <section className="py-24 bg-surface relative overflow-hidden">
         <div className="max-w-screen-2xl mx-auto px-8">
-          <Reveal variant="fade" delay={100}>
+          <MotionReveal variant="fade" delay={100}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-16">
               <div>
                 <h2 className="text-[#c79a3c] font-headline font-bold tracking-widest uppercase text-sm mb-2">{t('home.categories.excursions')}</h2>
@@ -293,11 +305,11 @@ const Home = () => {
                 {t('home.explore.view_all')} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </Reveal>
+          </MotionReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {getCategoryTrips('excursions').map((trip, i) => (
-              <Reveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
+              <MotionReveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
                 <Link to={`/excursions/${trip.id}`} className="group h-full bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col lift-on-hover">
                   <div className="relative h-72 overflow-hidden">
                     <img src={trip.images?.[0]} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -318,7 +330,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Link>
-              </Reveal>
+              </MotionReveal>
             ))}
           </div>
           
@@ -332,7 +344,7 @@ const Home = () => {
 
       {/* Newsletter / CTA Module */}
       <section className="py-24 bg-surface-container-lowest border-t border-surface-container">
-        <Reveal variant="fade" delay={100}>
+        <MotionReveal variant="fade" delay={100}>
           <div className="max-w-4xl mx-auto px-8 text-center bg-[#f8faf3] rounded-3xl p-12 md:p-20 shadow-sm border border-[#e1e3dd] relative overflow-hidden reveal-zoom in-view">
             {/* Decorative blurs */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#f0bf5d]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
@@ -359,7 +371,7 @@ const Home = () => {
               </form>
             </div>
           </div>
-        </Reveal>
+        </MotionReveal>
       </section>
 
     </div>
