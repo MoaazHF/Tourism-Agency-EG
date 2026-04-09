@@ -108,20 +108,39 @@ const TripDetails = () => {
   if (loading) return <TripDetailsSkeleton />;
 
   // ── Error ───────────────────────────────────────────────────────
+  if (error) {
     return (
       <main className="pt-24 pb-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 min-h-[40vh] flex flex-col items-center justify-center gap-4">
-          <p className="text-2xl font-bold text-error">{t('trip_details.error.title')}</p>
-          <p className="text-on-surface-variant text-sm max-w-md text-center">{error}</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="px-6 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm"
-          >
-            {t('trip_details.error.retry')}
-          </button>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 min-h-[40vh] flex flex-col items-center justify-center gap-6">
+          <div className="w-16 h-16 rounded-full bg-error/10 flex items-center justify-center">
+            <svg className="w-8 h-8 text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-on-surface mb-2">{t('trip_details.error.title')}</h1>
+            <p className="text-on-surface-variant text-sm max-w-md mx-auto mb-8">
+              {error}
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={() => window.location.reload()}
+              className="px-8 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm hover:opacity-90 transition-opacity"
+            >
+              {t('trip_details.error.retry')}
+            </button>
+            <Link
+              to="/"
+              className="px-8 py-3 bg-surface-container text-on-surface rounded-xl font-bold text-sm hover:bg-surface-container-high transition-colors text-center"
+            >
+              {t('common.actions.back_home') || 'Back Home'}
+            </Link>
+          </div>
         </div>
       </main>
     );
+  }
 
   if (!trip) {
     return (
