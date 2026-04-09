@@ -12,6 +12,12 @@ import {
 
 export default function AdminDashboard() {
   const { t, i18n } = useTranslation()
+  // Normalize the dashboard title to ensure consistent display regardless of translations
+  const dashboardTitle = (t('admin.dashboard_title') || 'admin dashboard').toString().toLowerCase()
+  // Keep browser title in sync
+  useEffect(() => {
+    document.title = dashboardTitle
+  }, [dashboardTitle])
   const { signOut } = useAuth()
   const navigate = useNavigate()
   const { entries: categories } = useCategories()
@@ -105,7 +111,7 @@ export default function AdminDashboard() {
         <div className="flex items-center gap-3">
           <LayoutGrid className="text-primary w-6 h-6" />
           <div>
-            <p className="font-headline font-bold text-on-surface text-lg leading-none">{t('admin.dashboard_title')}</p>
+            <p className="font-headline font-bold text-on-surface text-lg leading-none">{dashboardTitle}</p>
             <p className="text-xs text-outline mt-0.5">{t('admin.dashboard_subtitle')}</p>
           </div>
         </div>
