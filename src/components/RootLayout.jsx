@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
+import WhatsAppChat from './WhatsAppChat';
 import { Globe, Mail, Phone, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -63,7 +64,8 @@ const RootLayout = () => {
           {t('footer.copyright')}
         </div>
       </footer>
-      {/* WhatsApp chat removed per request */}
+      {/* Floating WhatsApp chat (re-added) */}
+      <WhatsAppChat phone="201234567890" initialMessage="Hello! I would like to chat with you." />
     </div>
   );
 };

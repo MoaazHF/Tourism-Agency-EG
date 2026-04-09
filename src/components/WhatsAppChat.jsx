@@ -1,31 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { WhatsApp } from 'lucide-react';
 
-// Lightweight WhatsApp chat float.
-// Props:
-//  - phone: string in international format, e.g. '15551234567' (digits only, include country code)
-//  - initialMessage: default text for the chat message
-//  - position: optional, kept for future customization
+// WhatsApp chat as a floating widget using a local public image (whatsapp.png)
 export default function WhatsAppChat({ phone, initialMessage = 'Hello, I would like to chat!' }) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState(initialMessage);
 
-  // Normalize phone to digits only
   const cleanPhone = (phone || '').replace(/\D/g, '');
-  const waLink = cleanPhone
-    ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`
-    : '#';
+  const waLink = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}` : '#';
 
-  // Optional: close on Escape when panel is open
   useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === 'Escape') setOpen(false);
-    };
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
     if (open) window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
-  // Styles: relies on Tailwind in project
   return (
     <>
       <div className="fixed right-6 bottom-6 z-50">
@@ -35,7 +23,7 @@ export default function WhatsAppChat({ phone, initialMessage = 'Hello, I would l
           className="bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center focus:outline-none"
         >
           <span className="sr-only">WhatsApp</span>
-          <WhatsApp className="w-5 h-5" />
+          <img src="/whatsapp.png" alt="WhatsApp" className="w-6 h-6" />
         </button>
 
         {open && (
