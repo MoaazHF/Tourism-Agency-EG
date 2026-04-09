@@ -6,6 +6,7 @@ import {
   ChevronLeft, 
   X, 
   Clock, 
+  Calendar,
   Users, 
   Globe, 
   Star, 
