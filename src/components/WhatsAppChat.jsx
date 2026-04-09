@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import '../styles/glass.css';
 
 // WhatsApp chat as a floating widget using a local public image (whatsapp.png)
 export default function WhatsAppChat({ phone, initialMessage = 'Hello, I would like to chat!' }) {
@@ -35,7 +36,7 @@ export default function WhatsAppChat({ phone, initialMessage = 'Hello, I would l
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 8 }}
               transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-              className="mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 p-3"
+              className="mt-2 w-80 glass rounded-lg shadow-xl p-3"
             >
               <div className="flex items-center justify-between mb-2">
                 <strong>WhatsApp</strong>
