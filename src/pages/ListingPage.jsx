@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCategory } from '../hooks/useCategory';
 import { ArrowRight, Edit3, Compass, Headset, Leaf, Check, CheckCircle2, Star } from 'lucide-react';
+import { Reveal } from '../components/Reveal';
+
 
 // ── Skeleton card shown while data loads ─────────────────────────
 function SkeletonCard() {
@@ -100,15 +102,21 @@ export default function ListingPage({ defaultCategory }) {
         />
         <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-surface" />
         <div className="relative z-10 text-center px-4 max-w-4xl pt-10">
-          <span className="font-headline text-on-primary-fixed bg-primary-fixed/30 backdrop-blur-md px-4 py-1 rounded-full text-sm font-semibold tracking-widest uppercase mb-6 inline-block">
-            {heroTag}
-          </span>
-          <h1 className="text-4xl md:text-7xl font-extrabold text-surface tracking-tighter leading-tight mb-6 font-headline">
-            {data.title}
-          </h1>
-          <p className="text-lg md:text-2xl text-surface/90 font-medium tracking-wide">
-            {data.subtitle}
-          </p>
+          <Reveal animation="zoom-in">
+            <span className="font-headline text-on-primary-fixed bg-primary-fixed/30 backdrop-blur-md px-4 py-1 rounded-full text-sm font-semibold tracking-widest uppercase mb-6 inline-block">
+              {heroTag}
+            </span>
+          </Reveal>
+          <Reveal animation="fade-in-up" delay={200}>
+            <h1 className="text-4xl md:text-7xl font-extrabold text-surface tracking-tighter leading-tight mb-6 font-headline">
+              {data.title}
+            </h1>
+          </Reveal>
+          <Reveal animation="fade-in-up" delay={400}>
+            <p className="text-lg md:text-2xl text-surface/90 font-medium tracking-wide">
+              {data.subtitle}
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -116,30 +124,34 @@ export default function ListingPage({ defaultCategory }) {
       <section className="py-16 md:py-24 px-6 md:px-8 max-w-5xl mx-auto">
         <div className="grid md:grid-cols-5 gap-8 md:gap-12 items-start">
           <div className="md:col-span-2">
-            <h2 className="text-3xl font-bold font-headline text-primary leading-tight">
-              {introTitle}
-            </h2>
-            <div className="w-16 h-1 bg-primary-container mt-6" />
+            <Reveal animation="slide-up">
+              <h2 className="text-3xl font-bold font-headline text-primary leading-tight">
+                {introTitle}
+              </h2>
+              <div className="w-16 h-1 bg-primary-container mt-6" />
+            </Reveal>
           </div>
           <div className="md:col-span-3 space-y-6 text-tertiary leading-relaxed">
-            {introText.map((paragraph, index) => {
-              if (!isDescriptionExpanded && index > 0) return null;
-              return (
-                <p
-                  key={index}
-                  className={index === 0 ? 'text-lg' : ''}
-                  dangerouslySetInnerHTML={{ __html: paragraph }}
-                />
-              );
-            })}
-            {introText.length > 1 && (
-              <button
-                onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
-                className="text-secondary font-bold hover:text-secondary-fixed transition-colors mt-2 inline-flex items-center gap-1"
-              >
-                {isDescriptionExpanded ? t('listing.intro.see_less') : t('listing.intro.see_more')}
-              </button>
-            )}
+            <Reveal animation="fade-in" delay={300}>
+              {introText.map((paragraph, index) => {
+                if (!isDescriptionExpanded && index > 0) return null;
+                return (
+                  <p
+                    key={index}
+                    className={index === 0 ? 'text-lg' : ''}
+                    dangerouslySetInnerHTML={{ __html: paragraph }}
+                  />
+                );
+              })}
+              {introText.length > 1 && (
+                <button
+                  onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                  className="text-secondary font-bold hover:text-secondary-fixed transition-colors mt-2 inline-flex items-center gap-1"
+                >
+                  {isDescriptionExpanded ? t('listing.intro.see_less') : t('listing.intro.see_more')}
+                </button>
+              )}
+            </Reveal>
           </div>
         </div>
       </section>
@@ -152,7 +164,7 @@ export default function ListingPage({ defaultCategory }) {
           </p>
         ) : (
           <div className="grid md:grid-cols-2 gap-10">
-            {trips.map((trip) => {
+            {trips.map((trip, idx) => {
               const currentIndex = imageIndex[trip.id] ?? 0;
               const images = trip.images || [];
               const mainSrc = images[currentIndex] ?? images[0] ?? 'https://via.placeholder.com/800x600?text=No+Image';
@@ -167,76 +179,77 @@ export default function ListingPage({ defaultCategory }) {
               const price         = trip.price_per_person ?? null;
 
               return (
-                <Link
-                  id={trip.id}
-                  to={`/${categoryId}/${trip.id}`}
-                  key={trip.id}
-                  className="group bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow transition-transform hover:-translate-y-2 duration-500 block scroll-mt-32"
-                >
-                  <div className="h-64 md:h-80 overflow-hidden relative">
-                    <img
-                      alt={trip.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      src={mainSrc}
-                      onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/800x600?text=No+Image'; }}
-                    />
-                    <div className="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary uppercase tracking-wider">
-                      {duration}
-                    </div>
-                  </div>
-
-                  {/* Thumbnail strip (only when multiple images) */}
-                  {images.length > 1 && (
-                    <div className="px-3 py-2 flex items-center gap-2 overflow-x-auto bg-surface-container-lowest">
-                      {images.map((src, idx) => (
-                        <img
-                          key={idx}
-                          src={src}
-                          alt={`${trip.title} image ${idx + 1}`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setImageIndex((prev) => ({ ...prev, [trip.id]: idx }));
-                          }}
-                          className={`w-8 h-8 object-cover rounded border ${currentIndex === idx ? 'border-primary' : 'border-transparent'}`}
-                          style={{ cursor: 'pointer' }}
-                          onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/150?text=No+Image'; }}
-                        />
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="p-8 md:p-10">
-                    <h3 className="text-2xl font-bold font-headline mb-3 text-on-surface line-clamp-2">
-                      {trip.title}
-                    </h3>
-                    <p className="text-tertiary mb-6 line-clamp-3">
-                      {shortDesc}
-                    </p>
-                    <div className="text-tertiary text-sm mb-4 flex items-center gap-2">
-                      <span className="font-semibold text-secondary">{categoryLabel}</span>
-                      <span>•</span>
-                      <span>{groupSize}</span>
-                    </div>
-                    <div className="flex items-center gap-1 mb-6 text-on-surface">
-                      <Star className="w-4 h-4 fill-secondary text-secondary" />
-                      <span className="text-sm font-bold">
-                        {ratingLabel || (starRating ? `${starRating}/5` : '—')}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between mt-6 border-t border-surface-container-high pt-6">
-                      <div>
-                        <p className="text-xs text-secondary-fixed-dim uppercase tracking-wider mb-1">{t('listing.trip_card.starts_from')}</p>
-                        <p className="font-bold text-xl text-primary">
-                          {price != null ? `${price} €` : t('listing.trip_card.on_quote')}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-4 transition-all">
-                        {t('listing.trip_card.view_trip')} <ArrowRight className="w-4 h-4" />
+                <Reveal key={trip.id} animation="fade-in-up" delay={idx * 100}>
+                  <Link
+                    id={trip.id}
+                    to={`/${categoryId}/${trip.id}`}
+                    className="group bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow transition-transform hover:-translate-y-2 duration-500 block scroll-mt-32 h-full"
+                  >
+                    <div className="h-64 md:h-80 overflow-hidden relative">
+                      <img
+                        alt={trip.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src={mainSrc}
+                        onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/800x600?text=No+Image'; }}
+                      />
+                      <div className="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary uppercase tracking-wider">
+                        {duration}
                       </div>
                     </div>
-                  </div>
-                </Link>
+
+                    {/* Thumbnail strip (only when multiple images) */}
+                    {images.length > 1 && (
+                      <div className="px-3 py-2 flex items-center gap-2 overflow-x-auto bg-surface-container-lowest">
+                        {images.map((src, idx) => (
+                          <img
+                            key={idx}
+                            src={src}
+                            alt={`${trip.title} image ${idx + 1}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setImageIndex((prev) => ({ ...prev, [trip.id]: idx }));
+                            }}
+                            className={`w-8 h-8 object-cover rounded border ${currentIndex === idx ? 'border-primary' : 'border-transparent'}`}
+                            style={{ cursor: 'pointer' }}
+                            onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/150?text=No+Image'; }}
+                          />
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="p-8 md:p-10">
+                      <h3 className="text-2xl font-bold font-headline mb-3 text-on-surface line-clamp-2">
+                        {trip.title}
+                      </h3>
+                      <p className="text-tertiary mb-6 line-clamp-3">
+                        {shortDesc}
+                      </p>
+                      <div className="text-tertiary text-sm mb-4 flex items-center gap-2">
+                        <span className="font-semibold text-secondary">{categoryLabel}</span>
+                        <span>•</span>
+                        <span>{groupSize}</span>
+                      </div>
+                      <div className="flex items-center gap-1 mb-6 text-on-surface">
+                        <Star className="w-4 h-4 fill-secondary text-secondary" />
+                        <span className="text-sm font-bold">
+                          {ratingLabel || (starRating ? `${starRating}/5` : '—')}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between mt-6 border-t border-surface-container-high pt-6">
+                        <div>
+                          <p className="text-xs text-secondary-fixed-dim uppercase tracking-wider mb-1">{t('listing.trip_card.starts_from')}</p>
+                          <p className="font-bold text-xl text-primary">
+                            {price != null ? `${price} €` : t('listing.trip_card.on_quote')}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-4 transition-all">
+                          {t('listing.trip_card.view_trip')} <ArrowRight className="w-4 h-4" />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </Reveal>
               );
             })}
           </div>
@@ -247,49 +260,61 @@ export default function ListingPage({ defaultCategory }) {
       <section className="py-24 bg-surface-container-low">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline text-on-surface mb-4">{t('listing.value_prop.title')}</h2>
-            <p className="text-tertiary max-w-2xl mx-auto">{t('listing.value_prop.subtitle')}</p>
+            <Reveal animation="zoom-in">
+              <h2 className="text-3xl md:text-4xl font-bold font-headline text-on-surface mb-4">{t('listing.value_prop.title')}</h2>
+            </Reveal>
+            <Reveal animation="fade-in" delay={200}>
+              <p className="text-tertiary max-w-2xl mx-auto">{t('listing.value_prop.subtitle')}</p>
+            </Reveal>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform">
-              <Edit3 className="text-primary-container w-10 h-10 mb-6" />
-              <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.custom.title')}</h4>
-              <ul className="space-y-3 text-sm text-tertiary">
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.custom.item1')}</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.custom.item2')}</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.custom.item3')}</li>
-              </ul>
-            </div>
+            <Reveal animation="slide-up" delay={0}>
+              <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform h-full">
+                <Edit3 className="text-primary-container w-10 h-10 mb-6" />
+                <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.custom.title')}</h4>
+                <ul className="space-y-3 text-sm text-tertiary">
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.custom.item1')}</li>
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.custom.item2')}</li>
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.custom.item3')}</li>
+                </ul>
+              </div>
+            </Reveal>
 
-            <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform">
-              <Compass className="text-primary-container w-10 h-10 mb-6" />
-              <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.expertise.title')}</h4>
-              <ul className="space-y-3 text-sm text-tertiary">
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.expertise.item1')}</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.expertise.item2')}</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.expertise.item3')}</li>
-              </ul>
-            </div>
+            <Reveal animation="slide-up" delay={100}>
+              <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform h-full">
+                <Compass className="text-primary-container w-10 h-10 mb-6" />
+                <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.expertise.title')}</h4>
+                <ul className="space-y-3 text-sm text-tertiary">
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.expertise.item1')}</li>
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.expertise.item2')}</li>
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.expertise.item3')}</li>
+                </ul>
+              </div>
+            </Reveal>
 
-            <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform">
-              <Headset className="text-primary-container w-10 h-10 mb-6" />
-              <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.assistance.title')}</h4>
-              <ul className="space-y-3 text-sm text-tertiary">
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.assistance.item1')}</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.assistance.item2')}</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.assistance.item3')}</li>
-              </ul>
-            </div>
+            <Reveal animation="slide-up" delay={200}>
+              <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform h-full">
+                <Headset className="text-primary-container w-10 h-10 mb-6" />
+                <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.assistance.title')}</h4>
+                <ul className="space-y-3 text-sm text-tertiary">
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.assistance.item1')}</li>
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.assistance.item2')}</li>
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.assistance.item3')}</li>
+                </ul>
+              </div>
+            </Reveal>
 
-            <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform">
-              <Leaf className="text-primary-container w-10 h-10 mb-6" />
-              <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.sustainable.title')}</h4>
-              <ul className="space-y-3 text-sm text-tertiary">
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.sustainable.item1')}</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.sustainable.item2')}</li>
-                <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.sustainable.item3')}</li>
-              </ul>
-            </div>
+            <Reveal animation="slide-up" delay={300}>
+              <div className="bg-surface-container-lowest p-8 rounded-xl border-b-4 border-primary/20 hover:-translate-y-1 transition-transform h-full">
+                <Leaf className="text-primary-container w-10 h-10 mb-6" />
+                <h4 className="text-xl font-bold font-headline mb-4">{t('listing.value_prop.sustainable.title')}</h4>
+                <ul className="space-y-3 text-sm text-tertiary">
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.sustainable.item1')}</li>
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.sustainable.item2')}</li>
+                  <li className="flex items-center gap-2"><Check className="text-primary w-4 h-4 shrink-0" /> {t('listing.value_prop.sustainable.item3')}</li>
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -299,18 +324,30 @@ export default function ListingPage({ defaultCategory }) {
         <div className="max-w-6xl mx-auto bg-secondary rounded-3xl p-8 md:p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12">
           <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full opacity-10" style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
           <div className="relative z-10 flex-1 w-full">
-            <h2 className="text-3xl lg:text-5xl font-bold font-headline text-surface mb-8 leading-tight">{t('listing.cta.title')}</h2>
+            <Reveal animation="slide-up">
+              <h2 className="text-3xl lg:text-5xl font-bold font-headline text-surface mb-8 leading-tight">{t('listing.cta.title')}</h2>
+            </Reveal>
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
-              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit1')}</span></div>
-              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit2')}</span></div>
-              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit3')}</span></div>
-              <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit4')}</span></div>
+              <Reveal animation="fade-in" delay={300}>
+                <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit1')}</span></div>
+              </Reveal>
+              <Reveal animation="fade-in" delay={400}>
+                <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit2')}</span></div>
+              </Reveal>
+              <Reveal animation="fade-in" delay={500}>
+                <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit3')}</span></div>
+              </Reveal>
+              <Reveal animation="fade-in" delay={600}>
+                <div className="flex items-center gap-3 text-surface-container"><CheckCircle2 className="text-primary-container w-5 h-5 shrink-0" /><span>{t('listing.cta.benefit4')}</span></div>
+              </Reveal>
             </div>
-            <button className="bg-linear-to-br from-primary to-primary-container text-on-primary px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:scale-105 transition-transform duration-300 w-full sm:w-auto">
-              {t('listing.cta.button')}
-            </button>
+            <Reveal animation="zoom-in" delay={700}>
+              <button className="bg-linear-to-br from-primary to-primary-container text-on-primary px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:scale-105 transition-transform duration-300 w-full sm:w-auto">
+                {t('listing.cta.button')}
+              </button>
+            </Reveal>
           </div>
-          <div className="relative z-10 lg:w-1/3 w-full">
+          <Reveal animation="fade-in" delay={800} className="relative z-10 lg:w-1/3 w-full">
             <div className="bg-surface/10 backdrop-blur-md p-8 rounded-2xl border border-surface/20">
               <p className="font-headline text-2xl text-primary-container mb-6 italic">{t('listing.cta.quote')}</p>
               <div className="flex items-center gap-4">
@@ -321,7 +358,7 @@ export default function ListingPage({ defaultCategory }) {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 

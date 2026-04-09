@@ -19,6 +19,8 @@ import {
 } from 'lucide-react';
 import { useTrip } from '../hooks/useTrip';
 import { supabase } from '../lib/supabaseClient';
+import { Reveal } from '../components/Reveal';
+
 
 // ── Skeleton loader matching the bento gallery layout ────────────
 function TripDetailsSkeleton() {
@@ -221,55 +223,63 @@ const TripDetails = () => {
     <main className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Breadcrumbs */}
-        <nav className="flex flex-wrap items-center space-x-2 text-xs font-medium uppercase tracking-widest text-outline mb-8">
-          <Link to="/" className="hover:text-primary transition-colors">{t('trip_details.breadcrumb.home')}</Link>
-          <ChevronRight size={14} />
-          <Link to={`/${trip.category_slug || 'cruises'}`} className="hover:text-primary transition-colors capitalize">
-            {trip.category_slug || t('trip_details.breadcrumb.tours')}
-          </Link>
-          <ChevronRight size={14} />
-          <span className="text-secondary">{trip.title}</span>
-        </nav>
+        <Reveal animation="fade-in">
+          <nav className="flex flex-wrap items-center space-x-2 text-xs font-medium uppercase tracking-widest text-outline mb-8">
+            <Link to="/" className="hover:text-primary transition-colors">{t('trip_details.breadcrumb.home')}</Link>
+            <ChevronRight size={14} />
+            <Link to={`/${trip.category_slug || 'cruises'}`} className="hover:text-primary transition-colors capitalize">
+              {trip.category_slug || t('trip_details.breadcrumb.tours')}
+            </Link>
+            <ChevronRight size={14} />
+            <span className="text-secondary">{trip.title}</span>
+          </nav>
+        </Reveal>
 
         {/* Title Section */}
         <header className="mb-12">
-          <span className="font-['Caveat'] text-2xl text-primary mb-2 block">{categoryLabel}</span>
-          <h1 className="hero-title font-headline text-4xl md:text-6xl font-extrabold text-secondary max-w-4xl tracking-tight leading-[1.1]">
-            {trip.title}
-          </h1>
+          <Reveal animation="fade-in-up">
+            <span className="font-['Caveat'] text-2xl text-primary mb-2 block">{categoryLabel}</span>
+          </Reveal>
+          <Reveal animation="fade-in-up" delay={200}>
+            <h1 className="hero-title font-headline text-4xl md:text-6xl font-extrabold text-secondary max-w-4xl tracking-tight leading-[1.1]">
+              {trip.title}
+            </h1>
+          </Reveal>
         </header>
 
         {/* Gallery Grid */}
-        <section className="editorial-grid mb-12">
-          {images.length > 0 ? (
-            <>
-              <div className="md:row-span-2 overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(0)}>
-                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 1" src={images[0]} />
-              </div>
-              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(1)}>
-                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 2" src={images[1] || images[0]} />
-              </div>
-              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(2)}>
-                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 3" src={images[2] || images[0]} />
-              </div>
-              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(3)}>
-                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 4" src={images[3] || images[0]} />
-              </div>
-              <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group relative cursor-zoom-in" onClick={() => setActiveImageIndex(4)}>
-                <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 5" src={images[4] || images[0]} />
-                {images.length > 5 && (
-                  <div className="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] flex items-center justify-center pointer-events-none transition-colors group-hover:bg-secondary/20">
-                    <span className="text-white font-bold text-lg">{t('trip_details.gallery.more_photos', { count: images.length - 4 })}</span>
-                  </div>
-                )}
-              </div>
-            </>
-          ) : (
-             <div className="col-span-full h-64 flex items-center justify-center bg-surface-container rounded-xl text-outline italic">
-               {t('trip_details.gallery.no_images')}
-             </div>
-          )}
-        </section>
+        <Reveal animation="zoom-in" delay={400}>
+          <section className="editorial-grid mb-12">
+            {images.length > 0 ? (
+              <>
+                <div className="md:row-span-2 overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(0)}>
+                  <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 1" src={images[0]} />
+                </div>
+                <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(1)}>
+                  <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 2" src={images[1] || images[0]} />
+                </div>
+                <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(2)}>
+                  <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 3" src={images[2] || images[0]} />
+                </div>
+                <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group cursor-zoom-in" onClick={() => setActiveImageIndex(3)}>
+                  <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 4" src={images[3] || images[0]} />
+                </div>
+                <div className="overflow-hidden rounded-xl bg-surface-container shadow-sm group relative cursor-zoom-in" onClick={() => setActiveImageIndex(4)}>
+                  <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="gallery 5" src={images[4] || images[0]} />
+                  {images.length > 5 && (
+                    <div className="absolute inset-0 bg-secondary/40 backdrop-blur-[2px] flex items-center justify-center pointer-events-none transition-colors group-hover:bg-secondary/20">
+                      <span className="text-white font-bold text-lg">{t('trip_details.gallery.more_photos', { count: images.length - 4 })}</span>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+               <div className="col-span-full h-64 flex items-center justify-center bg-surface-container rounded-xl text-outline italic">
+                 {t('trip_details.gallery.no_images')}
+               </div>
+            )}
+          </section>
+        </Reveal>
 
         {/* Image Lightbox Modal */}
         {activeImageIndex !== null && (
@@ -316,53 +326,59 @@ const TripDetails = () => {
         )}
 
         {/* Info Bar */}
-        <section className="bg-surface-container-low rounded-xl px-8 py-6 mb-16 flex flex-wrap gap-8 items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Clock size={20} /></div>
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.duration')}</p>
-              <p className="font-bold text-secondary">{duration}</p>
+        <Reveal animation="slide-up" delay={600}>
+          <section className="bg-surface-container-low rounded-xl px-8 py-6 mb-16 flex flex-wrap gap-8 items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Clock size={20} /></div>
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.duration')}</p>
+                <p className="font-bold text-secondary">{duration}</p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Users size={20} /></div>
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.group_size')}</p>
-              <p className="font-bold text-secondary">{groupSize}</p>
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Users size={20} /></div>
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.group_size')}</p>
+                <p className="font-bold text-secondary">{groupSize}</p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Globe size={20} /></div>
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.language')}</p>
-              <p className="font-bold text-secondary">{language}</p>
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Globe size={20} /></div>
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.language')}</p>
+                <p className="font-bold text-secondary">{language}</p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Star size={20} /></div>
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.rating')}</p>
-              <p className="font-bold text-secondary">{ratingLabel}</p>
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary shadow-sm"><Star size={20} /></div>
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-outline font-bold">{t('trip_details.info.rating')}</p>
+                <p className="font-bold text-secondary">{ratingLabel}</p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </Reveal>
 
         {/* Main Content Layout */}
         <div className="flex flex-col lg:flex-row gap-16">
           {/* Left Column: Details */}
           <div className="lg:w-2/3 space-y-16">
             <article>
-              <h2 className="font-headline text-3xl font-bold text-secondary mb-6">{t('trip_details.sections.about')}</h2>
-              <div className="space-y-4 text-on-surface-variant leading-relaxed text-lg font-light">
-                {shortDesc ? (
-                  <p>{shortDesc}</p>
-                ) : (
-                  <>
-                    <p>Découvrez l'Égypte dans son authenticité la plus pure. Ce voyage exclusif commence par l'effervescence du Caire et ses pyramides millénaires avant de vous emmener vers le sud, où le temps semble s'être arrêté.</p>
-                    <p>La croisière en felouque, voilier traditionnel du Nil, est une immersion sensorielle. Sans moteur, bercé par le vent, vous accosterez sur des îles inaccessibles aux gros paquebots, dînerez sous les étoiles et rencontrerez les communautés nubiennes au cœur de paysages d'une beauté désarmante.</p>
-                  </>
-                )}
-              </div>
+              <Reveal animation="slide-up">
+                <h2 className="font-headline text-3xl font-bold text-secondary mb-6">{t('trip_details.sections.about')}</h2>
+              </Reveal>
+              <Reveal animation="fade-in" delay={200}>
+                <div className="space-y-4 text-on-surface-variant leading-relaxed text-lg font-light">
+                  {shortDesc ? (
+                    <p>{shortDesc}</p>
+                  ) : (
+                    <>
+                      <p>Découvrez l'Égypte dans son authenticité la plus pure. Ce voyage exclusif commence par l'effervescence du Caire et ses pyramides millénaires avant de vous emmener vers le sud, où le temps semble s'être arrêté.</p>
+                      <p>La croisière en felouque, voilier traditionnel du Nil, est une immersion sensorielle. Sans moteur, bercé par le vent, vous accosterez sur des îles inaccessibles aux gros paquebots, dînerez sous les étoiles et rencontrerez les communautés nubiennes au cœur de paysages d'une beauté désarmante.</p>
+                    </>
+                  )}
+                </div>
+              </Reveal>
             </article>
 
             {/* Itinerary Accordion — rendered from DB data or static fallback */}
@@ -396,9 +412,11 @@ const TripDetails = () => {
                           {isOpen ? <Minus size={20} className="text-primary flex-shrink-0" /> : <Plus size={20} className="text-outline flex-shrink-0" />}
                         </div>
                         {isOpen && item.description && (
-                          <div className="px-10 py-6 text-on-surface-variant text-base leading-relaxed border-t border-outline-variant/10">
-                            <p>{item.description}</p>
-                          </div>
+                          <Reveal animation="fade-in">
+                            <div className="px-10 py-6 text-on-surface-variant text-base leading-relaxed border-t border-outline-variant/10">
+                              <p>{item.description}</p>
+                            </div>
+                          </Reveal>
                         )}
                       </div>
                     );
@@ -467,227 +485,233 @@ const TripDetails = () => {
             </section>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-surface-container-low/40 rounded-2xl p-8 border border-outline-variant/10">
-                <h3 className="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
-                  <CheckCircle size={24} className="text-primary" />{t('trip_details.sections.includes')}
-                </h3>
-                <ul className="space-y-4">
-                  {includes.length > 0 ? includes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-on-surface-variant">
-                      <Check size={18} className="text-primary mt-0.5 shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  )) : (
-                    <>
-                      <li className="flex items-start gap-3 text-sm text-on-surface-variant"><Check size={18} className="text-primary mt-0.5 shrink-0" /><span>Hébergement 5* au Caire et à Louxor</span></li>
-                      <li className="flex items-start gap-3 text-sm text-on-surface-variant"><Check size={18} className="text-primary mt-0.5 shrink-0" /><span>3 nuits en felouque traditionnelle (privatisée)</span></li>
-                      <li className="flex items-start gap-3 text-sm text-on-surface-variant"><Check size={18} className="text-primary mt-0.5 shrink-0" /><span>Pension complète pendant la navigation</span></li>
-                      <li className="flex items-start gap-3 text-sm text-on-surface-variant"><Check size={18} className="text-primary mt-0.5 shrink-0" /><span>Guide égyptologue francophone certifié</span></li>
-                    </>
-                  )}
-                </ul>
-              </div>
-              <div className="bg-surface-container-low/40 rounded-2xl p-8 border border-outline-variant/10">
-                <h3 className="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
-                  <XCircle size={24} className="text-error" />{t('trip_details.sections.excludes')}
-                </h3>
-                <ul className="space-y-4">
-                  {excludes.length > 0 ? excludes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-on-surface-variant">
-                      <X size={18} className="text-error/60 mt-0.5 shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  )) : (
-                    <>
-                      <li className="flex items-start gap-3 text-sm text-on-surface-variant"><X size={18} className="text-error/60 mt-0.5 shrink-0" /><span>Vols internationaux</span></li>
-                      <li className="flex items-start gap-3 text-sm text-on-surface-variant"><X size={18} className="text-error/60 mt-0.5 shrink-0" /><span>Frais de visa (environ 25€)</span></li>
-                      <li className="flex items-start gap-3 text-sm text-on-surface-variant"><X size={18} className="text-error/60 mt-0.5 shrink-0" /><span>Pourboires usuels pour le guide et l'équipage</span></li>
-                    </>
-                  )}
-                </ul>
-              </div>
+              <Reveal animation="slide-up">
+                <div className="bg-surface-container-low/40 rounded-2xl p-8 border border-outline-variant/10 h-full">
+                  <h3 className="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
+                    <CheckCircle size={24} className="text-primary" />{t('trip_details.sections.includes')}
+                  </h3>
+                  <ul className="space-y-4">
+                    {includes.length > 0 ? includes.map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm text-on-surface-variant">
+                        <Check size={18} className="text-primary mt-0.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    )) : (
+                      <>
+                        <li className="flex items-start gap-3 text-sm text-on-surface-variant"><Check size={18} className="text-primary mt-0.5 shrink-0" /><span>Hébergement 5* au Caire et à Louxor</span></li>
+                        <li className="flex items-start gap-3 text-sm text-on-surface-variant"><Check size={18} className="text-primary mt-0.5 shrink-0" /><span>3 nuits en felouque traditionnelle (privatisée)</span></li>
+                        <li className="flex items-start gap-3 text-sm text-on-surface-variant"><Check size={18} className="text-primary mt-0.5 shrink-0" /><span>Pension complète pendant la navigation</span></li>
+                        <li className="flex items-start gap-3 text-sm text-on-surface-variant"><Check size={18} className="text-primary mt-0.5 shrink-0" /><span>Guide égyptologue francophone certifié</span></li>
+                      </>
+                    )}
+                  </ul>
+                </div>
+              </Reveal>
+              <Reveal animation="slide-up" delay={200}>
+                <div className="bg-surface-container-low/40 rounded-2xl p-8 border border-outline-variant/10 h-full">
+                  <h3 className="font-headline text-xl font-bold text-secondary mb-6 flex items-center gap-3">
+                    <XCircle size={24} className="text-error" />{t('trip_details.sections.excludes')}
+                  </h3>
+                  <ul className="space-y-4">
+                    {excludes.length > 0 ? excludes.map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm text-on-surface-variant">
+                        <X size={18} className="text-error/60 mt-0.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    )) : (
+                      <>
+                        <li className="flex items-start gap-3 text-sm text-on-surface-variant"><X size={18} className="text-error/60 mt-0.5 shrink-0" /><span>Vols internationaux</span></li>
+                        <li className="flex items-start gap-3 text-sm text-on-surface-variant"><X size={18} className="text-error/60 mt-0.5 shrink-0" /><span>Frais de visa (environ 25€)</span></li>
+                        <li className="flex items-start gap-3 text-sm text-on-surface-variant"><X size={18} className="text-error/60 mt-0.5 shrink-0" /><span>Pourboires usuels pour le guide et l'équipage</span></li>
+                      </>
+                    )}
+                  </ul>
+                </div>
+              </Reveal>
             </div>
           </div>
 
           {/* Right Column: Booking Form */}
           <aside className="lg:w-1/3">
-            <div className="sticky top-28 bg-white rounded-2xl p-8 shadow-2xl shadow-secondary/10 border border-outline-variant/10 overflow-hidden">
-              {bookingStatus === 'success' ? (
-                <div className="py-12 text-center animate-in fade-in zoom-in duration-500">
-                  <div className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle size={40} />
-                  </div>
-                  <h3 className="font-headline text-2xl font-bold text-secondary mb-3">{t('booking_form.success.title')}</h3>
-                  <p className="text-on-surface-variant text-sm mb-8">
-                    {t('booking_form.success.message', { title: trip.title, email: bookingForm.email })}
-                  </p>
-                  <button 
-                    onClick={() => {
-                        setBookingStatus('idle');
-                        setBookingForm({ ...bookingForm, name: '', email: '', phone: '', message: '' });
-                    }}
-                    className="text-primary font-bold text-sm underline hover:text-primary-container transition-colors"
-                  >
-                    {t('booking_form.success.button')}
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div className="flex justify-between items-baseline mb-8">
-                    <div>
-                      <span className="text-outline text-xs uppercase tracking-widest font-bold">{t('booking_form.summary.starts_from')}</span>
-                      <div className="text-4xl font-black text-secondary">
-                        {price != null ? `${price} €` : t('booking_form.summary.on_quote')}
-                        <span className="text-sm font-normal text-outline ml-1">{t('booking_form.summary.per_pers_short')}</span>
-                      </div>
+            <Reveal animation="slide-up" delay={800}>
+              <div className="sticky top-28 bg-white rounded-2xl p-8 shadow-2xl shadow-secondary/10 border border-outline-variant/10 overflow-hidden">
+                {bookingStatus === 'success' ? (
+                  <div className="py-12 text-center animate-in fade-in zoom-in duration-500">
+                    <div className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                      <CheckCircle size={40} />
                     </div>
-                    {price && <div className="bg-primary-container/20 text-primary flex items-center px-3 py-1 rounded-full text-xs font-bold">{t('booking_form.summary.early_bird')}</div>}
-                  </div>
-
-                  <form className="space-y-5" onSubmit={handleBooking}>
-                    {bookingError && (
-                      <div className="p-3 bg-error/10 text-error text-xs font-bold rounded-lg border border-error/20">
-                        {bookingError}
-                      </div>
-                    )}
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="col-span-2">
-                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.name')}</label>
-                        <input 
-                          required
-                          className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
-                          placeholder={t('booking_form.labels.name_placeholder')}
-                          type="text" 
-                          value={bookingForm.name}
-                          onChange={(e) => setBookingForm({...bookingForm, name: e.target.value})}
-                        />
-                      </div>
-                      <div className="col-span-2">
-                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.email')}</label>
-                        <input 
-                          required
-                          className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
-                          placeholder={t('booking_form.labels.email_placeholder')}
-                          type="email" 
-                          value={bookingForm.email}
-                          onChange={(e) => setBookingForm({...bookingForm, email: e.target.value})}
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.date')}</label>
-                      <div className="relative">
-                        <input 
-                          className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
-                          placeholder={t('booking_form.labels.date_placeholder')}
-                          type="text" 
-                          value={bookingForm.date}
-                          onChange={(e) => setBookingForm({...bookingForm, date: e.target.value})}
-                        />
-                        <Calendar size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-outline/50 pointer-events-none" />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.adults')}</label>
-                        <div className="flex items-center justify-between bg-surface-container-low border border-outline-variant/30 rounded-xl px-3 py-2">
-                          <button 
-                            type="button"
-                            onClick={() => setBookingForm(p => ({...p, adults: Math.max(1, p.adults - 1)}))}
-                            className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-                          >
-                            <Minus size={16} />
-                          </button>
-                          <span className="font-bold text-secondary">{bookingForm.adults}</span>
-                          <button 
-                            type="button"
-                            onClick={() => setBookingForm(p => ({...p, adults: p.adults + 1}))}
-                            className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-                          >
-                            <Plus size={16} />
-                          </button>
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.children')}</label>
-                        <div className="flex items-center justify-between bg-surface-container-low border border-outline-variant/30 rounded-xl px-3 py-2">
-                          <button 
-                            type="button"
-                            onClick={() => setBookingForm(p => ({...p, children: Math.max(0, p.children - 1)}))}
-                            className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-                          >
-                            <Minus size={16} />
-                          </button>
-                          <span className="font-bold text-secondary">{bookingForm.children}</span>
-                          <button 
-                            type="button"
-                            onClick={() => setBookingForm(p => ({...p, children: p.children + 1}))}
-                            className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-                          >
-                            <Plus size={16} />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-surface-container-lowest border border-dashed border-outline-variant p-4 rounded-xl space-y-2">
-                      <div className="flex justify-between text-xs">
-                        <span className="text-outline">{t('booking_form.summary.price_base', { count: bookingForm.adults + bookingForm.children })}</span>
-                        <span className="text-secondary font-bold">{price != null ? `${(adultsTotal + childrenTotal).toFixed(0)} €` : '—'}</span>
-                      </div>
-                      <div className="flex justify-between text-xs text-primary italic">
-                        <span className="opacity-70">{t('booking_form.summary.child_discount')}</span>
-                        <span>{bookingForm.children > 0 ? `-${(bookingForm.children * perPerson * 0.3).toFixed(0)} €` : '0 €'}</span>
-                      </div>
-                      <div className="flex justify-between text-xs">
-                        <span className="text-outline">{t('booking_form.summary.fees')}</span>
-                        <span className="text-secondary font-bold">{extras} €</span>
-                      </div>
-                      <div className="pt-4 mt-2 border-t border-outline-variant flex justify-between items-center text-secondary">
-                        <span className="font-bold uppercase tracking-widest text-xs">{t('booking_form.summary.total_estimate')}</span>
-                        <span className="text-2xl font-black text-primary">
-                          {totalDisplayPrice ? `${totalDisplayPrice} €` : t('booking_form.summary.on_quote')}
-                        </span>
-                      </div>
-                    </div>
-
-                    <button 
-                      type="submit"
-                      disabled={bookingStatus === 'submitting'}
-                      className="w-full bg-linear-to-br from-primary to-primary-container text-white py-5 rounded-xl font-headline font-extrabold uppercase tracking-widest shadow-xl shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-3"
-                    >
-                      {bookingStatus === 'submitting' ? (
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      ) : (
-                          <>
-                            <Send size={18} />
-                            <span>{t('booking_form.submit')}</span>
-                          </>
-                      )}
-                    </button>
-                    <p className="text-center text-[10px] text-outline uppercase tracking-tight flex items-center justify-center gap-2">
-                      <CheckCircle size={10} className="text-primary" />
-                      {t('booking_form.confirmation_hint')}
+                    <h3 className="font-headline text-2xl font-bold text-secondary mb-3">{t('booking_form.success.title')}</h3>
+                    <p className="text-on-surface-variant text-sm mb-8">
+                      {t('booking_form.success.message', { title: trip.title, email: bookingForm.email })}
                     </p>
-                  </form>
-                </>
-              )}
+                    <button 
+                      onClick={() => {
+                          setBookingStatus('idle');
+                          setBookingForm({ ...bookingForm, name: '', email: '', phone: '', message: '' });
+                      }}
+                      className="text-primary font-bold text-sm underline hover:text-primary-container transition-colors"
+                    >
+                      {t('booking_form.success.button')}
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex justify-between items-baseline mb-8">
+                      <div>
+                        <span className="text-outline text-xs uppercase tracking-widest font-bold">{t('booking_form.summary.starts_from')}</span>
+                        <div className="text-4xl font-black text-secondary">
+                          {price != null ? `${price} €` : t('booking_form.summary.on_quote')}
+                          <span className="text-sm font-normal text-outline ml-1">{t('booking_form.summary.per_pers_short')}</span>
+                        </div>
+                      </div>
+                      {price && <div className="bg-primary-container/20 text-primary flex items-center px-3 py-1 rounded-full text-xs font-bold">{t('booking_form.summary.early_bird')}</div>}
+                    </div>
 
-              {/* Expert Help */}
-              <div className="mt-8 pt-8 border-t border-outline-variant/30 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-primary/10">
-                  <img className="w-full h-full object-cover" alt="expert" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1588&auto=format&fit=crop" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-secondary leading-none mb-1">{t('trip_details.expert.help_title')}</p>
-                  <p className="text-xs text-outline mb-1">{t('trip_details.expert.expert_name')}, {t('trip_details.expert.expert_title')}</p>
-                  <a className="text-[10px] text-primary font-bold uppercase tracking-widest hover:underline" href="#contact">{t('trip_details.expert.contact_link')}</a>
+                    <form className="space-y-5" onSubmit={handleBooking}>
+                      {bookingError && (
+                        <div className="p-3 bg-error/10 text-error text-xs font-bold rounded-lg border border-error/20">
+                          {bookingError}
+                        </div>
+                      )}
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="col-span-2">
+                          <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.name')}</label>
+                          <input 
+                            required
+                            className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
+                            placeholder={t('booking_form.labels.name_placeholder')}
+                            type="text" 
+                            value={bookingForm.name}
+                            onChange={(e) => setBookingForm({...bookingForm, name: e.target.value})}
+                          />
+                        </div>
+                        <div className="col-span-2">
+                          <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.email')}</label>
+                          <input 
+                            required
+                            className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
+                            placeholder={t('booking_form.labels.email_placeholder')}
+                            type="email" 
+                            value={bookingForm.email}
+                            onChange={(e) => setBookingForm({...bookingForm, email: e.target.value})}
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.date')}</label>
+                        <div className="relative">
+                          <input 
+                            className="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-secondary font-medium transition-all" 
+                            placeholder={t('booking_form.labels.date_placeholder')}
+                            type="text" 
+                            value={bookingForm.date}
+                            onChange={(e) => setBookingForm({...bookingForm, date: e.target.value})}
+                          />
+                          <Calendar size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-outline/50 pointer-events-none" />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.adults')}</label>
+                          <div className="flex items-center justify-between bg-surface-container-low border border-outline-variant/30 rounded-xl px-3 py-2">
+                            <button 
+                              type="button"
+                              onClick={() => setBookingForm(p => ({...p, adults: Math.max(1, p.adults - 1)}))}
+                              className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+                            >
+                              <Minus size={16} />
+                            </button>
+                            <span className="font-bold text-secondary">{bookingForm.adults}</span>
+                            <button 
+                              type="button"
+                              onClick={() => setBookingForm(p => ({...p, adults: p.adults + 1}))}
+                              className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+                            >
+                              <Plus size={16} />
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-widest font-bold text-outline mb-1.5 ml-1">{t('booking_form.labels.children')}</label>
+                          <div className="flex items-center justify-between bg-surface-container-low border border-outline-variant/30 rounded-xl px-3 py-2">
+                            <button 
+                              type="button"
+                              onClick={() => setBookingForm(p => ({...p, children: Math.max(0, p.children - 1)}))}
+                              className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+                            >
+                              <Minus size={16} />
+                            </button>
+                            <span className="font-bold text-secondary">{bookingForm.children}</span>
+                            <button 
+                              type="button"
+                              onClick={() => setBookingForm(p => ({...p, children: p.children + 1}))}
+                              className="text-primary hover:bg-primary/10 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+                            >
+                              <Plus size={16} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-surface-container-lowest border border-dashed border-outline-variant p-4 rounded-xl space-y-2">
+                        <div className="flex justify-between text-xs">
+                          <span className="text-outline">{t('booking_form.summary.price_base', { count: bookingForm.adults + bookingForm.children })}</span>
+                          <span className="text-secondary font-bold">{price != null ? `${(adultsTotal + childrenTotal).toFixed(0)} €` : '—'}</span>
+                        </div>
+                        <div className="flex justify-between text-xs text-primary italic">
+                          <span className="opacity-70">{t('booking_form.summary.child_discount')}</span>
+                          <span>{bookingForm.children > 0 ? `-${(bookingForm.children * perPerson * 0.3).toFixed(0)} €` : '0 €'}</span>
+                        </div>
+                        <div className="flex justify-between text-xs">
+                          <span className="text-outline">{t('booking_form.summary.fees')}</span>
+                          <span className="text-secondary font-bold">{extras} €</span>
+                        </div>
+                        <div className="pt-4 mt-2 border-t border-outline-variant flex justify-between items-center text-secondary">
+                          <span className="font-bold uppercase tracking-widest text-xs">{t('booking_form.summary.total_estimate')}</span>
+                          <span className="text-2xl font-black text-primary">
+                            {totalDisplayPrice ? `${totalDisplayPrice} €` : t('booking_form.summary.on_quote')}
+                          </span>
+                        </div>
+                      </div>
+
+                      <button 
+                        type="submit"
+                        disabled={bookingStatus === 'submitting'}
+                        className="w-full bg-linear-to-br from-primary to-primary-container text-white py-5 rounded-xl font-headline font-extrabold uppercase tracking-widest shadow-xl shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-3"
+                      >
+                        {bookingStatus === 'submitting' ? (
+                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                            <>
+                              <Send size={18} />
+                              <span>{t('booking_form.submit')}</span>
+                            </>
+                        )}
+                      </button>
+                      <p className="text-center text-[10px] text-outline uppercase tracking-tight flex items-center justify-center gap-2">
+                        <CheckCircle size={10} className="text-primary" />
+                        {t('booking_form.confirmation_hint')}
+                      </p>
+                    </form>
+                  </>
+                )}
+
+                {/* Expert Help */}
+                <div className="mt-8 pt-8 border-t border-outline-variant/30 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-primary/10">
+                    <img className="w-full h-full object-cover" alt="expert" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1588&auto=format&fit=crop" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-secondary leading-none mb-1">{t('trip_details.expert.help_title')}</p>
+                    <p className="text-xs text-outline mb-1">{t('trip_details.expert.expert_name')}, {t('trip_details.expert.expert_title')}</p>
+                    <a className="text-[10px] text-primary font-bold uppercase tracking-widest hover:underline" href="#contact">{t('trip_details.expert.contact_link')}</a>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </aside>
         </div>
       </div>

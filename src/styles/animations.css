@@ -1,0 +1,67 @@
+/* animations.css 
+   Minimal, brand-aligned motion primitives (Fade, Slide, Zoom) with in-view activation 
+*/
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --anim-duration: 700ms;
+    --anim-ease: cubic-bezier(.22,.65,.23,1);
+    --delay-100: 100ms;
+    --delay-200: 200ms;
+    --delay-300: 300ms;
+    --delay-400: 400ms;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .reveal {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .reveal.in-view {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .reveal-fade.in-view {
+    animation: fadeIn var(--anim-duration) var(--delay, 0ms) var(--anim-ease) forwards;
+  }
+  .reveal-slide-up.in-view {
+    animation: slideUp var(--anim-duration) var(--delay, 0ms) var(--anim-ease) forwards;
+  }
+  .reveal-zoom.in-view {
+    animation: zoomIn var(--anim-duration) var(--delay, 0ms) var(--anim-ease) forwards;
+  }
+
+  .delay-100 { --delay: var(--delay-100); }
+  .delay-200 { --delay: var(--delay-200); }
+  .delay-300 { --delay: var(--delay-300); }
+  .delay-400 { --delay: var(--delay-400); }
+
+  /* Gentle hover lift to add depth without being noisy */
+  .lift-on-hover:hover {
+    transform: translateY(-2px);
+    transition: transform 420ms ease;
+  }
+  .editorial-shadow {
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.in-view, .reveal-fade.in-view, .reveal-slide-up.in-view, .reveal-zoom.in-view {
+    animation: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
