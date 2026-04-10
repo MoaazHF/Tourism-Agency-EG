@@ -24,6 +24,7 @@
 - **🚀 Performance First**: Built with Vite and React 19 for instantaneous load times and a fluid UI.
 - **🎨 Editorial Design**: A curated visual experience using a bespoke design system and high-fidelity typography.
 - **🌊 Fluid Motion**: Integrated **Framer Motion** for scroll-triggered reveals, animated counters, and page transitions.
+- **📝 Seamless Booking**: Custom inquiry form that directly pipes user data into the Supabase database.
 - **🌍 Internationalization**: Full multi-language support (English/French/Arabic) powered by `react-i18next`.
 - **⚡ Real-time Backend**: Powered by **Supabase** for dynamic content delivery and secure database management.
 - **📱 Responsive Layout**: A mobile-first approach ensuring a premium experience across all devices.
@@ -37,6 +38,7 @@ The data layer is architected for scalability and rich content delivery. Below i
 ```mermaid
 erDiagram
     CATEGORIES ||--o{ TRIPS : contains
+    TRIPS ||--o{ BOOKINGS : receives
     
     CATEGORIES {
         uuid id PK
@@ -56,6 +58,17 @@ erDiagram
         string[] images "Array of gallery URLs"
         boolean is_featured "Promotional status"
         numeric star_rating "Customer rating"
+    }
+
+    BOOKINGS {
+        uuid id PK
+        text trip_id FK "Link to Trips"
+        text customer_name
+        text customer_email
+        integer adults
+        numeric total_price
+        string status "pending/confirmed"
+        timestamp created_at
     }
 ```
 
