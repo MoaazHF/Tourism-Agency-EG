@@ -13,9 +13,9 @@
 ## 📸 Visual Journey
 
 | Desktop Experience 
-| :---: | :---: |
+
 | (<img width="2537" height="1337" alt="image" src="https://github.com/user-attachments/assets/d44d28b6-bd0e-42a7-bc85-fd5b05be178e" />
-) 
+
 ---
 
 ## ✨ Key Features
