@@ -102,6 +102,7 @@ const Navbar = () => {
           <LanguageSwitcher />
           <button
             className="text-secondary p-2"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}

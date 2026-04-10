@@ -128,7 +128,14 @@ const Home = () => {
               <MotionReveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
                 <Link to={`/cruises/${trip.id}`} className="group h-full bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col lift-on-hover">
                   <div className="relative h-72 overflow-hidden">
-                    <img src={trip.images?.[0] || 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?q=80&w=2070&auto=format&fit=crop'} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <img
+                      src={trip.images?.[0] || 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a?q=80&w=2070&auto=format&fit=crop'}
+                      alt={trip.title}
+                      width="1200" height="800"
+                      fetchPriority="high"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
                     {trip.is_featured && (
                       <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
                         <Star className="w-3 h-3 fill-current" /> {trip.category_label || 'Premium'}
@@ -217,7 +224,14 @@ const Home = () => {
               <MotionReveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
                 <Link to={`/safari/${trip.id}`} className="group h-full bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col lift-on-hover">
                   <div className="relative h-72 overflow-hidden">
-                    <img src={trip.images?.[0]} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <img
+                      src={trip.images?.[0]}
+                      alt={trip.title}
+                      width="1200" height="800"
+                      fetchPriority="high"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
                     {trip.is_featured && (
                       <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
                         <Star className="w-3 h-3 fill-current" /> {trip.category_label || 'Most Popular'}
@@ -267,7 +281,14 @@ const Home = () => {
               <MotionReveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
                 <Link to={`/tours/${trip.id}`} className="group h-full bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col lift-on-hover">
                   <div className="relative h-72 overflow-hidden">
-                    <img src={trip.images?.[0]} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <img
+                      src={trip.images?.[0]}
+                      alt={trip.title}
+                      width="1200" height="800"
+                      fetchPriority="high"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
                     {trip.is_featured && (
                       <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
                         <Star className="w-3 h-3 fill-current" /> {trip.category_label || 'Bestseller'}
@@ -317,7 +338,14 @@ const Home = () => {
               <MotionReveal key={trip.id} variant="slide-up" delay={i * 100} className="h-full">
                 <Link to={`/excursions/${trip.id}`} className="group h-full bg-surface-container-lowest rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col lift-on-hover">
                   <div className="relative h-72 overflow-hidden">
-                    <img src={trip.images?.[0]} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <img
+                      src={trip.images?.[0]}
+                      alt={trip.title}
+                      width="1200" height="800"
+                      fetchPriority="high"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
                     {trip.is_featured && (
                       <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#7b5800] flex items-center gap-1">
                         <Star className="w-3 h-3 fill-current" /> {trip.category_label || 'Expert Guide'}

@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import RootLayout from './components/RootLayout';
 import Home from './pages/Home';
-import TripDetails from './pages/TripDetails';
-import ListingPage from './pages/ListingPage';
+import { lazy, Suspense } from 'react';
+const TripDetails = lazy(() => import('./pages/TripDetails'));
+const ListingPage = lazy(() => import('./pages/ListingPage'));
 import AdminLogin from './pages/AdminLogin';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import TripForm from './pages/admin/TripForm';
-import CategoryList from './pages/admin/CategoryList';
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const TripForm = lazy(() => import('./pages/admin/TripForm'));
+const CategoryList = lazy(() => import('./pages/admin/CategoryList'));
 import ProtectedRoute from './components/ProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -25,23 +26,23 @@ import { ScrollProgress } from './components/ScrollProgress';
 function App() {
   return (
     <MotionLayer>
-      <BrowserRouter>
-        <ScrollToTop />
-        <ScrollProgress />
-        <Routes>
+    <BrowserRouter>
+      <ScrollToTop />
+      <ScrollProgress />
+      <Routes>
 
         {/* ── Public site ───────────────────────────────────── */}
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
 
-          <Route path="cruises" element={<ErrorBoundary><ListingPage defaultCategory="cruises" /></ErrorBoundary>} />
-          <Route path="cruises/:tripId" element={<ErrorBoundary><TripDetails /></ErrorBoundary>} />
-          <Route path="safari" element={<ErrorBoundary><ListingPage defaultCategory="safari" /></ErrorBoundary>} />
-          <Route path="safari/:tripId" element={<ErrorBoundary><TripDetails /></ErrorBoundary>} />
-          <Route path="tours" element={<ErrorBoundary><ListingPage defaultCategory="tours" /></ErrorBoundary>} />
-          <Route path="tours/:tripId" element={<ErrorBoundary><TripDetails /></ErrorBoundary>} />
-          <Route path="excursions" element={<ErrorBoundary><ListingPage defaultCategory="excursions" /></ErrorBoundary>} />
-          <Route path="excursions/:tripId" element={<ErrorBoundary><TripDetails /></ErrorBoundary>} />
+          <Route path="cruises" element={<ErrorBoundary><Suspense fallback={<div>Loading...</div>}><ListingPage defaultCategory="cruises" /></Suspense></ErrorBoundary>} />
+          <Route path="cruises/:tripId" element={<ErrorBoundary><Suspense fallback={<div>Loading...</div>}><TripDetails /></Suspense></ErrorBoundary>} />
+          <Route path="safari" element={<ErrorBoundary><Suspense fallback={<div>Loading...</div>}><ListingPage defaultCategory="safari" /></Suspense></ErrorBoundary>} />
+          <Route path="safari/:tripId" element={<ErrorBoundary><Suspense fallback={<div>Loading...</div>}><TripDetails /></Suspense></ErrorBoundary>} />
+          <Route path="tours" element={<ErrorBoundary><Suspense fallback={<div>Loading...</div>}><ListingPage defaultCategory="tours" /></Suspense></ErrorBoundary>} />
+          <Route path="tours/:tripId" element={<ErrorBoundary><Suspense fallback={<div>Loading...</div>}><TripDetails /></Suspense></ErrorBoundary>} />
+          <Route path="excursions" element={<ErrorBoundary><Suspense fallback={<div>Loading...</div>}><ListingPage defaultCategory="excursions" /></Suspense></ErrorBoundary>} />
+          <Route path="excursions/:tripId" element={<ErrorBoundary><Suspense fallback={<div>Loading...</div>}><TripDetails /></Suspense></ErrorBoundary>} />
 
           <Route path="about" element={<EmptyPage title="Who Are We?" />} />
           <Route path="contact" element={<EmptyPage title="Contact" />} />
@@ -53,19 +54,35 @@ function App() {
 
         <Route
           path="/admin/dashboard"
-          element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}
+          element={<ProtectedRoute>
+            <Suspense fallback={<div>Loading admin...</div>}>
+              <AdminDashboard />
+            </Suspense>
+          </ProtectedRoute>}
         />
         <Route
           path="/admin/trips/new"
-          element={<ProtectedRoute><TripForm /></ProtectedRoute>}
+          element={<ProtectedRoute>
+            <Suspense fallback={<div>Loading admin...</div>}>
+              <TripForm />
+            </Suspense>
+          </ProtectedRoute>}
         />
         <Route
           path="/admin/trips/:tripId/edit"
-          element={<ProtectedRoute><TripForm /></ProtectedRoute>}
+          element={<ProtectedRoute>
+            <Suspense fallback={<div>Loading admin...</div>}>
+              <TripForm />
+            </Suspense>
+          </ProtectedRoute>}
         />
         <Route
           path="/admin/categories"
-          element={<ProtectedRoute><CategoryList /></ProtectedRoute>}
+          element={<ProtectedRoute>
+            <Suspense fallback={<div>Loading admin...</div>}>
+              <CategoryList />
+            </Suspense>
+          </ProtectedRoute>}
         />
 
       </Routes>
