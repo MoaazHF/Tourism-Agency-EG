@@ -12,10 +12,9 @@
 
 ## 📸 Visual Journey
 
-| Desktop Experience | Mobile Excellence |
-| :---: | :---: |
-| ![Hero Section Placeholder](https://via.placeholder.com/800x450?text=Hero+Section+Visual) | ![Mobile Listing Placeholder](https://via.placeholder.com/300x533?text=Mobile+UI+View) |
-| *High-end animations & scroll-triggered reveal* | *Snappy, touch-first interactions* |
+ Desktop Experience 
+
+<img width="2537" height="1337" alt="image" src="https://github.com/user-attachments/assets/d44d28b6-bd0e-42a7-bc85-fd5b05be178e" />
 
 ---
 
@@ -142,7 +141,7 @@ erDiagram
 ## 📧 Contact & Support
 
 **MoaazHF** - [GitHub](https://github.com/MoaazHF)  
-Project Link: [https://github.com/MoaazHF/Route-DEgypte](https://github.com/MoaazHF/Route-DEgypte)
+Project Link: [https://tourism-agency-83qswj5q7-moaazhfs-projects.vercel.app/)
 
 ---
 
