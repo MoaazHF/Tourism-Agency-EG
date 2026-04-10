@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import RootLayout from './components/RootLayout';
 import Home from './pages/Home';
 import { lazy, Suspense } from 'react';
@@ -26,7 +26,7 @@ import { ScrollProgress } from './components/ScrollProgress';
 function App() {
   return (
     <MotionLayer>
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <ScrollProgress />
       <Routes>
@@ -86,7 +86,7 @@ function App() {
         />
 
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
     </MotionLayer>
   );
 }

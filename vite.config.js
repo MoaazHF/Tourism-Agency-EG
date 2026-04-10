@@ -1,10 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 // rollup visualizer plugin is optional and may not be installed in all environments
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
     react(),
     tailwindcss(),
@@ -13,10 +14,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
+        // Use a function-based manualChunks to be compatible with Vite/Rollup version
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
         },
       },
     },
   },
-})
+});
