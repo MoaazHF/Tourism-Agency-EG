@@ -6,6 +6,7 @@
     "admin": "Admin"
   },
   "home": {
+      "title":"Tourism Agency",
     "hero": {
       "badge": "Experiencia Exclusiva",
       "title": {

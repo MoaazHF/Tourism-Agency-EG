@@ -40,8 +40,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center w-full px-8 h-full max-w-screen-2xl mx-auto">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold tracking-tighter text-[#1a2b48] font-headline" onClick={closeMenu}>
-          Route d'Égypte
-        </Link>
+Tourism Agency        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-8 font-headline">
