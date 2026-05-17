@@ -17,6 +17,19 @@
 <img width="2537" height="1337" alt="image" src="https://github.com/user-attachments/assets/d44d28b6-bd0e-42a7-bc85-fd5b05be178e" />
 
 ---
+## 🔗 Live Demo
+
+- **Home Page:**  
+  https://tourism-agency-eg-git-co-author-test-moaazhfs-projects.vercel.app
+
+- **Admin Dashboard:**  
+  https://tourism-agency-eg-git-co-author-test-moaazhfs-projects.vercel.app/admin
+
+### 🔐 Demo Admin Credentials
+
+```txt
+Email: darkknightn8@gmail.com
+Password: 01200063681
 
 ## ✨ Key Features
 
